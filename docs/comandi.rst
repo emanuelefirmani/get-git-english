@@ -1,9 +1,9 @@
 .. _comandi:
 
 
-#########
-I comandi
-#########
+########
+Commands
+########
 
 .. toctree::
    :maxdepth: 4
