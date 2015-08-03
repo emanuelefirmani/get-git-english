@@ -1,113 +1,112 @@
 ############
-Introduzione
+Introduction
 ############
 
 
 
 
 
-Questa guida è un po' diversa dalle altre.
+This handbook is a bit different from the others.
 
-Molti dei testi che ho letto su git si preoccupano di introdurti ai
-comandi base e lasciano ai capitoli più avanzati la descrizione del
-modello di funzionamento interno, oppure la saltano del tutto.
+Many texts I have read re git are concerned about introducing you to 
+basic commands and leave to more advanced chapters the description of 
+the model of internals, or they skip it at all.
 
-Quello che ho notato, però, è che imparando git partendo dai comandi
-base rischi di finire per usarlo come uno strumento vagamente simile a
-SVN ma provvisto di un set aggiuntivo di comandi esoterici, il cui
-funzionamento ti resterà sostanzialmente oscuro.
+But I noticed that if you learn git starting with basic commands, you are 
+risking to end up using it like a tool that is vaguely similar to SVN, but 
+devoid of esotheric commands, whose behaviour is going to remain for you 
+substantially obscure. 
 
-Facci caso: alcuni di quelli che hanno imparato git abbastanza da
-riuscire ad usarlo quotidianamente ti racconteranno di aver fatto molta
-fatica a capire cosa sia un ``rebase`` o di non cogliere esattamente che
-uso fare dell'\ ``index``.
+Maybe you could have already observed that some of those that have learned
+git well enough for using it daily, tell you that it was very difficult 
+for them to understand what a ``rebase`` is, or that they still don't get 
+exactly how to use \ ``index``.
 
-La mia impressione è che, una volta capito il modello interno (che è
-sorprendentemente semplice!), tutto git appaia improvvisamente lineare e
-coerente: non c'è davvero alcun motivo per cui il ``rebase`` debba
-essere un argomento misterioso.
+My impression is that once you understand the internal model (that is 
+surprisingly simple!), the whole git suddenly looks straightforward and
+coherent: there's really no reason why ``rebase`` should be a mysterious
+matter. 
 
-Questa guida prova a spiegarti git seguendo un percorso contrario a
-quello adottato di solito: partirai dalla spiegazione degli internal e
-finirai per imparare, nello stesso momento, sia comandi base che quelli
-avanzati, in poco tempo e senza troppi grattacapi.
+This guide tries to explain git following a path that is opposite to 
+the usually adopted one: you will start with exposition of internals and
+you will find yourself learning at the same moment both basiccommands and 
+advanced ones, in little time and without headaches.
 
-Non imparerai, però, tutti i comandi. Piuttosto che mostrarti tutte le
-opzioni disponibili, questa guida punterà a farti comprendere i concetti
-e il modello sottostante e a darti gli strumenti per essere autonomo
-quando vorrai approfondire un argomento sulle *man page* o vorrai fare
-qualcosa di fuori dall'ordinario con il tuo ``repository``.
+But you will not learn all commands. Instead of showing you all the possible
+options, this guide will aim to make you comprehend the concepts and the 
+underlying model and to give yoy tools in order to be autonomous when you
+will want to deepen a subject on *man page* or will want to do something
+out of the ordinary with your ``repository``. 
 
-Un'ultima nota: questa guida è organizzata come un lungo tutorial. Se ti
-armi di terminale ed esegui ognuno dei comandi, tipograficamente
-riportati così
+One last note: this guide is organised as a long tutorial. If you arm 
+yourself with a terminal and execute each ofthe commands, that you find
+in this typographic form
 
 .. code-block:: bash
 
     ls
 
-potrai riprodurre esattamente sul tuo computer ognuno degli esempi della
-guida.
+you will be able to reproduce on your computer exactly each of the examples 
+on the guide.
 
-Non sono parente di SVN
-#######################
 
-Per chi arriva da SVN, git presenta una sola difficoltà: ha molti
-comandi identici. Ma è una somiglianza superficiale e ingannevole: sotto
-il cofano git è totalmente differente.
+I'm not SVN's relative
+######################
 
-Per questo ti suggerisco di rifuggire sempre dalla tentazione di fare
-dei paralleli con SVN, perché sarebbero solo fuorvianti. Troverai
-comandi come ``add``, ``checkout``, ``commit`` e ``branch`` che ti
-sembrerà di conoscere. Ecco: fai *tabula rasa* di quel che conosci,
-perché in git quei comandi significano cose molto molto differenti.
+If you arrive from SVN, git presents one difficulty: it has many 
+identical commands. But it's a superficial and deceitful similarity:
+under the hood git is totally different. 
 
-Tentare di capire git usando SVN come modello, a volte, porta
-semplicemente fuori strada. Per esempio: ci crederesti che questo
-repository ha 3 branch?
+For this reason I suggest to shuin the temptation of drawng parallels
+with SVN, because they would be only misleading.Youwill find commands
+like  ``add``, ``checkout``, ``commit`` and ``branch`` that you will 
+think to know. So: make a clean sweep of what you know, because in 
+git those commands mean very different things.
+
+If you try to understand git using SVN as a model, sometimes you may
+be simply misleaded. For instance, would you believe that this repository
+has 3 branch?
 
 .. figure:: img/3-branches.png
 
 
    
-Sì: 3 branch, non 2.
+Yes: 3 branch, not 2.
 
-Oppure: ci crederesti che git, più che un sistema di versionamento del
-codice, potrebbe essere meglio descritto come un "*sistema peer-to-peer
-di database chiave/valore su file system*\ "?
+Or: would you believe that git, more than a code versioning system, could
+be better described as a  "*peer-to-peer system
+of key/value database on file system*\ "?
 
-Dopo aver letto la guida torna a leggere queste due affermazioni:
-sono pronto a scommettere che le troverai ovvie.
+After having read the guide come back and read these two statements: I'm 
+ready to bet that you will find them obvious. 
 
-Ecco il mio consiglio: dimentica quello che sai sui branch e sui 
-changeset di SVN e preparati a concetti completamente nuovi.
-Sono persuaso che li troverai molto più omogenei e potenti di quelli di
-SVN. 
+Here my suggestion: forget what you know about branch and changeset of SVN
+and prepare to completely new concepts. 
+I'm convinced that you will find them much more powerful than SVN's ones.
 
-Devi solo predisporti ad un piccolo salto culturale.
+You need only to be ready for a small cultural jump.
 
 Setup
 #####
 
-Installa `git <http://git-scm.com/downloads>`__.
+Install `git <http://git-scm.com/downloads>`__.
 
-Poi configuralo perché ti riconosca
+Then configure it in order that it can recognize you
 
 .. code-block:: bash
 
     git config --global user.name "Arialdo Martini"
     git config --global user.emal arialdomartini@gmail.com
 
-Se sei su Windows puoi eseguire quei comandi in ``git bash``, un
-terminale predisposto a ``git``. Su Linux e Mac OS X, dopo 
-l'installazione, troverai il tuo terminal preferito già pronto
-all'uso.
+If you are on Windows you can execute those commands in ``git bash``, a
+terminal prepared for ``git``. On Linux and Mac OS X, after
+installation, you will find your preferred termial ready to use. 
 
-Se vuoi, installa anche un client grafico. Io ti suggerisco
-`SmartGit <http://www.syntevo.com/smartgithg/>`__, che è gratuito per
-progetti OpenSource. Altrimenti appoggiati al tool ``gitk`` che trovi in
-bundle insieme all'installazione di git.
+If you want, install a graphical client as well. I suggest
+`SmartGit <http://www.syntevo.com/smartgithg/>`__, free of charge for
+OpenSource projects. Otherwise you can use the tool ``gitk`` that you
+find bundled together with git installation.
 
-Fantastico. Partiamo.
+Exciting. Let's go.
 
 :ref:`Indice <indice>` ::  :ref:`Gli internal di git <internal>`
