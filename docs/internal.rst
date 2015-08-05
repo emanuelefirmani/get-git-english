@@ -15,7 +15,7 @@ Let's start with three git's features you should become familiar with.
 2. **The project is indivisible**: git always works with the whole 
    source code of the project and not on single directories or files;
    between committing in the main directory or in a sub-directory. The 
-   concept ``checkout`` of a single file or directory doesn't exist. Git
+   concept ``checkout`` of a single file or directory doesn't exist. git
    assumes the project as the indivisible unit of work.
 3. **git doesn't memorize files' changes**: git always saves files in 
    full. If you modify a single character of a 2 mega file, git memorizes
@@ -47,20 +47,20 @@ you have three ways to edit the code
 
 You may have noticed two things.
 
-First, SVN and other versioning system you are probably in the abit of,
+First, SVN and other versioning systems you are probably in the habit of,
 operate at level 3.
 
-Second, the 4 system are listed in comfort order: in principle, when the 
-material stays on the remote system your work become more intrecate, slow
+Second, the 4 systems are listed in comfort order: in principle, when the 
+material stays on the remote system, your work becomes more intrecate, slow
 and umcomfortable. SVN allows you to checkout a whole directory precisely
 because in this way you find more comfortable to pass from one file to 
 another without the need to interact continually with the remote server.
 
 git is even more extreme; it prefers that you have everything at hand on
 your local computer; not just the single checkout, but the whole history
-of the project, from thr first to the last commit.
+of the project, from first to last commit.
 
-In fact, whatever you want to do, git normally ask to get a complete copy
+In fact, whatever you want to do, git normally asks to get a complete copy
 of what is present on the remote server. But don't worry too much: git is
 faster in getting the whole history of the project than SVN in getting a
 single checkout.
