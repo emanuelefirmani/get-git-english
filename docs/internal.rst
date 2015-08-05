@@ -1,74 +1,69 @@
 .. _internal:
 
-############
-Gli internal
-############
+#############
+The internals
+#############
 
-3 differenze principali
-#######################
+3 main differences
+##################
 
-Iniziamo con tre caratteristiche di git con le quali dovresti
-familiarizzare.
+Let's start with three git's features you should become familiar with.
 
-1. **Non c'è un server**: il repository è locale. La gran parte delle
-   operazioni è locale e non richiede l'accesso alla rete. Anche per
-   questo troverai git incredibilmente veloce.
-2. **Il progetto è indivisibile**: git lavora sempre con l'intero codice
-   sorgente del progetto e non su singole directory o su singoli file;
-   con git non c'è differenza tra committare nella directory principale
-   o in una sotto-directory. Non esiste il concetto di ``checkout`` di
-   un singolo file o di una singola directory. Per git il progetto è
-   l'unità indivisibile di lavoro.
-3. **git non memorizza i cambiamenti dei file**: git salva sempre i file
-   nella loro interezza. Se in un file di 2 mega modificassi un singolo
-   carattere, git memorizzerebbe per intero la nuova versione del file.
-   Questa è una differenza importante: SVN memorizza le differenze e,
-   all'occorrenza, ricostruisce il file; git memorizza il file e,
-   all'occorrenza, ricostruisce le differenze.
+1. **There's no server**: the repository is local. Most operations are 
+   local and don't require network access. Also for this you will find
+   git incredibly fast. 
+2. **The project is indivisible**: git always works with the whole 
+   source code of the project and not on single directories or files;
+   between committing in the main directory or in a sub-directory. The 
+   concept ``checkout`` of a single file or directory doesn't exist. Git
+   assumes the project as the indivisible unit of work.
+3. **git doesn't memorize files' changes**: git always saves files in 
+   full. If you modify a single character of a 2 mega file, git memorizes
+   in full the new version of the file.
+   This is an important difference: SVN memorizes the differences and, 
+   when required, rebuilds the file; git memorizes the file and, when 
+   required, rebuilds the differences.
 
-4 livelli di operatività *offline*
-==================================
+4 levels of *offline* operations
+================================
 
-Sull'assenza di un server ho un po' mentito: come ti ho già detto e come
-vedrai più avanti, git è un sistema *peer-to-peer*, e riesce ad interagire
-con dei server remoti. Nonostante questo, resta sostanzialmente un
-sistema locale.
+Re the absence of a server i lied a little: as I already told and as you
+will see later, git is a *peer-to-peer* system, and can interact with 
+remote servers. Despite this, it remains a substantially local system.
 
-Per capire quanto questo possa avvantaggiarti, prova a vederla così:
-quando il codice sorgente di un progetto è ospitato su un computer
-remoto hai 4 modi per editare il codice
+In order to better understand how this can benefit you, try to see what 
+follows: when a project's source code is hosted on a remote computer,
+you have three ways to edit the code
 
-1. Lasci tutto il codice sul computer remoto e vi **accedi con ssh per
-   editare un singolo file**
-2. Trovi il modo di ottenere **una copia del singolo file** per poterci
-   lavorare più comodamente in locale e lasci tutto il resto sul
-   computer remoto
-3. Trovi il modo di ottenere **una copia locale di un intero albero del
-   file system** e lasci il resto della storia dei commit sul computer
-   remoto
-4. Ottieni una **copia locale dell'intero repository** con tutta la
-   storia del progetto e lavori in locale
+1. You leave all the code on the remote computer and  **access it with 
+   ssh to edit a single file**
+2. You find the way to obtain **a copy of the single file** so that you
+   can work on it in local more comfortably, and you leave all the rest
+   on the remote computer
+3. You find the way to obtain **a local copy of a whole file system 
+   tree** and leave the rest of commits' history on the remote computer
+4. You obtain **a local copy of the whole repository** with the whole 
+   history of thr project and you work locally
 
-Avrai notato due cose.
+You may have noticed two things.
 
-La prima, che SVN e i sistemi di versionamento ai quali sei
-probabilmente abituato operano al livello 3.
+First, SVN and other versioning system you are probably in the abit of,
+operate at level 3.
 
-La seconda, che i 4 sistemi sono elencati in ordine di comodità: in
-linea di massima, quando il materiale è conservato sul sistema remoto il
-tuo lavoro è più macchinoso, lento e scomodo. SVN ti permette di fare il
-checkout di un'intera directory proprio perché così ti risulti più
-comodo passare da un file all'altro senza dover continuamente interagire
-col server remoto.
+Second, the 4 system are listed in comfort order: in principle, when the 
+material stays on the remote system your work become more intrecate, slow
+and umcomfortable. SVN allows you to checkout a whole directory precisely
+because in this way you find more comfortable to pass from one file to 
+another without the need to interact continually with the remote server.
 
-Ecco: git è ancora più estremo; preferisce farti avere a disposizione
-tutto sul tuo computer locale; non solo il singolo checkout, ma l'intera
-storia del progetto, dal primo all'ultimo commit.
+git is even more extreme; it prefers that you have everything at hand on
+your local computer; not just the single checkout, but the whole history
+of the project, from thr first to the last commit.
 
-In effetti, qualunque cosa tu voglia fare, git chiede normalmente di
-ottenere una copia completa di quel che è presente sul server remoto. Ma
-non preoccuparti troppo: git è più veloce a ottenere l'intera storia del
-progetto di quanto SVN lo sia ad ottenere un singolo checkout.
+In fact, whatever you want to do, git normally ask to get a complete copy
+of what is present on the remote server. But don't worry too much: git is
+faster in getting the whole history of the project than SVN in getting a
+single checkout.
 
 Il modello di storage
 =====================
