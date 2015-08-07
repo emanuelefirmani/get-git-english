@@ -14,9 +14,9 @@ Let's start with three git's features you should become familiar with.
    git incredibly fast. 
 2. **The project is indivisible**: git always works with the whole 
    source code of the project and not on single directories or files;
-   between committing in the main directory or in a sub-directory. The 
-   concept ``checkout`` of a single file or directory doesn't exist. git
-   assumes the project as the indivisible unit of work.
+   between committing in the main directory or in a sub-directory there's
+   no difference. The concept ``checkout`` of a single file or directory 
+   doesn't exist. git assumes the project as the indivisible unit of work.
 3. **git doesn't memorize files' changes**: git always saves files in 
    full. If you modify a single character of a 2 mega file, git memorizes
    in full the new version of the file.
@@ -43,7 +43,7 @@ you have three ways to edit the code
 3. You find the way to obtain **a local copy of a whole file system 
    tree** and leave the rest of commits' history on the remote computer
 4. You obtain **a local copy of the whole repository** with the whole 
-   history of thr project and you work locally
+   history of the project and you work locally
 
 You may have noticed two things.
 
@@ -51,10 +51,10 @@ First, SVN and other versioning systems you are probably in the habit of,
 operate at level 3.
 
 Second, the 4 systems are listed in comfort order: in principle, when the 
-material stays on the remote system, your work becomes more intrecate, slow
+material stays on the remote system, your work becomes more intricate, slow
 and umcomfortable. SVN allows you to checkout a whole directory precisely
 because in this way you find more comfortable to pass from one file to 
-another without the need to interact continually with the remote server.
+another without need to interact continually with the remote server.
 
 git is even more extreme; it prefers that you have everything at hand on
 your local computer; not just the single checkout, but the whole history
@@ -62,32 +62,31 @@ of the project, from first to last commit.
 
 In fact, whatever you want to do, git normally asks to get a complete copy
 of what is present on the remote server. But don't worry too much: git is
-faster in getting the whole history of the project than SVN in getting a
+faster in getting the whole history of the project than SVN is in getting a
 single checkout.
 
-Il modello di storage
-=====================
+The storage model
+=================
 
-Passiamo alla terza differenza. E preparati a conoscere il vero motivo
-per cui git sta sostituendo molto velocemente SVN come nuovo standard
-*de-facto*.
+Let's pass now to third difference. And be prepared to know the true reason
+why git is very fast going to substitute SVN as the new *de-facto* standard.
 
--  SVN memorizza la collezione dei vari delta applicati nel
-   tempo ai file; all'occorrenza ricostruisce lo stato attuale;
--  git memorizza i file così come sono, nella loro interezza;
-   all'occorrenza ne calcola i delta.
+-  SVN memorizes the collection of various applied to files during time; when 
+   required it rebuilds the present state; 
+-  git memorizes files as they are, in full; when required it computes their 
+   deltas.
 
-Se vuoi evitare tanti grattacapi con git, il miglior suggerimento che tu
-possa seguire è di trattarlo come un **database chiave/valore**.
+If you want to avoid many headaches with git, the best suggestion you can follow
+is to treat it as  **key/value database**.
 
-Passa al terminal e guarda nel concreto.
+Now go to your terminal and look in concrete.
 
-Mettiti nella condizione di avere 2 file vuoti sul file system:
+Put yourself in the condition to have two empty files on your file system:
 
 .. code-block:: bash
 
-    mkdir progetto
-    cd progetto 
+    mkdir project
+    cd project 
     mkdir libs 
     touch libs/foo.txt 
     mkdir templates 
@@ -102,108 +101,104 @@ Mettiti nella condizione di avere 2 file vuoti sul file system:
     ├──templates
             └──bar.txt
 
-Decidiamo di gestire il progetto con git
+Let's decide to manage the project with git
 
 .. code-block:: bash
 
     git init
 
-Aggiungi il primo file a git
+Add the first file to git
 
 .. code-block:: bash
 
     git add libs/foo.txt
 
-Con questo comando, git ispeziona il contenuto del file (è vuoto!) e lo
-memorizza nel suo database chiave/valore, chiamato ``Object Database`` e
-conservato su file system nella directory nascosta ``.git``.
+With this command, git inspect the content of the file (it's empty!) and
+memorizes it on its key/value database, named ``Object Database`` and
+stored on the file system in the  ``.git`` hidden directory.
 
-Siccome il ``blob-storage`` è un database chiave/valore, git cercherà di
-calcolare una chiave ed un valore per il file che hai aggiunto. Per il
-valore git userà il contenuto stesso del file; per la chiave, calcolerà
-lo SHA1 del contenuto (se sei curioso, nel caso di un file vuoto vale
+Since the ``blob-storage`` is a key/value database, git will try to
+compute a key and a value for the file you have added. For the value it 
+will use tha same content of the file; for the key , it will compute the 
+SHA1 of the content (if you are curious, in case of an empty file it's
 ``e69de29bb2d1d6434b8b29ae775ad8c2e48c5391``)
 
-Per cui, nell'``Object Database`` git salverà un oggetto ``blob``,
-univocamente identificabile dalla sua chiave (che, in assenza di
-ambiguità, vale la pena di abbreviare)
+So, in the ``Object Database`` git will save a ``blob`` object,
+uniquely identifiable by its key (that, in absence of ambiguity, it's 
+worth to shorten) 
 
 .. figure:: img/blob.png
    
-Adesso aggiungi il secondo file
+Now add the second file
 
 .. code-block:: bash
 
     git add templates/bar.txt
 
-Ora, siccome ``libs/foo.txt`` e ``templates/bar.txt`` hanno lo stesso
-identico contenuto (sono entrambi vuoti!), nell'``Object Database`` entrambi
-verranno conservati in un unico oggetto:
+Now, since ``libs/foo.txt`` and ``templates/bar.txt`` have the same identical 
+content (they are both empty!), in the ``Object Database`` they are going to
+be stored both in a single object: 
 
 .. figure:: img/blob.png
 
    
-Come vedi, nell'``Object Database`` git ha memorizzato solo il contenuto del
-file, non il suo nome né la sua posizione.
+As you can see, in the ``Object Database`` git has memorized only the file 
+content, and not its name or its location. 
 
-Naturalmente, però, a noi il nome dei file e la loro posizione
-interessano eccome. Per questo, nell'``Object Database``, git memorizza
-anche altri oggetti, chiamati ``tree`` che servono proprio a memorizzare
-il contenuto delle varie directory e i nomi dei file.
+But of course we are very interested in file names and locations, aren't we? 
+For this, in the ``Object Database``, git memorizes also other objects, 
+named ``tree`` that serve just to memorize the content of the different 
+directories and the file names.
 
-Nel nostro caso, avremo 3 ``tree``
+In our case, we will have 3 ``tree``
 
 .. figure:: img/tree.png
 
    
-Come ogni altro oggetto, anche i ``tree`` sono memorizzati come
-oggetti chiave/valore.
+As any other object, also ``trees`` are memorized as key/value objects.
 
-Tutte queste strutture vengono raccolte dentro un contenitore, chiamato
-``commit``.
+All these structures are collected in a container, called ``commit``.
 
 .. figure:: img/commit.png
 
    
-Come avrai intuito, un ``commit`` non è altro che un elemento del
-database chiave/valore, la cui chiave è uno SHA1, come per tutti gli
-altri oggetti, e il cui valore è un puntatore al ``tree`` del progetto,
-cioè la sua chiave (più un altro po' di informazioni, come la data di
-creazione, il commento e l'autore). Non è troppo complicato, dopo tutto,
-no?
+As you have probably guessed, a ``commit`` is nothing else that an element
+of the key/value database chiave/valore, whose key is a SHA1, as for all
+other objects, and whose value is a pointer to the project's ``tree`` ,
+that is its key (together with some other information, like creation date, 
+comment and author). In the end it's not that much complicated, isn't it?
 
-Quindi, il ``commit`` è l'attuale fotografia del file system.
 
-Adesso fai
+So, the  ``commit`` is the present photography of the file system.
+
+Now type
 
 .. code-block:: bash
 
-    git commit -m "commit A, il mio primo commit"
+    git commit -m "commit A, my first commit"
 
-Stai dicendo a git:
+You are saying to git:
 
-*memorizza nel repository, cioè nella storia del progetto, il commit che
-ti ho preparato a colpi di add*
+*memorize in the repository, that is in the project's history, the commit 
+I have prepared by several add*
 
-Il tuo ``repository``, visto da SmartGit, adesso ha questo aspetto
+Your ``repository``, seen by SmartGit, has now this aspect
 
 .. figure:: img/first-commit.png
 
    
-La riga col pallino che vedi sulla sinistra rappresenta l'oggetto
-``commit``. Nel pannello sulla destra, invece, puoi vedere la chiave del
-``commit``.
+The line with the bullet that you see on the left represents the ``commit``
+object. In the panel on the right, instead, you may see the ``commit`` key.
 
-In generale, a meno che non si debba parlare proprio del modello interno, 
-come stiamo facendo adesso, non c'è una grande necessità di
-rappresentare tutta la struttura di ``blob`` e ``tree`` che costituisce
-un ``commit``. Difatti, dopo il prossimo paragrafo inizieremo a
-rappresentare i ``commit`` come nella figura qui sopra: con un semplice
-pallino.
+In general, unless we want to speak precisely of the internal model, like 
+we are doing now, there's not a great nedd to represent the whole structure
+of  ``blob`` eand ``tree`` that constitutes a ``commit``. In fact, after 
+next paragraph we will start to represent the  ``commit`` like in the figure
+above: with a simple bullet.
 
-Già da adesso, comunque, dovrebbe risultarti più chiaro il fatto che
-dentro un ``commit`` ci sia l'intera fotografia del progetto e che, di
-fatto, un ``commit`` sia l'unità minima ed indivisibile di lavoro.
+Even now, however, for you it should be clearer that inside a ``commit`` 
+there is the whole photography of the project and a ``commit`` actually is
+the minimal and indivisible unit of work.
 
 L' ``index`` o ``staging area``
 ===============================
