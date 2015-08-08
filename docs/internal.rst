@@ -298,58 +298,57 @@ git storing also the history of our file system, therefore it'll be needed
 to memorize somewhere the fact that this new situation (the present ``index`` 
 state) is daughter of the previous situation (the previous ``commit``).
 
-In effetti, git aggiunge automaticamente al ``commit`` parcheggiato
-nella ``staging area`` un puntatore al ``commit`` di provenienza
+In effect, git adds authomatically to the ``commit`` parked in the ``staging 
+area`` a pointer to the source ``commit``
 
 .. figure:: img/index-and-first-commit.png
 
-La freccia rappresenta il fatto che l'\ ``index`` è figlio del
-``commit A``. È un semplice puntatore. Nessuna sopresa, se ci pensi;
-git, dopo tutto, utilizza il solito, medesimo, semplicissimo modello
-ovunque: un database chiave/valore per conservare il dato, e una chiave
-come puntatore tra un elemento e l'altro.
+The arrow represents the fact that the ``index`` is son of ``commit A``. It
+is a simple pointe. No surprise, if you think of it; git, after all, uses the
+same, usual, very simple model everywhere: a key/value database to store the
+sata, and a key as pointer between one element and the other. 
 
-Ok. Adesso committa
+Ok. Now commit
 
 .. code-block:: bash
 
-    git commit -m "Commit B, Il mio secondo commit"
+    git commit -m "Commit B, My second commit"
 
-Con l'operazione di commit si dice a git "*Ok, prendi l'attuale
-``index`` e fallo diventare il tuo nuovo ``commit``. Poi restituiscimi
-l'\ ``index`` così che possa fare una nuova modifica*\ "
+With the commit operation you're saying to git "*Ok, take the present
+``index`` and make it become your new ``commit``. Then give me back
+the ``index`` so that vi can make a new change*\ "
 
-Dopo il ``commit`` nel database di git avrai
+After the ``commit`` you will hhave in git's database
 
 .. figure:: img/index-and-second-commit.png
 
-Una breve osservazione: spesso le interfacce grafiche di git omettono di
-visualizzare l'\ ``index``. ``gitk``, per esempio, la visualizza solo se
-ci sono modifiche da committare. Il tuo repository in ``gitk`` adesso
-viene visualizzato così
+A short remark: often git's graphic interfaces omit visualizing the
+``index``. ``gitk``, for instance, shows it only if there are changes
+to be committed. Your repository in ``gitk`` is now visualized this
+way
 
 .. figure:: img/gitk.png
 
-Guarda tu stesso. Lancia
+See for yourself. Launch
 
 .. code-block:: bash
 
     gitk
 
-Ricapitolando:
+Recapping:
 
-1. git memorizza sempre i file nella loro interezza
-2. il ``commit`` è uno dei tanti oggetti conservati dentro il database
-   chiave/valore di git. È un contenitore di tanti puntatori ad altri
-   oggetti del database: i ``tree``, che rappresentano directory, 
-   che a loro volta puntano ad altri ``tree`` (sotto-directory) o
-   a dei ``blob`` (il contenuto dei file)
-3. ogni oggetto ``commit`` ha un puntatore al ``commit`` padre da cui
-   deriva
-4. l'\ ``index`` è uno spazio di appoggio nel quale puoi costruire, a
-   colpi di ``git add``, il nuovo ``commit``
-5. con ``git commit``
-   registri l'attuale ``index`` facendolo diventare il nuovo ``commit``.
+1. git always memorizes files in full
+2. the ``commit`` is one of the several objects stored into git's 
+   key/value database. It's a container of many pointers to other 
+   objects in the database: the ``tree``s, that represent directories, 
+   that in turn point to other ``tree``s (sub-directory) or to ``blob``s
+   (files' content)
+3. every ``commit`` object has a pointer to its father ``commit``, from
+   which it comes
+4. The ``index`` is a support space where you may build, with different 
+   ``git add``, the new ``commit``
+5. with ``git commit`` you record the present ``index`` making it become 
+   the new ``commit``.
 
 
 
@@ -357,10 +356,10 @@ Ricapitolando:
 
 
 
-Bene: adesso hai tutta la teoria per capire i concetti più astrusi di
-git come il ``rebase``, il ``cherrypick``, l'\ ``octopus-merge``,
-l'\ ``interactive rebase``, il ``revert`` e il ``reset``.
+Ok: now you have all the theory needed to understand git's most abstruse 
+concepts, like ``rebase``, ``cherrypick``, ``octopus-merge``,
+``interactive rebase``, ``revert`` and ``reset``.
 
-Passiamo al pratico.
+Let's go to practice.
 
-:ref:`Indice <indice>` ::  :ref:`I comandi di git <comandi>`
+:ref:`Index <indice>` ::  :ref:`git's commands <comandi>`
