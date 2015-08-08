@@ -231,11 +231,11 @@ seen above.
 
 In this moment, just after having completed your first ``commit``,
 the ``index`` stores a copy of your last ``commit`` and expects that you
-modifyit.
+modify it.
 
 .. figure:: img/index2.png
 
-Sul file system hai
+On file system you have
 
 ::
 
@@ -246,60 +246,57 @@ Sul file system hai
     ├──templates
             └──bar.txt
 
-Proviamo a fare delle modifiche al file ``foo.txt``
+Let's try to da some changes to file ``foo.txt``
 
 .. code-block:: bash
 
-    echo "nel mezzo del cammin" >> libs/foo.txt
+    echo "in the middle of the way" >> libs/foo.txt
 
-e aggiornare l'\ ``index`` con
+and update the ``index`` with
 
 .. code-block:: bash
 
     git add libs/foo.txt
 
-Ecco un'altra differenza con svn: in svn ``add`` serve a mettere sotto 
-versionamento un file e va eseguito una sola volta; in git serve
-a salvare un file dentro l'``index`` ed è un'operazione che va ripetuta
-ad ogni ``commit``.
+Here you have another difference from SVN: in SVN ``add`` serves to put
+a file under versioning and it has to be executed only once; in git it serves
+to save a file inside the ``index`` and it's an operation that has to be 
+repeated at every ``commit``.
 
-All'esecuzione di ``git add`` git ripete quel che aveva già fatto prima:
-analizza il contenuto di ``libs/foo.txt``, vede che c'è un contenuto che
-non ha mai registrato e quindi aggiunge all'``Object Database`` un nuovo
-``blob`` col nuovo contenuto del file; contestualmente, aggiorna il
-``tree`` ``libs`` perché il puntatore chiamato ``foo.txt`` indirizzi il
-suo nuovo contenuto
+When yiou execute ``git add`` git repeats what it had alreadt done beforehand:
+it analyzes the content of ``libs/foo.txt``, it sees that there's a content it
+has never recorded and therefore it adds to the ``Object Database`` a new
+``blob`` with the new content of the file; contestually, it updates the ``tree`` 
+``libs`` so that the pointer named``foo.txt`` addresses its new content
 
 .. figure:: img/index3.png
 
-Prosegui aggiungendo un nuovo file ``doh.html`` alla root del progetto
+Go on adding a new file ``doh.html`` to the project's root
 
 .. code-block:: bash
 
     echo "happy happy joy joy" > doh.html
     git add doh.html
 
-Come prima: git aggiunge un nuovo ``blob`` object col contenuto del file
-e, contestualmente, aggiunge nel ``tree`` "/" un nuovo puntatore
-chiamato ``doh.html`` che punta al nuovo ``blob`` object
-
+Like before: git adds a new ``blob`` object with the file's content and,
+contestually, adds in the "/" ``tree``  a new pointer named ``doh.html`` 
+that points to the new ``blob`` object
+ 
 .. figure:: img/index4.png
 
-Il contenitore di tutta questa struttura è sempre un oggetto ``commit``;
-git lo tiene parcheggiato nella ``staging area`` in attesa che tu lo
-spedisca al ``repository``. Questa struttura rappresenta esattamente la
-nuova situazione sul file system: è nuovamente una fotografia
-dell'intero progetto, ed include anche il file ``bar.txt``, nonostante
-tu non lo abbia modificato. Per inciso: non dovresti preoccuparti per il
-consumo di spazio perché, come vedi, per memorizzare ``bar.txt`` git sta
-riutilizzando l'oggetto ``blob`` creato nel ``commit`` precedente, per
-evitare duplicazioni.
+The container of all this structure is always a ``commit`` object;
+git keeps it parked in the ``staging area`` waiting for you to send to
+the ``repository``. This structure exactly represents the new situation on
+file system: it's a photography of the whole project again, and it includes 
+also the ``bar.txt`` file, despite you have noy modified it. Incidentally:
+you shouldn't worry for space usage because, as you can see, to memorize 
+``bar.txt`` git is reusing the ``blob`` object it created in the previous 
+``commit``, in order to avoid duplications.
 
-Bene. Abbiamo quindi una nuova fotografia del progetto. A noi interessa,
-però, che git conservi anche la storia del nostro file system, per cui
-ci sarà bisogno di memorizzare da qualche parte il fatto che questa
-nuova situazione (lo stato attuale dell'\ ``index``) sia figlia della
-precedente situazione (il precedente ``commit``).
+Ok. Now we have a new photography of the project. But we are interested in
+git storing also the history of our file system, therefore it'll be needed
+to memorize somewhere the fact that this new situation (the present ``index`` 
+state) is daughter of the previous situation (the previous ``commit``).
 
 In effetti, git aggiunge automaticamente al ``commit`` parcheggiato
 nella ``staging area`` un puntatore al ``commit`` di provenienza
