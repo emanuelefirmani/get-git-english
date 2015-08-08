@@ -180,9 +180,9 @@ Now type
 You are saying to git:
 
 *memorize in the repository, that is in the project's history, the commit 
-I have prepared by several add*
+I have prepared by several adds*
 
-Your ``repository``, seen by SmartGit, has now this aspect
+Your ``repository``, seen by SmartGit, has now this aspect:
 
 .. figure:: img/first-commit.png
 
@@ -200,41 +200,38 @@ Even now, however, for you it should be clearer that inside a ``commit``
 there is the whole photography of the project and a ``commit`` actually is
 the minimal and indivisible unit of work.
 
-L' ``index`` o ``staging area``
+The ``index`` or ``staging area``
 ===============================
 
-Sostanzialmente, non c'è molto altro che tu debba sapere del modello di
-storage di git. Ma prima di passare a vedere i vari comandi, vorrei
-introdurti ad un altro meccanismo interno: la ``staging area`` o
-``index``. L'\ ``index`` risulta sempre misterioso a chi arriva da SVN:
-vale la pena parlarne perché, quando saprai come funzionano l'``Object Database`` 
-e l'\ ``index``, git non ti sembrerà più contorto e
-incomprensibile; piuttosto, ne coglierai la coerenza e lo troverai
-estremamente prevedibile.
+Substantially, that's no much more that you have to know about git's storage
+model. But before we pass to see the different commands, I'd like to introduce 
+another internal mechanism: the ``staging area`` or ``index``. The ``index` amways 
+results a mystery for the one who arrives from SVN: it's worth to speak about it
+because when you know how ``Object Database`` and ``index`` work, no longer will 
+git appear to you intricate and incomprehensible; rather, you will get its coherence
+and you'll find it extremely predictable. 
 
-L'\ ``index`` è una struttura che fa da cuscinetto tra il ``file system`` e
-il ``repository``. È un piccolo buffer che puoi utilizzare per costruire il
-prossimo ``commit``.
+The ``index`` is a structure that acts as a pad between ``file system`` and 
+``repository``. It's a small buffer you can use tu build your next ``commit``.
 
 .. figure:: img/index1.png
 
    
-Non è troppo complicato:
+It's not that much complicated:
 
--  il ``file system`` è la directory con i tuoi file.
--  il ``repository`` è il database locale su file che conserva i vari
+-  the ``file system`` is the directory with your files.
+-  the ``repository`` is the local database on file that stores the various
    ``commit``
--  l'\ ``index`` è lo spazio che git ti mette a disposizione per creare
-   il tuo prossimo ``commit`` prima di registrarlo definitivamente nel
-   ``repository``
+-  the ``index`` is the space that git provides you to create next ``commit`` 
+before recording it definetely on the ``repository``
 
-Fisicamente, l'\ ``index`` non è molto diverso dal ``repository``:
-entrambi conservano i dati nell'``Object Database``, usando le strutture che
-hai visto prima.
+Physically, ``index`` is not very different from ``repository``:
+both store data in the ``Object Database``, using the structures you have 
+seen above.
 
-In questo momento, appena dopo aver completato il tuo primo ``commit``,
-l'\ ``index`` conserva una copia del tuo ultimo ``commit`` e si aspetta
-che tu lo modifichi.
+In this moment, just after having completed your first ``commit``,
+the ``index`` stores a copy of your last ``commit`` and expects that you
+modifyit.
 
 .. figure:: img/index2.png
 
