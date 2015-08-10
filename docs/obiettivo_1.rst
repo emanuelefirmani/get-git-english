@@ -1,37 +1,36 @@
 .. _obiettivo_1:
 
-Obiettivo 1: tornare indietro nel tempo
-#######################################
+Target 1: going back in time
+#############################
 
-Dunque, se in git tutto è conservato in un database chiave/valore,
-probabilmente ci sarà modo per referenziare un qualunque oggetto del
-database usando la sua chiave.
+So, if in git everything is tored in a key/value database, there will
+probably be a way to reference any object in database using its key.
 
-In effetti è proprio così.
+In fact it is so.
 
-Adesso proviamo a tornare indietro nel tempo, al ``commit A``,
-utilizzando il comando ``git checkout``.
+Now let's try to go back in time, to ``commit A``, using the ``git 
+checkout`` command.
 
-Il comando ``checkout`` prende il ``commit`` indicato e lo copia nel
-``file system`` e nella ``staging area``.
+The ``checkout`` command takes the indicated ``commit`` and copies it
+to ``file system`` and to ``staging area``.
 
 .. figure:: img/index-add-commit-checkout.png
 
-Già: ma qual è la chiave del ``commit A``? Lo puoi scoprire con un
-client grafico o col comando ``git log`` che mostra un elenco di tutti
-i ``commit`` memorizzati nel ``repository``
+Ok: but what is ``commit A``'s key? You can discover it with a graphical
+client or with the ``git log`` command, that shows a list of all ``commit`` 
+stored in the ``repository``
 
 .. code-block:: bash
 
     git log --oneline
-    2a17c43 Commit B, Il mio secondo commit
-    56674fb commit A, il mio primo commit
+    2a17c43 Commit B, My second commit
+    56674fb commit A, My first commit
 
-Attenzione! Siccome nel ``commit`` vengono memorizzati anche la data e
-l'autore, le tue chiavi risulteranno diverse dalle mie. Sul mio 
-``repository`` la chiave del ``commit A`` è ``56674fb``. 
+Be careful! Since ``commit`` memorizes also date and author, your keys
+will result different than mine. On my ``repository`` ``commit A``'s key is
+``56674fb``. 
 
-Bene: torniamo indietro al passato, al momento del ``commit`` ``A``
+Ok: let's go back to the past, to the moment of ``commit`` ``A``
 
 .. code-block:: bash
 
@@ -43,40 +42,39 @@ Bene: torniamo indietro al passato, al momento del ``commit`` ``A``
     ls
     libs    templates
 
-Effettivamente, a parte un misterioso e prolisso messaggio nel quale
-git si lamenta di essere in ``'detached HEAD' state`` (poi chiariremo
-questo punto), il file system è tornato allo stato del primo commit e,
-infatti, il file ``doh.html`` è scomparso.
+In effect, except for a mysterious and long-winded message wher git complains for being
+in ``'detached HEAD' state`` (afterwards we'll make this point clear), file system has 
+returned to the state of first commit, and in fact, file ``doh.html`` has disappeared.
 
-Se provi a lanciare di nuovo `gitk` riceverai un'altra sorpresa: apparentemente,
-il `commit B` è scomparso. Ma non temere: git lo sta solo nascondendo. Per visualizzare
-tutti i commit, usa l'opzione `--all` di `gitk`
-
-.. code-block:: bash
-                
-    gitk --all
-
-Questo accade perché, generalmente, le interfacce grafiche di git cercano
-di mostrare solo i commit significativi, nascondendo ogni elementof superfluo.
-Gitk, per esempio, mostra solo i commit che appartengono alla linea  di sviluppo che
-conduce alla posizione corrente, omettendo il proseguio della linea di sviluppo (cioè
-il suo futuro) e eventuali altre diramazioni.
-Nel caso della nostra storia, dal punto di vista del
-`commit A`, il `commit B` appartiene al futuro e a meno che non si chieda
-esplicitamente di visualizzarlo verrà omesso dalla visualizzazione.
-
-Di seguito, ogni volta che dovessi stupirti perché ti sembra che git
-abbia fatto scomparire qualche commit, rassicurati lanciando
+If you try to launch again `gitk` you'll receive another surprise: apparently `commit B` 
+has disappeared. But don't worry: git is just hiding it. In order to visualize all
+commits, use the `--all` option of `gitk`
 
 .. code-block:: bash
                 
     gitk --all
 
-oppure
+This happens because, usually, git's graphicinterfaces try to show only meaningful 
+commits, hiding every unnecessary element. 
+Gitk, for instance, shows only commits belonging to the line of development that get 
+to the current position, omitting what follows in the development line (that is its
+future) and any other branches. 
+In the case of our history, from the viewpoint of `commit A`, `commit B` belongs to
+the future, and unless we ask explicitly to show it, it'll be omitted in the 
+visualization 
+
+Below, whenever you should be amazed because you've the impression that git made some 
+commit disappear, rest assured launching 
+
+.. code-block:: bash
+                
+    gitk --all
+
+or
 
 .. code-block:: bash
                 
     git log --graph --all --oneline
 
-se preferisci non abbandonare la shell.
+if you prefer not to abandon the shell.
 :ref:`Indice <indice>` :: :ref:`Obiettivo 2: divergere <obiettivo_2>`
