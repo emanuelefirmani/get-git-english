@@ -1,38 +1,38 @@
 .. _obiettivo_2:
 
-Obiettivo 2: divergere
-######################
+Target 2: diverging
+###################
 
-Usando una convenzione grafica molto comune nella letteratura su git,
-potremmo rappresentare la situazione attuale del tuo repository con
+Using a graphic convention that is very common in git's literature, we 
+could represent the present situation in your repository with 
 
     **A**---B
 
-Cioè: ci sono due ``commit``, ``A`` e ``B``. Il ``commit B`` è figlio di
-``A`` (il tempo scorre verso destra). Il ``commit`` in grassetto indica
-il punto in cui ti trovi attualmente.
+That is: there are two ``commit`` , ``A`` and ``B``. ``commit B`` is
+``A``'s son (time moves to the right). The bolded ``commit`` identifies 
+the point where you presently are.
 
-Che succederebbe se adesso facessi qualche modifica e committassi?
-Accadrebbe che il nuovo ``commit C`` che andresti a generare sarebbe
-figlio di ``A`` (perché è da lì che parti), ma la linea di svilupppo
-proseguirebbe divergendo dalla linea ``A---B``.
+What would happen if I now made some changes and than committed?
+It would happen that the new ``commit C`` that would be generated will
+be ``A``'s son (because you're starting from there), but the development
+line would go on diverging from the ``A---B`` line.
 
-Cioè, si creerebbe questa situazione
+That is,it would create this situation
 
 .. code-block:: bash
 
     A---B
      \
       C     
-Prova:
+Test:
 
 .. code-block:: bash
 
     echo "ei fu siccome immobile" > README.md
     git add README.md 
-    git commit -m "Ecco il commit C"
+    git commit -m "Here you have the C commit"
 
-Visualizza il risultato con 
+Show the result with
 
 .. code-block:: bash
 
@@ -41,23 +41,21 @@ Visualizza il risultato con
 
 .. figure:: img/repo1.png
 
-Hai ottenuto una diramazione, senza ricorrere al meccanismo di copia dei
-file utilizzato da SVN al momento della creazione di un branch: il
-modello a chiave/valore e puntatori di git rende molto economico
-rappresentare una linea di sviluppo che diverge.
+You got a branch, without the mechanism of file copy used by SVN at
+the moment of creation of a branch: git's model based on key/value and 
+pointers makes it very economic to represent a diverging development line.
 
-Due osservazioni importanti.
+Two important observations.
 
-La prima per ribadire il concetto che git non ha mai memorizzato i delta
-tra i file: ``A``, ``B`` e ``C`` sono snapshot dell'intero progetto. È
-molto importante ricordarselo, perché ti aiuterà a capire che tutte le
-considerazioni che sei sempre stato abituato a fare con SVN in git
-potrebbero non valere.
+The first in order to reiterate the concept that never git memorized deltas between
+files:  ``A``, ``B`` and ``C`` are snapshots of the whole project. It's 
+very important to remember this, because it'll help you in understanding
+that all observations you've always been in the habit of making with SVN
+might not apply with SVN.
 
-La seconda potrebbe un po' sorprenderti: le due linee di sviluppo
-divergenti che hai appena visto non sono ``branch``. In git i ``branch`` sono
-dei puntatori dotati di nome, o delle etichette. Te ne parlerò nel
-prossimo paragrafo, ma abituati già a ripeterti: in git i ``branch`` non
-sono rami di sviluppo.
+The second might surprise you a little: the two diverging development lines you
+have just seen are not ``branch``. In git a ``branch`` is a pointer with a name,
+or a label. I'm going to speak about this in next paragraph, but get accustomed to
+the idea that in git ``branch`` are not development branches.
 
 :ref:`Indice <indice>` :: :ref:`Obiettivo 3: creare un branch <obiettivo_3>`
