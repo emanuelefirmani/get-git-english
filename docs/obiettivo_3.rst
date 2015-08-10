@@ -1,49 +1,48 @@
 .. _obiettivo_3:
 
-Obiettivo 3: creare un branch
-#############################
+Target 3: to create a branch
+############################
 
-Con il comando ``checkout`` hai imparato a spostarti da un ``commit``
-all'altro
+With ``checkout`` command you have learned to move from one ``commit``
+to another.
 
-Tutto quello di cui hai bisogno è la chiave del ``commit`` sul quale
-vuoi atterrare 
+All you need is they key of the ``commit`` where you want to land
 
 .. code-block:: bash
     git log --oneline --all
-    deaddd3 Ecco il commit C
-    2a17c43 Commit B, Il mio secondo commit
-    56674fb commit A, il mio primo commit
+    deaddd3 Here you have commit C
+    2a17c43 Commit B, my second commit
+    56674fb commit A, my first commit
 
 .. figure:: img/repo1.png
 
-Se volessi andare sul `commit B` dovresti lanciare ``git checkout 2a17c43``,
-per tornare al `commit C` dovresti invece usare ``git checkout deaddd3`` e così via.
+If you wanted to go on `commit B` you should launch ``git checkout 2a17c43``,
+in order to go back to `commit C` you should use instead ``git checkout deaddd3`` 
+and so on.
 
-Però, bisogna ammetterlo: gestire i ``commit`` ``A``, ``B`` e ``C``
-dovendoli chiamare ``56674fb``, ``2a17c43`` e ``deaddd3`` è di una
-scomodità unica.
+But, we have to admit: to manage ``commit`` ``A``, ``B`` e ``C``
+havingto call them ``56674fb``, ``2a17c43`` and ``deaddd3`` is a unique
+unconvinience. 
 
-git risolve il problema facendo quel che farebbe ogni programmatore di
-buon senso: dal momento che quei numeri sono dei puntatori ad oggetti,
-git permette di usare delle variabili per conservarne il valore.
-Assegnare un valore ad una variabile è semplice. Se hai eseguito
-correttamente l'ultimo checkout, dovresti essere sul `commit C`.
-Bene, a questo punto esegui:
+git solves the problem doing what every judicious programmer would do: 
+since those numbers are pointers to objects, git allows to use variables 
+to store their values. To assign a value to a variable is simple. If you
+correctly executed last checkout, you should be on `commit C`.
+Ok, now type:
 
 .. code-block:: bash
 
-    git branch bob 56674fb # qui sto usando la chiave del commit A
+    git branch bob 56674fb # here I'm using commit A's key
 
 .. figure:: img/bob.png
 
-Vedi l'etichetta ``bob`` proprio in corrispondenza del ``commit A``? Sta
-ad indicare che ``bob`` punta proprio a quel ``commit``. Vedila come se
-fosse una variabile alla quale hai assegnato il valore della chiave del
-`commit A`.
+Can you see the ``bob`` label just just in correspondence of ``commit A``? 
+It stays to indicate that ``bob`` points precisely that ``commit``. 
+Look at it as it wasa variable you have assigned the value of `commit A`
+key.
 
-Quando crei un'etichetta, se non specifichi un valore, git userà la
-chiave del ``commit`` sul quale ti trovi al momento
+When you create a label, if you don't specify a value, git will use the
+key of the ``commit`` you are at the moment
 
 .. code-block:: bash
 
@@ -52,39 +51,37 @@ chiave del ``commit`` sul quale ti trovi al momento
 
 .. figure:: img/piccio.png
 
-L'eliminazine di una variabile è ugualmente banale:
+Removal of a variable is equally trivial:
 
 .. code-block:: bash
 
     git branch -d bob
     git branch -d piccio
 
-Avrai notato che di default git crea alcune di queste variabili. Per
-esempio, nelle figure sopra appariva anche la variabile ``master``,
-puntata su ``B``.
+You may have noted that git creates some of these variables by default. For
+instance, in the above figures you see also the ``master`` variable,
+pointed to ``B``
 
 .. figure:: img/repo2.png
 
-L'etichetta ``master`` ti permette di andare sul quel ``commit``
-scrivendo:
+The ``master`` label allows you to go to that ``commit`` writing:
 
 .. code-block:: bash
 
     git checkout master
 
-Ora attento, perché siamo di nuovo in una di quelle occasioni dove la
-conoscenza di SVN fornisce solo dei grattacapi: queste etichette in git
-si chiamano ``branch``. Ripetiti mille volte: un ``branch`` in git non è
-un ramo, è un'etichetta, un puntatore ad un ``commit``, una variabile
-che contiene la chiave di un ``commit``. Tanti comportamenti di git che
-appaiono assurdi e complicati diventano molto semplici se eviti di
-pensare ai ``branch`` di git come ad un equivalente dei branch di SVN.
+Now be careful, because we are again in one of those occasions where the
+knowledge of SVN gives only headaches: these labels in git are named 
+``branch``. Repeat many times to yourself: in git a ``branch`` is not a
+branch, it's a label, a pointer to a ``commit``, a variable that contains
+the key of a ``commit``. Many git's behaviours that appear absurd and 
+complicated become very simple if you avoid thinking of git's ``branch``
+as something equivalent to SVN's branch.
 
-Dovrebbe iniziare a risultarti chiaro perché molti dicano che "*i branch
-su git sono molto economici*\ ": per forza! Sono delle semplicissime
-variabili!
+It should now begin to be clear for you why many people say that "*branches
+on git are very economical*\ ": of course! they are simple variables!
 
-Crea un nuovo ``branch`` che useremo nelle prossime pagine
+Create a new ``branch`` that we'lluse in next pages
 
 .. code-block:: bash
 
@@ -92,12 +89,12 @@ Crea un nuovo ``branch`` che useremo nelle prossime pagine
 
 .. figure:: img/branch-dev.png
 
-Nota un'altra cosa: vedi che accanto a ``master`` SmartGit aggiunge un
-segnaposto triangolare verde? Quel simbolo indica che in questo momento
-sei *agganciato* al ``branch`` ``master``, perché il tuo ultimo comando
-di spostamento è stato ``git checkout master``.
+Note another thing: do you see that next to ``master`` SmartGit adds a 
+green triangle placeholder? That symbol indicates that in this moment 
+you are *attached* to the  ``master``  ``branch`` , because your latter
+moving command was ``git checkout master``.
 
-Potresti spostarti su ``dev`` con
+You might move on ``dev`` with
 
 .. code-block:: bash
 
@@ -105,16 +102,15 @@ Potresti spostarti su ``dev`` con
 
 .. figure:: img/branch-dev2.png
 
-Visto? Il segnaposto si è spostato su ``dev``.
+Have you seen? The placeholder has moved on ``dev``.
 
-Quel segnaposto si chiama ``HEAD``. Di default, infatti, git aggiunge
-sempre anche un ``branch`` implicito, il puntatore ``HEAD``, che punta
-sempre all'elemento del ``repository`` sul quale ti trovi. ``HEAD`` ti
-segue, qualsiasi movimento tu faccia. Altri editor grafici utilizzano
-differenti rappresentazioni per comunicare dove si trovi ``HEAD``.
-``gitk``, per esempio, visualizza in grassetto il ``branch`` sul quale
-ti trovi. Invece, dalla linea di comando, per sapere su quale ``branch``
-ti trovi ti basta eseguire
+That placeholder's name is ``HEAD``. By default, in fact, git always 
+adds also an implicit ``branch`` , the ``HEAD`` pointer, always pointing
+to the element of the ``repository`` where you are. ``HEAD`` follows
+you, any movement you do. Other graphical editor use different 
+representations to communicate where ``HEAD`` is.
+``gitk``, for instance, shows in bold the ``branch`` where you are. Instead,
+from command line, to know on which ``branch`` you are, you just run
 
 .. code-block:: bash
 
@@ -122,41 +118,39 @@ ti trovi ti basta eseguire
     * dev
     master
 
-L'asterisco suggerisce che ``HEAD`` adesso stia puntanto a ``dev``.
+The star suggests that ``HEAD`` is now pointing to ``dev``.
 
-Non dovresti essere troppo sorpreso nel verificare che, nonostante tu
-abbia cambiato ``branch`` da ``master`` a ``dev`` il tuo ``file system``
-non sia cambiato di una virgola: in effetti, sia ``dev`` che ``master``
-stanno puntando allo stesso identico ``commit``.
+You should be not that much surprised veryfing that, despite you've 
+chenged ``branch`` from ``master`` to ``dev`` your ``file system`` has 
+not changed one iota: in effect both ``dev`` and ``master`` are 
+pointing to the same identical ``commit``.
 
-Non di meno, ti domanderai probabilmente a cosa mai possa servire
-passare da un ``branch`` all'altro, se non sortisce alcun effetto sul
-progetto.
+Nevertheless, you'll might wonder what can serve passing from one ``branch`` 
+to another, if it doesn't produce effects on the project. 
 
-Il fatto è che quando esegui il ``checkout`` di un ``branch``, in
-qualche modo ti *agganci* al ``branch``; l'etichetta del ``branch``, in
-altre parole, inizierà a seguirti, ``commit`` dopo ``commit``.
+The fact is that when you run the ``checkout`` of a ``branch``, you somehow
+*attach* to the ``branch``; the ``branch``'s labl, in
+other words, will start following you, ``commit`` after ``commit``.
 
-Guarda: adesso sei su ``dev``. Apporta una modifica qualsiasi e committa
+Look: you are now on ``dev``. Make any modifications and commit
 
 .. code-block:: bash
 
     touch style.css
     git add style.css
-    git commit -m "Adesso ho anche il css"
+    git commit -m "Now I have also css"
 
 
 .. figure:: img/branch-dev3.png
 
-Visto cosa è successo? L'etichetta ``dev`` si è spostata in avanti e si
-è agganciata al tuo nuovo ``commit``.
+Have you seen what has happened? The label  ``dev`` has moved onward and
+attached to your new ``commit``.
 
-Ti domanderai anche perché mai git chiami quelle etichette ``branch``.
-Il motivo è che, anche se le linee di sviluppo che divergono in git non
-sono ``branch``, i ``branch`` vengono normalmente usati proprio per dar
-loro un nome.
+You might also wonder why git call those labels  ``branch``.
+The reason is that, even though diverging development lines in git are 
+not ``branch``, ``branch`` are normally used juest to give them a name.
 
-Guardalo nel concreto. Torna a ``master`` ed apporta qualche modifica.
+Look at it in concrete. Go back to ``master`` and make some change.
 
 .. code-block:: bash
 
@@ -167,35 +161,35 @@ Guardalo nel concreto. Torna a ``master`` ed apporta qualche modifica.
 
 .. figure:: img/angular.png
 
-Come c'era da aspettarselo, l'etichetta ``master`` è avanzata di un
-posto, per puntare al tuo nuovo ``commit``.
+As you could expect, the ``master`` label has moved one place onward, and 
+points to your new ``commit``.
 
-Adesso c'è una certa equivalenza tra le linee di sviluppo e i
-``branch``. Nonostante questo, ti conviene sempre tenere mentalmente
-separati i due concetti, perché ti faciliterà molto la gestione della
-storia del tuo progetto
+Now there's a certain equality between decelopment lines and ``branch``. 
+Despite this, you'll want to keep always mentally separate the two concepts,
+because this will make much easier the management of the history of your
+project 
 
-Per esempio: non c'è dubbio che il ``commit`` col commento "*angular.js
-rocks*\ " sia contenuto nel ``branch master``, giusto? Che dire però di
-``A`` e di ``B``? A quale ``branch`` appartengono?
+For instance: no doubt is ``commit`` with comment "*angular.js
+rocks*\ " contained in ``branch master``, isn't it? But what about
+``A`` and ``B``? Which ``branch`` do they belong?
 
-Occhio, perché questo è un altro dei concetti che procurano dei mal di
-testa agli utenti di SVN, e perfino a quelli di Mercurial.
+Pay attention, because this another of those concepts that cause headache
+to SVN's users, evrn to Mercurial's ones.
 
-In effetti, per rispondere a questo interrogativo gli utenti di git si
-pongono una domanda differente:
+In effect, in order to answer this question, git's users make a different 
+question: 
 
-"*il ``commit A`` è raggiungibile da ``master``?*\ "
+"*is ``commit A`` reachable from ``master``?*\ "
 
-Cioè: percorrendo a ritroso la storia dei ``commit`` partendo da
-``master``, si passa da ``A``? Se la risposta è *sì* si può afferamere
-che ``master`` contenga le modifiche introdotte da ``A``.
+That is: if we walk backwards the history of  ``commit`` starting from
+``master``, do we pass by ``A``? If the answer is *yes* we can state that 
+``master`` contains changes introduced by ``A``.
 
-Una cosa che i fan di Mercurial e di SVN potrebbero trovare
-disorientante è che, siccome il ``commit A`` è raggiungibile anche da
-``dev``, appartiene *sia* a ``master`` che a ``dev``.
+One thing that Mercurial's and SVN's fans might find misleading is that,
+since ``commit A`` is reachable also from ``dev`` , it belongs *both* to
+``master`` and to ``dev``.
 
-Pensaci su. Se tratti i ``branch`` come puntatori a ``commit`` dovrebbe
-sembrarti tutto molto lineare.
+Think it over. If you treat ``branch`` like pointer to ``commit`` everything
+should appear very linear to you.
 
 :ref:`Indice <indice>` :: :ref:`Obiettivo 4: fare i giocolieri con i commit <obiettivo_4>`
