@@ -39,28 +39,28 @@ you did when you started from ``B`` and created the commit pointed by ``dev``.
 
 .. figure:: img/angular-highlighted.png
 
-Se rammenti, avevi fatto
+If you remember, you had done 
 
 .. code-block:: bash
 
     touch style.css
     git add style.css
-    git commit -m "Adesso ho anche il css"
+    git commit -m "Now I have also css"
 
-Quindi, potresti dire che quella linea rossa rappresenti l'aggiunta del
-file ``style.css``.
+Then you might say that that red line represents the addition of file 
+``style.css``.
 
-Bene. Tieni a mente questo modello. Adesso ti mostrerò uno dei comandi
-più folli e versatili di git: ``cherry-pick``.
+Ok. Keep in mind this model. Now I'll sjhow you one the craziest and
+most versatile git's commands: ``cherry-pick``.
 
-Il coltellino svizzero: ``cherry-pick``
-=======================================
+The Swiss Army knife: ``cherry-pick``
+=====================================
 
-``cherry-pick`` applica i cambiamenti introdotti da un ``commit`` in un
-altro punto del ``repository``.
+``cherry-pick`` applies the changes introduced by one ``commit`` in a 
+different point of the ``repository``.
 
-Vediamolo subito con un esempio. A partire da ``dev`` crea un ``branch``
-chiamato ``experiment`` ed aggiungici un ``commit``
+Let's see it straightaway with an example. Starting from ``dev`` create a ``branch``
+named ``experiment`` and add a  ``commit``
 
 .. code-block:: bash
 
@@ -69,16 +69,15 @@ chiamato ``experiment`` ed aggiungici un ``commit``
     git checkout experiment
     touch experiment
     git add experiment
-    git commit -m "un commit con un esperimento"
+    git commit -m "one commit with an experiment"
 
 .. figure:: img/cherry-pick-1.png
 
-Bene: adesso prendi in considerazione la modifica che hai appena
-apportato a partire dall'ultimo ``commit`` di ``dev`` e supponi che ti
-interessi applicare la stessa modifica anche al ramo ``master``. Con il
-comando ``cherry-pick`` puoi chiedere a git di calcolare le modifiche
-introdotte dal tuo ``commit`` e riapplicarle da qualche altra parte, per
-esempio, proprio su ``master``
+Well: now take into account tha change you have just applied starting from 
+last ``dev``'s ``commit`` and suppose you're interested in applying the same
+change to ``master`` branch as well. With command ``cherry-pick`` you may ask
+git to compute the changes introduced by your ``commit`` and apply them again
+somewhere else , for instance exactly on ``master``
 
 .. code-block:: bash
 
@@ -87,11 +86,12 @@ esempio, proprio su ``master``
 
 .. figure:: img/cherry-pick-2.png
 
-``cherry-pick`` "coglie" il ``commit`` che gli indichi e lo applica sul
-``commit`` dove ti trovi.
+``cherry-pick`` "gets" the ``commit`` you indicate and applies it on
+the ``commit`` where you are.
 
-Inizi a intuire le giocolerie che potrai fare con questo strumento?
-Voglio darti qualche spunto.
+Do you begin to sense how it'll be possible for you to juggle with this 
+tool?
+I want to give you some cue.
 
 Correggere un bug a metà di un ramo
 -----------------------------------
