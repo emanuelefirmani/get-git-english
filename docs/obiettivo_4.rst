@@ -1,44 +1,41 @@
 .. _obiettivo_4:
 
-Obiettivo 4: fare i giocolieri con i ``commit``
-###############################################
+Target 4: to juggle with ``commit``
+###################################
 
-Come hai visto, git riesce a conservare la storia delle modifiche dei
-file senza mai salvarne le differenze. All'inizio della guida ti avevo
-anticipato come SVN e git manifestassero un comportamento
-diametralmente opposto su questo punto
+As you have seen, git succeeds in storing the history of all file changes
+without saving the differences. At the beginning of this guide I had
+anticipated that SVN and git showed an opposite behaviour on this point 
 
--  SVN memorizza i delta e, all'occorrenza, ricostruisce lo stato
-   attuale;
--  git memorizza lo stato attuale e, all'occorrenza, calcola i delta.
+-  SVN stores deltas and, when required, rebuilds the present state;
+-  git stores the present state and, when required, computes deltas. 
 
-Per cui, quando guardi il ``repository``
+Therefore, when you look at the ``repository``
 
 .. figure:: img/angular.png
 
-e fai riferimento al ``commit`` ``dev``, intendi "*l'intero progetto,
-così come è stato fotografato al momento di quel commit*\ ".
+and make reference to the ``dev``  ``commit``, you mean "*the whole project,
+as it was photographed at the moment of that commit*\ ".
 
-Se la stessa situazione fosse su SVN diresti che il commit ``dev``
-"*contiene tutte le modifiche apportate ai file, partendo dal commit
-immediatamente precedente*\ ".
+If you had the same situation on SVN, you would say that the ``dev`` commit
+"*contains all changes applied to files, starting from from the immediately 
+preceding commit*\ ".
 
-Per git, calcolare le modifiche apportate ai file da un ``commit``
-all'altro non è poi difficile. Per esempio, puoi ricavarle con
+git computes changes applied to files from one ``commit`` to another without
+difficulty. For instance, you may get them with 
 
 .. code-block:: bash
 
     git diff dev master
 
-Con ``git diff from to`` chiedi a git "*qual è l'elenco delle modifiche
-ai file che devo applicare a ``from`` perché il progetto diventi
-identico a quello fotografato in ``to``*\ "?
+With ``git diff from to`` you're asking git "*what is the list of changes 
+to files that I have ti apply to ``from`` so that the project become 
+identical to that photographed in ``to``*\ "?
 
-Con un po' di immaginazione puoi pensare che le linee tra i ``commit``
-rappresentino le modifiche che tu hai apportato ai file e alle directory
-per ottenere un ``commit``. Per esempio, qui in rosso ho evidenziato la
-linea che rappresenta quel che hai fatto quando sei partito da ``B`` e
-hai creato il commit puntato da ``dev``.
+With some imagination you can think that lines between ``commit`` represent
+changes that you applied to files and directories to obtain a ``commit``. 
+For instance, here in red I put in evidence the line that represents what
+you did when you started from ``B`` and created the commit pointed by ``dev``.
 
 .. figure:: img/angular-highlighted.png
 
