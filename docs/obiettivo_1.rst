@@ -3,7 +3,7 @@
 Target 1: to go back in time
 ############################
 
-So, if in git everything is tored in a key/value database, there will
+So, if in git everything is stored in a key/value database, there will
 probably be a way to reference any object in database using its key.
 
 In fact it is so.
