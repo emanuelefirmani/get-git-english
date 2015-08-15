@@ -10,7 +10,7 @@ The internals
 Let's start with three git's features you should become familiar with.
 
 1. **There's no server**: the repository is local. Most operations are 
-   local and don't require network access. Also for this you will find
+   local and don't require network access. Also for this reason you will find
    git incredibly fast. 
 2. **The project is indivisible**: git always works with the whole 
    source code of the project and not on single directories or files;
@@ -27,8 +27,8 @@ Let's start with three git's features you should become familiar with.
 4 levels of *offline* operations
 ================================
 
-Re the absence of a server i lied a little: as I already told and as you
-will see later, git is a *peer-to-peer* system, and can interact with 
+Re the absence of a server i lied a little: as I already said and as you
+will see later, git is a *peer-to-peer* system, and it can interact with 
 remote servers. Despite this, it remains a substantially local system.
 
 In order to better understand how this can benefit you, try to see what 
@@ -47,10 +47,10 @@ you have three ways to edit the code
 
 You may have noticed two things.
 
-First, SVN and other versioning systems you are probably in the habit of,
+First, SVN and other versioning systems you might be used to,
 operate at level 3.
 
-Second, the 4 systems are listed in comfort order: in principle, when the 
+Second, the 4 systems are listed in order of convenience: in principle, when the 
 material stays on the remote system, your work becomes more intricate, slow
 and umcomfortable. SVN allows you to checkout a whole directory precisely
 because in this way you find more comfortable to pass from one file to 
@@ -69,9 +69,9 @@ The storage model
 =================
 
 Let's pass now to third difference. And be prepared to know the true reason
-why git is very fast going to substitute SVN as the new *de-facto* standard.
+why git going to substitute SVN as the new *de-facto* standard very quichly,
 
--  SVN memorizes the collection of various applied to files during time; when 
+-  SVN memorizes the collection of various changes applied to files during time; when 
    required it rebuilds the present state; 
 -  git memorizes files as they are, in full; when required it computes their 
    deltas.
@@ -113,13 +113,13 @@ Add the first file to git
 
     git add libs/foo.txt
 
-With this command, git inspect the content of the file (it's empty!) and
+With this command, git inspects the content of the file (it's empty!) and
 memorizes it on its key/value database, named ``Object Database`` and
 stored on the file system in the  ``.git`` hidden directory.
 
 Since the ``blob-storage`` is a key/value database, git will try to
 compute a key and a value for the file you have added. For the value it 
-will use tha same content of the file; for the key , it will compute the 
+will use tha same content of the file; for the key, it will compute the 
 SHA1 of the content (if you are curious, in case of an empty file it's
 ``e69de29bb2d1d6434b8b29ae775ad8c2e48c5391``)
 
@@ -137,7 +137,7 @@ Now add the second file
 
 Now, since ``libs/foo.txt`` and ``templates/bar.txt`` have the same identical 
 content (they are both empty!), in the ``Object Database`` they are going to
-be stored both in a single object: 
+be both stored in a single object: 
 
 .. figure:: img/blob.png
 
@@ -146,11 +146,11 @@ As you can see, in the ``Object Database`` git has memorized only the file
 content, and not its name or its location. 
 
 But of course we are very interested in file names and locations, aren't we? 
-For this, in the ``Object Database``, git memorizes also other objects, 
-named ``tree`` that serve just to memorize the content of the different 
+For this reason, in the ``Object Database``, git memorizes also other objects, 
+named ``trees`` that serve just to memorize the content of the different 
 directories and the file names.
 
-In our case, we will have 3 ``tree``
+In our case, we will have 3 ``trees``
 
 .. figure:: img/tree.png
 
@@ -162,14 +162,14 @@ All these structures are collected in a container, called ``commit``.
 .. figure:: img/commit.png
 
    
-As you have probably guessed, a ``commit`` is nothing else that an element
-of the key/value database chiave/valore, whose key is a SHA1, as for all
+As you have probably guessed, a ``commit`` is nothing more than an item
+of the key/value database, whose key is a SHA1, as for all
 other objects, and whose value is a pointer to the project's ``tree`` ,
 that is its key (together with some other information, like creation date, 
 comment and author). In the end it's not that much complicated, isn't it?
 
 
-So, the  ``commit`` is the present photography of the file system.
+So, the ``commit`` is the present photography of the file system.
 
 Now type
 
@@ -187,13 +187,13 @@ Your ``repository``, seen by SmartGit, has now this aspect:
 .. figure:: img/first-commit.png
 
    
-The line with the bullet that you see on the left represents the ``commit``
+The line with bullet that you see on the left represents the ``commit``
 object. In the panel on the right, instead, you may see the ``commit`` key.
 
-In general, unless we want to speak precisely of the internal model, like 
-we are doing now, there's not a great nedd to represent the whole structure
-of  ``blob`` eand ``tree`` that constitutes a ``commit``. In fact, after 
-next paragraph we will start to represent the  ``commit`` like in the figure
+In general, unless we want to speak precisely of the internal model, as
+we are doing now, there's not a great need to represent the whole structure
+of  ``blobs`` and ``trees`` that constitutes a ``commit`` . In fact, after 
+the next paragraph we will start to represent the  ``commit`` like in the figure
 above: with a simple bullet.
 
 Even now, however, for you it should be clearer that inside a ``commit`` 
@@ -203,10 +203,10 @@ the minimal and indivisible unit of work.
 The ``index`` or ``staging area``
 ===============================
 
-Substantially, that's no much more that you have to know about git's storage
-model. But before we pass to see the different commands, I'd like to introduce 
-another internal mechanism: the ``staging area`` or ``index``. The ``index` amways 
-results a mystery for the one who arrives from SVN: it's worth to speak about it
+Substantially, that's not much more that you have to know about git's storage
+model. But before we pass to see the various commands, I'd like to introduce 
+another internal mechanism: the ``staging area`` or ``index``. The ``index` always 
+results a mystery if one comes from SVN: it's worth to speak about it,
 because when you know how ``Object Database`` and ``index`` work, no longer will 
 git appear to you intricate and incomprehensible; rather, you will get its coherence
 and you'll find it extremely predictable. 
@@ -221,7 +221,7 @@ It's not that much complicated:
 
 -  the ``file system`` is the directory with your files.
 -  the ``repository`` is the local database on file that stores the various
-   ``commit``
+   ``commits``
 -  the ``index`` is the space that git provides you to create next ``commit`` 
 before recording it definetely on the ``repository``
 
@@ -263,7 +263,7 @@ a file under versioning and it has to be executed only once; in git it serves
 to save a file inside the ``index`` and it's an operation that has to be 
 repeated at every ``commit``.
 
-When yiou execute ``git add`` git repeats what it had alreadt done beforehand:
+When you run ``git add`` , git repeats what it had already done before:
 it analyzes the content of ``libs/foo.txt``, it sees that there's a content it
 has never recorded and therefore it adds to the ``Object Database`` a new
 ``blob`` with the new content of the file; contestually, it updates the ``tree`` 
@@ -287,13 +287,13 @@ that points to the new ``blob`` object
 The container of all this structure is always a ``commit`` object;
 git keeps it parked in the ``staging area`` waiting for you to send to
 the ``repository``. This structure exactly represents the new situation on
-file system: it's a photography of the whole project again, and it includes 
-also the ``bar.txt`` file, despite you have noy modified it. Incidentally:
+file system: it's again a photography of the whole project, and it includes 
+also the ``bar.txt`` file, despite you have now modified it. Incidentally:
 you shouldn't worry for space usage because, as you can see, to memorize 
 ``bar.txt`` git is reusing the ``blob`` object it created in the previous 
 ``commit``, in order to avoid duplications.
 
-Ok. Now we have a new photography of the project. But we are interested in
+Well. Now we have a new photography of the project. But we are interested in
 git storing also the history of our file system, therefore it'll be needed
 to memorize somewhere the fact that this new situation (the present ``index`` 
 state) is daughter of the previous situation (the previous ``commit``).
@@ -304,9 +304,9 @@ area`` a pointer to the source ``commit``
 .. figure:: img/index-and-first-commit.png
 
 The arrow represents the fact that the ``index`` is son of ``commit A``. It
-is a simple pointe. No surprise, if you think of it; git, after all, uses the
+is a simple point. No surprise, if you think of it; git, after all, uses the
 same, usual, very simple model everywhere: a key/value database to store the
-sata, and a key as pointer between one element and the other. 
+data, and a key as pointer between one element and the other. 
 
 Ok. Now commit
 
@@ -316,13 +316,13 @@ Ok. Now commit
 
 With the commit operation you're saying to git "*Ok, take the present
 ``index`` and make it become your new ``commit``. Then give me back
-the ``index`` so that vi can make a new change*\ "
+the ``index`` so that I can make a new change*\ "
 
-After the ``commit`` you will hhave in git's database
+After the ``commit`` in git's database you will have 
 
 .. figure:: img/index-and-second-commit.png
 
-A short remark: often git's graphic interfaces omit visualizing the
+A short remark: git's graphic interfaces often omit visualizing the
 ``index``. ``gitk``, for instance, shows it only if there are changes
 to be committed. Your repository in ``gitk`` is now visualized this
 way
@@ -340,12 +340,12 @@ Recapping:
 1. git always memorizes files in full
 2. the ``commit`` is one of the several objects stored into git's 
    key/value database. It's a container of many pointers to other 
-   objects in the database: the ``tree``s, that represent directories, 
-   that in turn point to other ``tree``s (sub-directory) or to ``blob``s
+   objects in the database: the ``trees``, that represent directories, 
+   that in turn point to other ``trees`` (sub-directory) or to ``blobs``
    (files' content)
 3. every ``commit`` object has a pointer to its father ``commit``, from
    which it comes
-4. The ``index`` is a support space where you may build, with different 
+4. The ``index`` is a support space where you can build, with different 
    ``git add``, the new ``commit``
 5. with ``git commit`` you record the present ``index`` making it become 
    the new ``commit``.
