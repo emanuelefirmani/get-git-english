@@ -8,9 +8,9 @@ could represent the present situation in your repository with
 
     **A**---B
 
-That is: there are two ``commit`` , ``A`` and ``B``. ``commit B`` is
+That is: there are two ``commits`` , ``A`` and ``B``. ``commit B`` is
 ``A``'s son (time moves to the right). The bolded ``commit`` identifies 
-the point where you presently are.
+the point where you are now.
 
 What would happen if I now made some changes and than committed?
 It would happen that the new ``commit C`` that would be generated will
@@ -48,14 +48,14 @@ pointers makes it very economic to represent a diverging development line.
 Two important observations.
 
 The first in order to reiterate the concept that never git memorized deltas between
-files:  ``A``, ``B`` and ``C`` are snapshots of the whole project. It's 
+files: ``A``, ``B`` and ``C`` are snapshots of the whole project. It's 
 very important to remember this, because it'll help you in understanding
-that all observations you've always been in the habit of making with SVN
+that all observations you've always been in the habit of making with SVN,
 might not apply with SVN.
 
 The second might surprise you a little: the two diverging development lines you
-have just seen are not ``branch``. In git a ``branch`` is a pointer with a name,
-or a label. I'm going to speak about this in next paragraph, but get accustomed to
-the idea that in git ``branch`` are not development branches.
+have just seen are not ``branches``. In git a ``branch`` is a pointer with a name,
+or a label. I'm going to speak about this in the next paragraph, but get accustomed to
+the idea that in git ``branches`` are not development branches.
 
 :ref:`Indice <indice>` :: :ref:`Obiettivo 3: creare un branch <obiettivo_3>`
