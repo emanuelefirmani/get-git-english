@@ -4,7 +4,7 @@ Target 1: to go back in time
 ############################
 
 So, if in git everything is stored in a key/value database, there will
-probably be a way to reference any object in database using its key.
+probably be a way to reference any object in the database using its key.
 
 In fact it is so.
 
@@ -17,7 +17,7 @@ to ``file system`` and to ``staging area``.
 .. figure:: img/index-add-commit-checkout.png
 
 Ok: but what is ``commit A``'s key? You can discover it with a graphical
-client or with the ``git log`` command, that shows a list of all ``commit`` 
+client or with the ``git log`` command, that shows a list of all ``commits`` 
 stored in the ``repository``
 
 .. code-block:: bash
@@ -42,11 +42,11 @@ Ok: let's go back to the past, to the moment of ``commit`` ``A``
     ls
     libs    templates
 
-In effect, except for a mysterious and long-winded message wher git complains for being
-in ``'detached HEAD' state`` (afterwards we'll make this point clear), file system has 
+In effect, except for a mysterious and long-winded message where git complains for being
+in ``'detached HEAD' state`` (afterwards we'll make this point clearer), file system has 
 returned to the state of first commit, and in fact, file ``doh.html`` has disappeared.
 
-If you try to launch again `gitk` you'll receive another surprise: apparently `commit B` 
+If you try to launch again `gitk`, you'll receive another surprise: apparently `commit B` 
 has disappeared. But don't worry: git is just hiding it. In order to visualize all
 commits, use the `--all` option of `gitk`
 
@@ -54,9 +54,9 @@ commits, use the `--all` option of `gitk`
                 
     gitk --all
 
-This happens because, usually, git's graphicinterfaces try to show only meaningful 
+This happens because, usually, git's graphic interfaces try to show only meaningful 
 commits, hiding every unnecessary element. 
-Gitk, for instance, shows only commits belonging to the line of development that get 
+Gitk, for instance, shows only commits belonging to the line of development that gets 
 to the current position, omitting what follows in the development line (that is its
 future) and any other branches. 
 In the case of our history, from the viewpoint of `commit A`, `commit B` belongs to
