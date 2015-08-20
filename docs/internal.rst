@@ -33,7 +33,7 @@ remote servers. Despite this, it remains a substantially local system.
 
 In order to better understand how this can benefit you, try to see what 
 follows: when a project's source code is hosted on a remote computer,
-you have three ways to edit the code
+you have four ways to edit the code
 
 1. You leave all the code on the remote computer and  **access it with 
    ssh to edit a single file**
@@ -43,7 +43,7 @@ you have three ways to edit the code
 3. You find the way to obtain **a local copy of a whole file system 
    tree** and leave the rest of commits' history on the remote computer
 4. You obtain **a local copy of the whole repository** with the whole 
-   history of the project and you work locally
+   history of the project and you work locally.
 
 You may have noticed two things.
 
@@ -77,7 +77,7 @@ why git going to substitute SVN as the new *de-facto* standard very quichly,
    deltas.
 
 If you want to avoid many headaches with git, the best suggestion you can follow
-is to treat it as  **key/value database**.
+is to treat it as a **key/value database**.
 
 Now go to your terminal and look in concrete.
 
@@ -137,7 +137,7 @@ Now add the second file
 
 Now, since ``libs/foo.txt`` and ``templates/bar.txt`` have the same identical 
 content (they are both empty!), in the ``Object Database`` they are going to
-be both stored in a single object: 
+be stored both in a single object: 
 
 .. figure:: img/blob.png
 
@@ -192,8 +192,8 @@ object. In the panel on the right, instead, you may see the ``commit`` key.
 
 In general, unless we want to speak precisely of the internal model, as
 we are doing now, there's not a great need to represent the whole structure
-of  ``blobs`` and ``trees`` that constitutes a ``commit`` . In fact, after 
-the next paragraph we will start to represent the  ``commit`` like in the figure
+of  ``blobs`` and ``trees`` that constitutes a ``commit``. In fact, after 
+the next paragraph we will start to represent the ``commit`` like in the figure
 above: with a simple bullet.
 
 Even now, however, for you it should be clearer that inside a ``commit`` 
@@ -219,17 +219,17 @@ The ``index`` is a structure that acts as a pad between ``file system`` and
    
 It's not that much complicated:
 
--  the ``file system`` is the directory with your files.
+-  the ``file system`` is the directory with your files
 -  the ``repository`` is the local database on file that stores the various
    ``commits``
 -  the ``index`` is the space that git provides you to create next ``commit`` 
-before recording it definetely on the ``repository``
+before recording it definetely on the ``repository``.
 
 Physically, ``index`` is not very different from ``repository``:
 both store data in the ``Object Database``, using the structures you have 
 seen above.
 
-In this moment, just after having completed your first ``commit``,
+At this moment, just after having completed your first ``commit``,
 the ``index`` stores a copy of your last ``commit`` and expects that you
 modify it.
 
@@ -267,7 +267,7 @@ When you run ``git add`` , git repeats what it had already done before:
 it analyzes the content of ``libs/foo.txt``, it sees that there's a content it
 has never recorded and therefore it adds to the ``Object Database`` a new
 ``blob`` with the new content of the file; contestually, it updates the ``tree`` 
-``libs`` so that the pointer named``foo.txt`` addresses its new content
+``libs`` so that the pointer named``foo.txt`` addresses its new content.
 
 .. figure:: img/index3.png
 
