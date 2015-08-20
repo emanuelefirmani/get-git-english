@@ -6,7 +6,7 @@ Target 3: to create a branch
 With ``checkout`` command you have learned to move from one ``commit``
 to another.
 
-All you need is they key of the ``commit`` where you want to land
+All you need is the key of the ``commit`` where you want to land
 
 .. code-block:: bash
     git log --oneline --all
@@ -21,7 +21,7 @@ in order to go back to `commit C` you should use instead ``git checkout deaddd3`
 and so on.
 
 But, we have to admit: to manage ``commit`` ``A``, ``B`` e ``C``
-havingto call them ``56674fb``, ``2a17c43`` and ``deaddd3`` is a unique
+having to call them ``56674fb``, ``2a17c43`` and ``deaddd3`` is a unique
 unconvinience. 
 
 git solves the problem doing what every judicious programmer would do: 
