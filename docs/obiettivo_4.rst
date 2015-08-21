@@ -151,11 +151,11 @@ where it was when you created it before the ``commits``
 
 .. figure:: img/bug-2.png
 
-Perfetto. Non hai ricreato esattamente il ``repository`` del passato,
-perché i tuoi 3 nuovi ``commit`` ci sono ancora, ma i ``branch`` sono
-stati riposizionati dov'erano prima. Non ti resta che prenderti, con
-``cherry-pick`` i soli ``commit`` che ti interessano. Prendi il primo,
-quello col commento ``feature``
+Perfect. You didn't revive exactly the past ``repository``, 
+because your new 3 ``commits`` are still there, but the ``branches`` have
+been positioned where they were before. You just have to take, with
+``cherry-pick`` the only ``commits`` you're interested in. Take the first one,
+that with the ``feature`` comment
 
 .. code-block:: bash
 
@@ -163,8 +163,8 @@ quello col commento ``feature``
 
 .. figure:: img/bug-3.png
 
-Vedi? Il ``commit`` è stato aggiunto a ``feature``, che poi è avanzato in avanti.
-Prosegui con il secondo ``commit``, saltando il ``commit`` incriminato
+Can you see? The ``commit`` has been added to ``feature``, that moved foreward afterwards.
+Go on with the second ``commit``, skipping the incriminated ``commit``
 
 .. code-block:: bash
 
@@ -172,15 +172,15 @@ Prosegui con il secondo ``commit``, saltando il ``commit`` incriminato
 
 .. figure:: img/bug-4.png
 
-Et voilà. Hai ricostruito il ramo di sviluppo saltando il ``commit``
-sbagliato. Resta un ramo orfano, cioè, senza alcun ``branch``: verrà
-cancellato prima o poi dal garbage collector di git. Oltretutto, i rami
-orfani di solito non vengono mostrati dagli editor grafici, per cui, a
-cose normali, dovresti vedere questa come situazione di partenza
+Et voilà. You have rebuilt the development branch skipping the wrong ``commit``.
+It remains an orphan branch, that is, with no ``branch``: it'll be 
+removed sooner or later by the git's garbage collector. Moreover, usually 
+orphan branches are not shown by graphical editors, therefore, normally, you
+should see as starting situation the following one:
 
 .. figure:: img/bug-1.png
 
-e questa come situazione finale
+and this one as final situation:
 
 .. figure:: img/bug-5.png
 
