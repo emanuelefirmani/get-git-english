@@ -3,7 +3,7 @@
 Target 3: to create a branch
 ############################
 
-With ``checkout`` command you have learned to move from one ``commit``
+With the ``checkout`` command you have learned to move from one ``commit``
 to another.
 
 All you need is the key of the ``commit`` where you want to land
