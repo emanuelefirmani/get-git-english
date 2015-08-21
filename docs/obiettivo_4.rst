@@ -5,7 +5,7 @@ Target 4: to juggle with ``commit``
 
 As you have seen, git succeeds in storing the history of all file changes
 without saving the differences. At the beginning of this guide I had
-anticipated that SVN and git showed an opposite behaviour on this point 
+anticipated that SVN and git showed an opposite behaviour on this point: 
 
 -  SVN stores deltas and, when required, rebuilds the present state;
 -  git stores the present state and, when required, computes deltas. 
@@ -18,10 +18,10 @@ and make reference to the ``dev``  ``commit``, you mean "*the whole project,
 as it was photographed at the moment of that commit*\ ".
 
 If you had the same situation on SVN, you would say that the ``dev`` commit
-"*contains all changes applied to files, starting from from the immediately 
+"*contains all changes applied to files, starting from the immediately 
 preceding commit*\ ".
 
-git computes changes applied to files from one ``commit`` to another without
+git computes the changes applied to files from one ``commit`` to another without
 difficulty. For instance, you may get them with 
 
 .. code-block:: bash
@@ -29,10 +29,10 @@ difficulty. For instance, you may get them with
     git diff dev master
 
 With ``git diff from to`` you're asking git "*what is the list of changes 
-to files that I have ti apply to ``from`` so that the project become 
+to files that I have to apply to ``from`` so that the project becomes 
 identical to that photographed in ``to``*\ "?
 
-With some imagination you can think that lines between ``commit`` represent
+With some imagination you can think that lines between ``commits`` represent
 changes that you applied to files and directories to obtain a ``commit``. 
 For instance, here in red I put in evidence the line that represents what
 you did when you started from ``B`` and created the commit pointed by ``dev``.
@@ -50,7 +50,7 @@ If you remember, you had done
 Then you might say that that red line represents the addition of file 
 ``style.css``.
 
-Ok. Keep in mind this model. Now I'll sjhow you one the craziest and
+Ok. Keep in mind this model. Now I'll show you one the craziest and
 most versatile git's commands: ``cherry-pick``.
 
 The Swiss Army knife: ``cherry-pick``
@@ -73,9 +73,9 @@ named ``experiment`` and add a  ``commit``
 
 .. figure:: img/cherry-pick-1.png
 
-Well: now take into account tha change you have just applied starting from 
-last ``dev``'s ``commit`` and suppose you're interested in applying the same
-change to ``master`` branch as well. With command ``cherry-pick`` you may ask
+Well: now take into account the change you have just applied starting from 
+the last ``dev``'s ``commit`` and suppose you're interested in applying the same
+change to the ``master`` branch as well. With the command ``cherry-pick`` you may ask
 git to compute the changes introduced by your ``commit`` and apply them again
 somewhere else , for instance exactly on ``master``
 
@@ -93,56 +93,56 @@ Do you begin to sense how it'll be possible for you to juggle with this
 tool?
 I want to give you some cue.
 
-Correggere un bug a metà di un ramo
+To correct a bug in the middle of a branch
 -----------------------------------
 
-A partire da ``master`` crea un ramo ``feature`` e aggiungici 3
-``commit``
+Starting from ``master`` create a branch ``feature`` and add 3
+``commits`` to it
 
 .. code-block:: bash
 
-    git checkout -b feature    # scorciatoia per fare branch + checkout
+    git checkout -b feature    # shortcut to do branch + checkout
     
     touch feature && git add feature 
     git commit -m "feature"
     
-    touch orribile-baco && git add orribile-baco
-    git commit -m "orrore e raccapriccio"
+    touch horrible-bug && git add horrible-bug
+    git commit -m "horror and revulsion"
     
-    touch altra-feature && git add altra-feature
-    git commit -m "altra feature"
+    touch other-feature && git add other-feature
+    git commit -m "other feature"
 
     
 .. figure:: img/bug-1.png
 
-Oh, no! Il secondo ``commit``, quello con il commento "*orrore e
-raccapriccio*\ " è stato un errore madornale! Ah, se solo si potesse
-riscrivere la storia e rimuoverlo!
+Oh, no! The second ``commit``, that with the comment "*horrore and
+revulsion*\ " has been a huge mistake! Ah, if we only could rewrite the story
+and remove it!
 
-Puoi farlo! L'idea è di riportare ``feature`` indietro nel tempo, su
-``master``, e di usare ``cherry-pick`` per riapplicarvi una per una le
-modifiche, avendo cura però di non applicare le modifiche introdotte da
-"*orrore e raccapriccio*\ ". Hai solo bisogno di conoscere i valori
-delle chiavi dei 3 ``commit``
+You can do it! The idea is to bring ``feature`` back in time, on
+``master``, and to use ``cherry-pick`` to apply changes again one by one, 
+careful to not apply the changes introduced by 
+"*horror and revulsion*\ ". You only need to know the values of the
+keys of the 3 ``commits``
 
 .. code-block:: bash
 
     git log master..feature --oneline
-    8f41bb8 altra feature
-    ec0e615 orrore e raccapriccio 
+    8f41bb8 other feature
+    ec0e615 horror and revulsion 
     b5041f3 feature
 
-(``master..feature`` è una sintassi che permette di esprimere un *range*
-di ``commit``: ne parleremo più avanti)
+(``master..feature`` is a sintax that allows to express a *range*
+of ``commits``: we'll speakof it later on)
 
-È il momento di tornare indietro nel tempo. Riposizionati su ``master``
+It is time to go back in time. Take place on ``master`` again
 
 .. code-block:: bash
 
     git checkout master
 
-e spostaci sopra ``feature``, in modo che torni alla posizione dove si
-trovava quando lo hai creato prima di fare i ``commit``
+and move ``feature`` on it, in such a way that it goes back to the position
+where it was when you created it before the ``commits``
 
 .. code-block:: bash
 
