@@ -312,7 +312,7 @@ Ok. Now commit
 
 .. code-block:: bash
 
-    git commit -m "Commit B, My second commit"
+    git commit -m "Commit B, my second commit"
 
 With the commit operation you're saying to git "*Ok, take the present
 ``index`` and make it become your new ``commit``. Then give me back
