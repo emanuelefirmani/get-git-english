@@ -38,11 +38,11 @@ Ok, now type:
 
 Can you see the ``bob`` label just just in correspondence of ``commit A``? 
 It stays to indicate that ``bob`` points precisely that ``commit``. 
-Look at it as it wasa variable you have assigned the value of `commit A`
+Look at it as it was a variable you have assigned the value of the ``commit A``'s
 key.
 
 When you create a label, if you don't specify a value, git will use the
-key of the ``commit`` you are at the moment
+key of the ``commit`` you are at the moment in
 
 .. code-block:: bash
 
@@ -58,7 +58,7 @@ Removal of a variable is equally trivial:
     git branch -d bob
     git branch -d piccio
 
-You may have noted that git creates some of these variables by default. For
+You may have noticed that git creates some of these variables by default. For
 instance, in the above figures you see also the ``master`` variable,
 pointed to ``B``
 
@@ -72,16 +72,16 @@ The ``master`` label allows you to go to that ``commit`` writing:
 
 Now be careful, because we are again in one of those occasions where the
 knowledge of SVN gives only headaches: these labels in git are named 
-``branch``. Repeat many times to yourself: in git a ``branch`` is not a
+``branches``. Repeat many times to yourself: in git a ``branch`` is not a
 branch, it's a label, a pointer to a ``commit``, a variable that contains
 the key of a ``commit``. Many git's behaviours that appear absurd and 
-complicated become very simple if you avoid thinking of git's ``branch``
-as something equivalent to SVN's branch.
+complicated become very simple if you avoid thinking of git's ``branches``
+as something equivalent to SVN's branches.
 
 It should now begin to be clear for you why many people say that "*branches
 on git are very economical*\ ": of course! they are simple variables!
 
-Create a new ``branch`` that we'lluse in next pages
+Create a new ``branch`` that we'll use in next pages
 
 .. code-block:: bash
 
@@ -107,10 +107,10 @@ Have you seen? The placeholder has moved on ``dev``.
 That placeholder's name is ``HEAD``. By default, in fact, git always 
 adds also an implicit ``branch`` , the ``HEAD`` pointer, always pointing
 to the element of the ``repository`` where you are. ``HEAD`` follows
-you, any movement you do. Other graphical editor use different 
+you, any movement you do. Other graphical editors use different 
 representations to communicate where ``HEAD`` is.
 ``gitk``, for instance, shows in bold the ``branch`` where you are. Instead,
-from command line, to know on which ``branch`` you are, you just run
+from the command line, to know on which ``branch`` you are, you just run
 
 .. code-block:: bash
 
@@ -121,7 +121,7 @@ from command line, to know on which ``branch`` you are, you just run
 The star suggests that ``HEAD`` is now pointing to ``dev``.
 
 You should be not that much surprised veryfing that, despite you've 
-chenged ``branch`` from ``master`` to ``dev`` your ``file system`` has 
+changed ``branch`` from ``master`` to ``dev``, your ``file system`` has 
 not changed one iota: in effect both ``dev`` and ``master`` are 
 pointing to the same identical ``commit``.
 
@@ -129,10 +129,10 @@ Nevertheless, you'll might wonder what can serve passing from one ``branch``
 to another, if it doesn't produce effects on the project. 
 
 The fact is that when you run the ``checkout`` of a ``branch``, you somehow
-*attach* to the ``branch``; the ``branch``'s labl, in
+*attach* to the ``branch``; the ``branch``'s label, in
 other words, will start following you, ``commit`` after ``commit``.
 
-Look: you are now on ``dev``. Make any modifications and commit
+Look: you are now on ``dev``. Make some modifications and commit
 
 .. code-block:: bash
 
@@ -143,12 +143,12 @@ Look: you are now on ``dev``. Make any modifications and commit
 
 .. figure:: img/branch-dev3.png
 
-Have you seen what has happened? The label  ``dev`` has moved onward and
+Have you seen what has happened? The label ``dev`` has moved onward and
 attached to your new ``commit``.
 
-You might also wonder why git call those labels  ``branch``.
+You might also wonder why git calls those labels ``branches``.
 The reason is that, even though diverging development lines in git are 
-not ``branch``, ``branch`` are normally used juest to give them a name.
+not ``branches``, ``branches`` are normally used just to give them a name.
 
 Look at it in concrete. Go back to ``master`` and make some change.
 
@@ -164,32 +164,32 @@ Look at it in concrete. Go back to ``master`` and make some change.
 As you could expect, the ``master`` label has moved one place onward, and 
 points to your new ``commit``.
 
-Now there's a certain equality between decelopment lines and ``branch``. 
+Now there's a certain equality between development lines and ``branches``. 
 Despite this, you'll want to keep always mentally separate the two concepts,
 because this will make much easier the management of the history of your
-project 
+project.
 
 For instance: no doubt is ``commit`` with comment "*angular.js
 rocks*\ " contained in ``branch master``, isn't it? But what about
 ``A`` and ``B``? Which ``branch`` do they belong?
 
-Pay attention, because this another of those concepts that cause headache
-to SVN's users, evrn to Mercurial's ones.
+Pay attention, because this is another of those concepts that cause headache
+to SVN's users, even to Mercurial's ones.
 
 In effect, in order to answer this question, git's users make a different 
 question: 
 
 "*is ``commit A`` reachable from ``master``?*\ "
 
-That is: if we walk backwards the history of  ``commit`` starting from
+That is: if we walk backwards the history of ``commit`` starting from
 ``master``, do we pass by ``A``? If the answer is *yes* we can state that 
-``master`` contains changes introduced by ``A``.
+``master`` contains the changes introduced by ``A``.
 
 One thing that Mercurial's and SVN's fans might find misleading is that,
 since ``commit A`` is reachable also from ``dev`` , it belongs *both* to
 ``master`` and to ``dev``.
 
-Think it over. If you treat ``branch`` like pointer to ``commit`` everything
+Think it over. If you treat ``branches`` like pointers to ``commit`` everything
 should appear very linear to you.
 
 :ref:`Indice <indice>` :: :ref:`Obiettivo 4: fare i giocolieri con i commit <obiettivo_4>`
