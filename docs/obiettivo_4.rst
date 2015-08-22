@@ -184,45 +184,44 @@ and this one as final situation:
 
 .. figure:: img/bug-5.png
 
-Urca! L'impressione è che git abbia riscritto la storia eliminando un
-``commit`` a metà di un ramo, vero?
+Wow! You have the impression that git rewrote the history canceling
+one ``commit`` inthe middle of a branch, don't you?
 
-Infatti, molti raccontano che git sia capace di riscrivere la storia e
-che questo suo comportamento sia estremamente pericoloso. Ecco: dovrebbe
-risultarti un po' più chiaro che non sia esattamente così; git è
-estremamente conservativo e quando ti permette di manipolare i
-``commit`` non fa altro che agire in *append*, costruendo *nuovi* rami,
-senza mai cancellare quel che già esiste.
+In fact,many people tell that git is able to rewrite the history, and that 
+this behaviour is extremely dangerous. It should be a little clearer that it's 
+not exactly s; git is extremely conservativè and when it allows you to manipulate 
+``commits``, it does nothing but act in *append*, building *new* branches,
+never removing what exists already.
 
-Nota anche un'altra cosa: nel momento in cui hai ricostruito il ramo
-prendendo con ``cherry-pick`` un ``commit`` alla volta, niente ti
-obbligava a riapplicare i ``commit`` nello stesso ordine originario:
-volendo, avresti potuto applicarli al contrario, ottenendo, di fatto, un
-ramo con i ``commit`` invertiti. Non è una cosa che capita spesso di
-fare: ma adesso sai che si può fare.
+Note also another thing: in the moment when you rebuilt the branch
+bringing with ``cherry-pick`` one ``commit`` at a time, nothing was 
+obliging you to apply again the ``commits`` in the same original order:
+if desired, you could have applied them conversely, obtaining, in fact, a 
+branch with the ``commit`` in reverse order. It's not something that often 
+happens to need, but now you know that it's possible. 
 
-Spostare un ramo di sviluppo
+To move a development branch
 ----------------------------
 
-Voglio farti vedere un'altra magia del ``cherry-pick``, per introdurti
-al comando ``rebase``.
+I want you to see another magic of ``cherry-pick``, in order to introduce
+the ``rebase`` command.
 
-Riprendi il tuo ``repository``.
+Resume your``repository``.
 
 .. figure:: img/rebase-1.png
 
-Mettiamo che tu voglia proseguire lo sviluppo dei tuoi css, per cui
-farai un nuovo commit su ``dev``
+Let's say you want carry on the development of your css, therefore
+you'll do a new ``commit`` on ``dev``
 
 .. code-block:: bash
 
     git checkout dev
     echo "a { color:red; }" >> style.css
-    git commit -am "i link sono rossi"
+    git commit -am "links are red"
 
-Nota: ho usato l'opzione ``-a`` di ``commit`` che, implicitamente,
-esegue ``git add`` di ogni file modificato. Tieni a mente questa
-opzione: è molto comoda e ti capiterà spessissimo di usarla.
+Note: I have used the ``-a`` option of ``commit``, that implicitly executes  
+``git add`` of any changed file. Keep in mind this option: 
+it's very handy and you very often will find yourself using it.
 
 .. figure:: img/rebase-2.png
 
