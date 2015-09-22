@@ -225,40 +225,38 @@ it's very handy and you very often will find yourself using it.
 
 .. figure:: img/rebase-2.png
 
-Ottimo. I tuoi css sono pronti per andare in produzione. Peccato solo
-che il ramo ``dev`` sia rimasto un po' indietro rispetto a ``master``,
-che tu potresti decidere di considerare il codice *production-ready*.
-Del resto, cosa potevi farci? Mentre tu ti occupavi dei css, ``master``
-è andato avanti e ``dev``, ovviamente, è rimasto lì dove lo avevi
-creato.
+Very good. Your css are ready to go to production. It's just a pity
+that the ``dev`` tree lagged a little compared to ``master``,
+that you might decide to account as the *production-ready* code.
+After all, what could you do? While you were dealing with css, ``master``
+went ahead and ``dev``, obviously, remained there where you created it.
 
-Certo, se si potesse staccare il ramo ``dev`` per poi spostarlo *sopra*
+It would be wonderful if we could detach the ``dev`` branch and move it *on*
 ``master``...
 
-Non ti torna in mente ``cherry-pick``? È un caso come quello precedente:
-solo che invece di viaggiare nel passato devi avere un po' di fantasia e
-immaginare di viaggiare nel futuro. Si tratterebbe di prendere uno ad
-uno i 2 ``commit`` di ``dev`` e riapplicarli sull'ultimo commit di
-``master`` (che, relativamente a ``dev``, è il futuro).
+Don't you rememeber ``cherry-pick``? It's a case like the previous one:
+but instead of travelling in the past you have to have a bit of fantasy 
+and to imagine to travel in the future. It would be about bringing one by one
+the two ``dev``'s ``commits`` and applying them again on last 
+``master``'s ``commit`` (that, re ``dev``, is the future).
 
-Cioè: a colpi di ``cherry-pick`` potresti riscrivere la storia come se i
-commit di ``dev`` fossero stati scritti *dopo* i ``commit`` di
-``master``.
+That is: using ``cherry-pick`` you could rewrite the history as if 
+``dev``'s ``commits`` had been written *after*
+``master``'s ``commits``.
 
-Se lo facessi, il risultato sarebbe questo
+If you did it, this would be the result
 
 .. figure:: img/rebase-3.png
 
-Confrontalo con la situazione di partenza
+Compare it with the initial situation
 
 .. figure:: img/rebase-2.png
 
-Potresti interpretarla così: il ramo ``dev`` è stato staccato ed è stato
-impiantato sopra ``master``.
+You could interpret this way: the ``dev`` branch has been detached and implanted on ``master``.
 
-Ecco: ``rebase`` non è altro che una *macro* che esegue automaticamente
-una serie di ``cherry-pick`` per evitarti di spostare a mano un
-``commit`` alla volta da un ramo all'altro.
+Here: ``rebase`` is nothing different than a *macro* that authomatically executes 
+a set of ``cherry-pick``, in order to avoid you to move one
+``commit`` at a time from one branch to the other all.
 
 Prova. Sul tuo ``repository``
 
