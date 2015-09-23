@@ -258,11 +258,11 @@ Here: ``rebase`` is nothing different than a *macro* that authomatically execute
 a set of ``cherry-pick``, in order to avoid you to move one
 ``commit`` at a time from one branch to the other all.
 
-Prova. Sul tuo ``repository``
+Try it. On your ``repository``
 
 .. figure:: img/rebase-2.png
 
-esegui
+run
 
 .. code-block:: bash
 
@@ -272,30 +272,30 @@ esegui
 
 Voilà!
 
-Hai chiesto a git: "*sposta il ramo corrente sulla nuova base
-``master``*\ ".
+You asked git: "*move current branch on new
+``master`` base*\ ".
 
-Ricorda: ``rebase`` è del tutto equivalente a spostare uno per uno i
-``commit`` con ``cherry-pick``. Solo, è più comodo.
+Remember: ``rebase`` is entirely equivalent to moving 
+``commits`` with ``cherry-pick``one by one. It's only more comfortable.
 
-Riesci ad immaginare dove potrebbe tornarti utile ``rebase``? Guarda,
-provo a descriverti una situazione molto comune.
+Can you imagine where could ``rebase`` be useful for you? Look,
+I try todescribe a very common situation.
 
-Inizia staccando un nuovo ramo da ``dev`` e registrando 3 nuovi
-``commit``
+Start detaching a new branch from ``dev`` and registering 3 new
+``commits``
 
 .. code-block:: bash
 
     git checkout -b sviluppo
-    touch file1 && git add file1 && git commit -m "avanzamento 1"
-    touch file2 && git add file2 && git commit -m "avanzamento 2"
-    touch file3 && git add file3 && git commit -m "avanzamento 3"
+    touch file1 && git add file1 && git commit -m "step 1"
+    touch file2 && git add file2 && git commit -m "step 2"
+    touch file3 && git add file3 && git commit -m "step 3"
 
 .. figure:: img/rebase-4.png
 
-Bene. Adesso simuliamo una cosa che accade molto spesso nel mondo reale:
-i tuoi colleghi, mentre tu lavoravi sui tuoi 3 ``commit`` hanno fatto
-avanzare il ramo ``dev`` con i loro contributi
+Well. Now let's simulate one thing that happens very often in real world: 
+your colleagues, while you were working on your 3 ``commits`` made the 
+branch ``dev`` advance with their contributions
 
 
 .. code-block:: bash
@@ -306,54 +306,54 @@ avanzare il ramo ``dev`` con i loro contributi
 
 .. figure:: img/rebase-5.png
 
-Questa situazione è sostanzialmente inevitabile, a causa della natura
-fortemente non lineare del processo di sviluppo: è figlia diretta del
-fatto che le persone lavorino in parallelo. ``rebase`` ti permette di
-rendere la storia del ``repository`` nuovamente lineare. Come
-nell'esempio precedente, il tuo ramo ``sviluppo`` è rimasto indietro
-rispetto alle evoluzioni di ``dev``: usa ``rebase`` per staccarlo dalla
-sua base e riattaccarlo più avanti
+This situation is basically unavoidable, because of the strongly non linear 
+nature of the development process: it's a direct daughter of the fact that
+people work in parallel. ``rebase`` allows you to make the history of the 
+``repository`` linear again. as in the previous exampleCome
+nell'esempio precedente, il tuo ramo è rimas, your  ``development`` branch 
+remained behind re ``dev``'s evolutions: use ``rebase`` in order to detach it
+from his base and attach it lter on 
 
 .. code-block:: bash
 
-    git checkout sviluppo
+    git checkout development
     git rebase dev
 
-Con ``git rebase dev`` stai chiedendo a git "*riapplica tutto il lavoro
-che ho fatto nel mio ramo come se lo avessi staccato dall'ultimo commit
-di sviluppo, ma non costringermi a spostare i commit uno per uno con
+With ``git rebase dev`` you are asking git "*apply again all the work 
+I did in my branch as if I had detached from last ``development`` ``commit``, 
+but don't force me to move ``commits`` one by one with 
 cherry-pick*\ "
 
-Il risultato è
+The result is
 
 .. figure:: img/rebase-6.png
 
-Vedi? Gli ultimi 3 ``commit`` introducono le stesse identiche modifiche
-che avevi apportato tu nel tuo ramo, ma tutto appare come se tu avessi
-staccato il ramo dall'ultima versione di ``dev``. Di nuovo:
-apparentemente hai riscritto la storia.
+Do you see? Last 3 ``commits`` introduce the same identical changes
+that you made in your branch, but everything appears as if you had 
+detached the branch from last ``dev`` version. Again:
+apparently you rewrote the history.
 
-Via via che prenderai la mano con git scoprirai di poter usare
-``cherry-pick`` (ed altri comandi, che spesso sono una sorta di
-combinazione di comandi di più basso livello) per manipolare i tuoi
-``commit`` e ottenere risultati che sono letteralmente impossibili con
-altri sistemi di versionamento:
+As you will get used to git you will discover that you can use
+``cherry-pick`` (and other commans, that often are a sort of combination
+of lower level commands) to manipulate your 
+``commits`` and obtain results that are literally impossible 
+with other versioning systems:
 
--  invertire l'ordine di una serie di ``commit``
--  spezzare in due rami separati una singola linea di sviluppo
--  scambiare ``commit`` tra un ramo e l'altro
--  aggiungere un ``commit`` con un bugfix a metà di un ramo
--  spezzare un ``commit`` in due
+-  to invert the ordere of a set of ``commits``
+-  to break in two splitted branches a singke code line
+-  to exchange ``commits`` between one branch and the other
+-  to add a ``commit`` with a bugfix in the middle of a branch
+-  to split a ``commit`` in two parts
 
-e così via.
+and so on.
 
-Questa versatilità non dovrebbe poi stupirti troppo: alla fine git non è
-altro che un database chiave/valore e i suoi comandi non sono altro che
-delle macro per creare oggetti e applicare l'aritmetica dei puntatori.
+This versatility shouldn't amaze us that much: in the end git 
+is nothing different than a key/value database and its commands are nothing different
+than macros to create object abd apply to them arithmetic of pointers.
 
-Per cui, tutto quel che può venirti in mente di fare con oggetti e
-puntatori, tendenzialmente, puoi farlo con git.
+Therefore, everything can come in your mind to do with objects and pointers, tendentially you can do it with git 
 
-Ganzo, no?
+Cute, isn't it?
+
 
 :ref:`Indice <indice>` :: :ref:`Obiettivo 5: unire due rami <obiettivo_5>`
