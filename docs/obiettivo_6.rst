@@ -12,7 +12,7 @@ that is with other ``repositories``.
 
 A part from your local ``repository``, any other ``repository``
 --no matter if it's on GitHub, on a company's server or simply in a different 
-directory of your computer-- to git is a 
+directory of your computer-- for git it's a 
 ``remote``.
 
 To link your local ``repository`` to a ``remote`` it needs just to
