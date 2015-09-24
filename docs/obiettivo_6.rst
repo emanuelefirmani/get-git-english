@@ -1,39 +1,36 @@
 .. _obiettivo_6:
 
-Obiettivo 6: mettere il ``repository`` in rete
-##############################################
+Target 6: to place the ``repository`` on the network
+####################################################
 
-Fino ad ora hai interagito solo con il tuo ``repository`` locale, ma ti
-avevo anticipato che git è un sistema *peer-to-peer*.
+So far you have interacted only with your local ``repository`` , but I had
+anticipated that git is a *peer-to-peer* system.
 
-In generale, questo significa che il tuo ``repository`` è un nodo che
-può entrare a far parte di una rete e scambiare informazioni con altri
-nodi, cioè con altri ``repository``.
+In general, this means that your ``repository`` is a node that can
+become part of a network and exchange informations with other nodes, 
+that is with other ``repositories``.
 
-A parte il tuo ``repository`` locale, qualsiasi altro ``repository``
---non importa che si trovi su GitHub, su un server aziendale o
-semplicemente in un'altra directory del tuo computer-- per git è un
+A part from your local ``repository``, any other ``repository``
+--no matter if it's on GitHub, on a company's server or simply in a different 
+directory of your computer-- to git is a 
 ``remote``.
 
-Per collegare il tuo ``repository`` locale ad un ``remote`` ti basta
-fornire a git l'indirizzo del ``repository`` remoto con il comando
-``git remote`` (naturalmente, devi anche disporre dei permessi di
-lettura o scrittura sul ``remote``)
+To link your local ``repository`` to a ``remote`` it needs just to
+give git the address of the remote ``repository`` with the command
+``git remote`` (of course, you need also read and write permissions on ``remote``)
 
-Per rendere le cose semplici, facciamo un esempio concreto senza stare a
-coinvolgere server esterni e internet; crea un altro ``repository`` da
-qualche parte sul tuo stesso computer
+To make things simple, let's make a concrete example without involving external servers and the Internet; create another ``repository`` somewhere on your very computer 
 
 .. code-block:: bash
 
     cd ..
-    mkdir repo-remoto
-    cd repo-remoto
+    mkdir remote-repo
+    cd remote-repo
     git init
 
-In questo caso, dalla directory del tuo progetto il ``repository``
-remoto sarà raggiungibile tramite il path ``../repo-remoto`` o col suo path
-assoluto. Più comunemente, però, avrai a che fare con ``repository``
+In this case, in the directory of your project, the remote ``repository``
+will be reachable through the path ``../remote-repo`` or with its absolute path.
+Più comunemente, però, avrai a che fare con ``repository``
 remoti raggiungibili, a seconda del protocollo utilizzato, con indirizzi
 come
 
