@@ -1,62 +1,61 @@
 .. _obiettivo_5:
 
-Obiettivo 5: unire due rami
-###########################
+Target 5: To unify two branches
+###############################
 
-Passiamo ad un'operazione che farai spessissimo: il ``merge``. Confronta
-le ultime due immagini che abbiamo visto, cioè il tuo ``repository``
-prima e dopo il ``rebase``\ 
+Let's pass to an operation that you probably do very often: ``merge``. 
+Compare the two images that we have seen, that is your ``repository``
+before and after ``rebase``\ 
 
 .. figure:: img/rebase-5-6.png
 
-Nella prima si vede chiaramente come ``sviluppo`` non contenga i due
-contributi ``developer 1`` ``developer 2`` dei tuoi colleghi. Quei due
-``commit`` non sono *raggiungibili* dal tuo ramo. Cioè: percorrendo a
-ritroso la storia a partire dal tuo ramo ``sviluppo`` non attraverserai
-quei due ``commit``.
+In the first on you can clearly see that ``development`` does not contain
+the two contributions ``developer 1`` ``developer 2`` by your colleagues. Those two
+``commits`` are not *reachable* from your branch. That is: going back along the history
+starting from your ``development``branch, you will not go through those two ``commits``.
 
-Guarda adesso la seconda immagine, cioè la storia che hai ottenuto dopo
-il ``rebase``: adesso i due ``commit`` sono *raggiungibili* da
-``sviluppo``.
+Now look at the second image, that is the history that you got after ``rebase``: 
+now the two ``commits`` are *reachable* from
+``development``.
 
-Ha un senso: avevi fatto ``rebase`` appositamente per allinearti con il
-lavoro dei tuoi colleghi quindi, giustamente, git ha fatto in modo che
-il tuo ramo *contenesse* anche i loro contributi.
+It makes sense: you had done ``rebase`` purposely in order to align with 
+your colleagues' work therefore, correctly, git made sure that your branch
+*contain* their contributions as well.
 
-``rebase`` e ``cherry-pick`` non sono i soli strumenti con i quali puoi
-*integrare* nel tuo ramo il contenuto di altri rami. Anzi: uno degli
-strumenti che utilizzerai più spesso è ``merge``
+``rebase`` and ``cherry-pick`` are not the only tools to be used to
+*integrate* in your branch the content of others. On the contrar: one of the tools
+that you will be using more often is ``merge``
 
-``merge`` funziona proprio come te lo aspetti: fonde tra loro due
-``commit``.
+``merge`` works exactly as you would expect: it melts two
+``commits`` between them.
 
-Ci sono solo 3 particolarità sulle quali credo valga la pena di
-soffermarsi. La prima è che il ``merge`` di git funziona spaventosamente
-bene. Merito del modello di storage di git: durante i merge git non deve
-stare ad impazzire, come SVN, per capire se un delta sia già stato
-applicato o no, perché parte dal confronto di fotografie del progetto.
-Ma non entriamo nel dettaglio: goditi la potenza di ``git merge`` e
-dimentica tutte le difficoltà che hai sempre incontrato con SVN.
+There are only 3 particularties that I guess it's worth to deepen. 
+First is that git's  ``merge`` works tremendously fine.
+Merit of git's storage model: during merges git should not being going crazy,
+like SVN, to understand whether or not a delta has already been applied, 
+because it starts from comparison of project's photos. 
+But let's not go in the details: enjoy ``git merge``'s power and
+forget all the difficulties that you always encountered with SVN.
 
-Le altre due particolarità sono il ``fast-forward`` e
-l'\ ``octopus merge``.
+The other two particularities are ``fast-forward`` and
+``octopus merge``.
 
-Ma preferisco mostrarteli subito con degli esempi
+But you fin it better  to show them immediately with examples
 
-Il ``merge``
-============
+``merge``
+=========
 
-L'ultima fotografia del tuo ``repository`` è
+Last photo of your ``repository`` is
 
 .. figure:: img/rebase-6.png
 
-Stacca un ramo da ``dev`` e aggiungi un paio di ``commit``
+Detach a branch from ``dev`` and add a couple of ``commits``
 
 .. code-block:: bash
 
     git checkout -b bugfix dev
 
-Nota: qui ho usato una forma ancora più concisa equivalente ai comandi:
+Note: here I used an even more concise form, equivalent to commands:
 
 .. code-block:: bash
 
@@ -64,7 +63,7 @@ Nota: qui ho usato una forma ancora più concisa equivalente ai comandi:
     git branch bugfix
     git checkout bugfix
 
-Prosegui aggiungendo i due ``commit``
+Go further adding the two ``commits``
 
 .. code-block:: bash
 
@@ -73,64 +72,60 @@ Prosegui aggiungendo i due ``commit``
 
 .. figure:: img/merge-1.png
 
-Benissimo. Hai riprodotto nuovamente una situazione piuttosto comune:
-due ``branch``, su due linee di sviluppo divergenti, contenenti entrambi
-dei contributi che prima o poi si vogliono integrare.
+Very well. You reproduced again a quite common situation:
+two ``branches``, on two divergent development lines, both containing contributions
+that sooner or later we want to integrate.
 
-Supponi, per esempio, che sia tu, una volta completato il tuo lavoro di
-bugfixing sull'apposito ramo, a chiedere ai tuoi colleghi di integrare
-il tuo lavoro nel loro.
+For instance, suppose that it's you, after completing your bugfixing 
+work in the proper branch, to ask your colleagues for integrating your
+work in theirs. 
 
-Per integrare il ``bugfix`` in ``sviluppo`` i tuoi colleghi potrebbero
-fare
+To integrate ``bugfix`` in ``development`` your colleagues might do 
 
 .. code-block:: bash
 
-    git checkout sviluppo
+    git checkout development
     git merge bugfix
 
 .. figure:: img/merge-2.png
 
-Con ``git merge bugfix`` hai chiesto a git: "*procurami un ``commit``
-che contenga tutto quello che c'è nel mio ``branch`` corrente e
-aggiungici tutte le modifiche introdotte dal ramo ``bugfix``*\ ".
+With ``git merge bugfix`` you ask git: "*provide me a ``commit``
+containing everything that is in my current ``branch`` and add to it
+all changes introduced by branch ``bugfix``*\ ".
 
-Prima di eseguire il merge, git guarda nel suo ``Object Database`` e cerca
-se per caso esista già un ``commit`` contenente entrambi i rami. Dal
-momento che non lo trova, git lo crea, fonde i due file system e poi
-assegna come genitori del nuovo ``commit`` entrambi i ``commit`` di
-provenienza. In effetti, il risultato è un nuovo ``commit`` che ha due
-genitori. Nota anche che l'etichetta del tuo ramo, ``sviluppo`` si è
-spostata sul nuovo ``commit``. Non dovrebbe essere una sorpresa: il
-``branch`` corrente è pensato per seguirti, ``commit`` dopo ``commit``.
+Before running the merge, git looks into its ``Object Database`` and 
+searches if exists already a ``commit`` containing both branches. Since it doesn't find it,
+git creates it, melts the two file systems and then assigns both ``commits`` of origin 
+as parents of the new ``commit``. In effect, the result is a new ``commit`` with two
+parents. Note also that your branch's label, ``development`` moved on the new ``commit``. 
+It shouldn't be a surprise: current
+``branch`` is meant just to follow you, ``commit`` after ``commit``.
 
-Il ``fast-forward merge``
--------------------------
+The ``fast-forward merge``
+--------------------------
 
-Se ti torna questo ragionamento, non avrai difficoltà a capire il
-``fast-forward``. Mettiti alla prova; prova a rispondere a questa
-domanda:
+If you find correct this reasoning, you won't find it difficult to understand 
+``fast-forward``. Test yourself; try to answer this question:
 
-Partendo dall'ultimo stato del tuo ``repository``
+Starting from last state of your ``repository``
 
 .. figure:: img/merge-2.png
 
-cosa accadrebbe se ti spostassi sul ramo ``dev`` e chiedessi un
-``merge`` col ramo ``sviluppo``, cioè se facessi ``git merge sviluppo``?
+what would happen if you moved on ``dev`` branch and asked for a
+``merge`` with branch ``development``, that is, if you did ``git merge development``?
 
-Per risponderti, ripeti il ragionamento che abbiamo fatto in occasione
-del precedente ``merge``: stai chiedendo a git "*procurami un ``commit``
-che contenga sia il mio ramo corrente ``dev`` che il ramo
-``sviluppo``*\ ". git consulterebbe i ``commit`` nel suo database per
-assicurarsi che un ``commit`` con queste caratteristiche sia già
-presente.
+To answer this question, repeat the reasoning we have done in occasion
+of the previous ``merge``: you are asking git "*provide me a  ``commit``
+containing both my current branch ``dev`` and 
+``development`` branch*\ ". git would examine ``commits`` in its database in order to
+assure that a ``commit`` with these characteristics is already present.
 
-E lo troverebbe! Guarda il ``commit`` puntato proprio dal ramo
-``sviluppo``: senza dubbio contiene ``sviluppo`` (per definizione!); e,
-siccome percorrendo la storia verso il basso da ``sviluppo`` è possibile
-raggiungere ``dev``, non c'è nemmeno dubbio che ``sviluppo`` contenga
-già le modifiche introdotte da ``dev``. Quindi, quello è il ``commit``
-che contiene il ``merge`` tra ``dev`` e ``sviluppo``. Ti torna?
+And it would find it! Look at ``commit`` just pointed from 
+``development`` branch: no doubt it contains ``development`` (by definition!); 
+and since it's possible, going down through the history from ``development``, 
+to reach ``dev``, no doubt as well that ``development`` contains already
+the changes introduced from ``dev``. Therefore, it's that the``commit``
+containing the ``merge`` between ``dev`` and ``development``. Do you confirm?
 
 Allora, git non ha motivo per creare un nuovo ``commit`` e si limiterà a
 spostarvi sopra la tua etichetta corrente.
