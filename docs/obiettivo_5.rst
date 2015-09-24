@@ -12,7 +12,7 @@ before and after ``rebase``\
 In the first on you can clearly see that ``development`` does not contain
 the two contributions ``developer 1`` ``developer 2`` by your colleagues. Those two
 ``commits`` are not *reachable* from your branch. That is: going back along the history
-starting from your ``development``branch, you will not go through those two ``commits``.
+starting from your ``development`` branch, you will not go through those two ``commits``.
 
 Now look at the second image, that is the history that you got after ``rebase``: 
 now the two ``commits`` are *reachable* from
@@ -29,7 +29,7 @@ that you will be using more often is ``merge``
 ``merge`` works exactly as you would expect: it melts two
 ``commits`` between them.
 
-There are only 3 particularties that I guess it's worth to deepen. 
+There are only 3 particularities that I guess it's worth to deepen. 
 First is that git's  ``merge`` works tremendously fine.
 Merit of git's storage model: during merges git should not being going crazy,
 like SVN, to understand whether or not a delta has already been applied, 
@@ -40,7 +40,7 @@ forget all the difficulties that you always encountered with SVN.
 The other two particularities are ``fast-forward`` and
 ``octopus merge``.
 
-But you fin it better  to show them immediately with examples
+But I find it better to show them straightaway with examples
 
 ``merge``
 =========
@@ -101,7 +101,7 @@ parents. Note also that your branch's label, ``development`` moved on the new ``
 It shouldn't be a surprise: current
 ``branch`` is meant just to follow you, ``commit`` after ``commit``.
 
-The ``fast-forward merge``
+``fast-forward merge``
 --------------------------
 
 If you find correct this reasoning, you won't find it difficult to understand 
@@ -127,109 +127,105 @@ to reach ``dev``, no doubt as well that ``development`` contains already
 the changes introduced from ``dev``. Therefore, it's that the``commit``
 containing the ``merge`` between ``dev`` and ``development``. Do you confirm?
 
-Allora, git non ha motivo per creare un nuovo ``commit`` e si limiterà a
-spostarvi sopra la tua etichetta corrente.
+Then, git has no reason to create a new ``commit`` and it'll just move on it your current label.
 
-Prova:
+Try:
 
 .. code-block:: bash
 
     git checkout dev
-    git merge sviluppo
+    git merge development
 
 .. figure:: img/fast-forward.png
 
-Prova a confrontare la storia prima e dopo il merge
+Try to compare the history before and after ``merge``
 
 .. figure:: img/fast-forward-2.png
 
-Vedi cosa è accaduto? Che l'etichetta ``dev`` è stata *spinta in
-avanti*.
+Do you see what happened? The label ``dev`` has been *pushed forward*.
 
-Ecco: hai appena visto un caso di ``fast-forward``. Tieni a mente
-questo comportamento: di tanto in tanto capita di averne a che fare,
-soprattutto quando vuoi evitare che avvenga. Per esempio, in questa
-occasione il ``fast-forward`` non è molto espressivo: si è creata una
-storia nella quale risulta un po' difficile capire *quando* il ramo
-``dev`` sia stato staccato. Non si vede nemmeno bene quando il ``merge``
-sia stato effettuato, perché manca un ``commit`` con un commento tipo
-``merge branch 'dev' into sviluppo``.
+Here: you have just seen a case of ``fast-forward``. Keep in mind this 
+behaviour: from time to time may happen to deal with it, especially
+when you want to avoid that it happens. For instance, in this occasion
+``fast-forward`` is not very expressive: it has been created a history 
+where it shows a little difficult to understand *when* the
+``dev`` branch has been detached. Yo cannot even see well when ``merge``
+has been done, because a ``commit`` with a comment like
+``merge branch 'dev' into development`` is missing.
 
-``fast-forward`` è un argomento cruciale nell'interazione con altri
-``repository``. Ne parleremo nel paragrafo su ``push``.
+``fast-forward`` is a crucial subject in the interaction with other
+``repositories``. We'll talk again about it in the paragraph on ``push``.
 
-Per adesso cerca solo di tenere a mente il concetto:
+For the time being simply try to keep in mind the concept:
 
--  il ``merge`` di due ``branch`` è eseguito in ``fast-forward`` quando
-   è possibile spostare il primo ramo sul secondo semplicemente
-   spingengolo in avanti
--  il ``merge`` non può essere ``fast-forward`` quando i due ``branch``
-   si trovano su linee di sviluppo divergenti
+-  the ``merge`` of two ``branches`` is executed in ``fast-forward`` when 
+    it is possible to move the firdt branch on the second by simply pushing it forward
+-  ilthe ``merge`` may not be ``fast-forward`` when the two ``branches``
+   lay on divergent development lines
 
-Un esempio potrebbe aiutarti a fissare il concetto
+An example could help in fixing the concept
 
-In questo ``repository``, un merge di ``bugfix`` su ``dev`` avverrà in
+In this ``repository``, a merge of ``bugfix`` on ``dev`` will take place in
 ``fast-forward``
 
 .. figure:: img/fast-forward.png
 
-In quest'altro caso, un merge di ``sviluppo`` su ``bugfix`` non potrà
-essere in ``fast-forward``, e risulterà in un nuovo ``commit``
+In this other case, a merge of ``development`` on ``bugfix`` will not be able to be 
+in ``fast-forward``, and will result in a new ``commit``
 
 .. figure:: img/merge-1.png
 
 ``octopus merge``
 -----------------
 
-E per chiudere l'argomento vediamo l'\ ``octopus merge``. Ma ci vorranno
-pochi secondi, perché è una cosa di una semplicità sconcertante.
+And in order to close the subject, let's see ``octopus merge``. But it will take just few seconds
+because it's a thing of staggering simplicity
 
-Guarda un ``commit`` nato da un ``merge``: non è diverso dagli altri
-``commit`` se non per il fatto di avere due genitori invece di uno solo.
+Look at a ``commit`` arisen from a ``merge``: it's not different than other
+``commits`` if not for the fact to have tho parents instead of one.
 
 .. figure:: img/fast-forward.png
 
-Ecco: su git il numero di genitori di un ``commit`` non è limitato a
-due. In altre parole, puoi mergiare tra loro quanti ``branch`` vuoi, in
-un colpo solo.
+Here: on git the number of parents for ``commit`` is not limited to two. 
+In other words, you may merge between them as many ``branches`` as you want, in
+one shot.
 
-Guarda. Crea 4 ``branch`` qualsiasi
+Look. Create 4 whatever ``branches``
 
 
 .. code-block:: bash
 
-    git branch uno 
-    git branch due 
-    git branch tre 
-    git branch quattro 
+    git branch one 
+    git branch two 
+    git branch three 
+    git branch four 
 
-    git checkout uno
-    touch uno && git add uno && git commit -m "uno" 
+    git checkout one
+    touch one && git add one && git commit -m "one" 
     
-    git checkout due
-    touch due && git add due && git commit -m "due" 
+    git checkout two
+    touch two && git add two && git commit -m "two" 
     
-    git checkout tre
-    touch tre&& git add tre && git commit -m "tre"
+    git checkout three
+    touch three && git add three && git commit -m "three"
     
-    git checkout quattro
-    touch quattro && git add quattro && git commit -m "e quattro"
+    git checkout four
+    touch four && git add four && git commit -m "and four"
 
 .. figure:: img/octopus-1.png
 
-Bene. Hai 4 rami. Adesso chiedi a ``dev`` di mergiarli tutti, in un
-colpo solo
+Well. You have 4 branches. Now ask ``dev`` for merging all of them, in one shot 
 
 .. code-block:: bash
 
     git checkout dev 
-    git merge uno due tre quattro
+    git merge one two three four
 
 .. figure:: img/octopus-2.png
 
-Et voilà! Un ``merge`` di 4 ``branch``.
+Et voilà! A ``merge`` of 4 ``branches``.
 
-E ora qualcosa di completamente diverso. Vediamo un po' come si comporta
-git con i server remoti.
+And now something completely different. Let's see how git behaves with
+remote servers.
 
 :ref:`Indice <indice>` :: :ref:`Obiettivo 6: mettere il repository in rete <obiettivo_6>`
