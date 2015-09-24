@@ -19,7 +19,9 @@ To link your local ``repository`` to a ``remote`` it needs just to
 give git the address of the remote ``repository`` with the command
 ``git remote`` (of course, you need also read and write permissions on ``remote``)
 
-To make things simple, let's make a concrete example without involving external servers and the Internet; create another ``repository`` somewhere on your very computer 
+To make things simple, let's make a concrete example without 
+involving external servers and the Internet; create another ``repository`` 
+somewhere on your very computer 
 
 .. code-block:: bash
 
@@ -30,79 +32,76 @@ To make things simple, let's make a concrete example without involving external 
 
 In this case, in the directory of your project, the remote ``repository``
 will be reachable through the path ``../remote-repo`` or with its absolute path.
-Più comunemente, però, avrai a che fare con ``repository``
-remoti raggiungibili, a seconda del protocollo utilizzato, con indirizzi
-come
+But, more commonly, you wil deal with remote ``repositories`` that are reachable, depending on 
+the protocol that is used, with addresses like
 
 -  ``https://azienda.com/repositories/cool-project2.git``
 -  ``git@github.com:johncarpenter/mytool.git``.
 
-Per esempio, il ``repository`` di questa guida ha l'indirizzo
+For instance, the ``repository`` of this guide has the address
  
--  ``git@github.com:arialdomartini/get-git.git``.
+-  ``git@github.com:arialdomartini/get-git-english.git``.
 
-Capita molto spesso, anche, che l'accesso ai ``remote`` richieda
-un'autenticazione. In questo caso, di solito, si usano una coppia nome
-utente/password o una chiave ssh.
+Very often it also happens that access to a ``remote`` requires an
+authentication. In this case, usually, it's used a user/password pair
+or a ssh key.
 
-Torna nel tuo progetto
-
-.. code-block:: bash
-
-    cd ../progetto
-
-Bene. Aggiungi all'elenco dei ``remote`` il ``repository`` appena
-creato, indicando a git un nome qualsiasi e l'indirizzo  del ``remote``
+Go back to your project
 
 .. code-block:: bash
 
-    git remote add foobar ../repo-remoto
+    cd ../project
 
-Ottimo. Hai connesso il tuo ``repository`` ad un altro nodo. Sei
-ufficialmente in una rete *peer-to-peer* di ``repository``. Da questo
-momento, quando vuoi riferirti a quel ``repository`` remoto utilizzerai
-il nome ``foobar``.
+Well. Add to the ``remote`` list the just created ``repository`` , 
+indicating to git whatever name and the address of the ``remote``
 
-Il nome è necessario perché, a differenza di SVN che ha il concetto di
-*server centrale*, in git puoi essere collegato ad un numero qualsiasi
-di ``repository`` remoti contemporaneamente, per cui ad ognuno
-assegnerai un nome identificativo univoco.
+.. code-block:: bash
 
-Sono due le cose che fondamentalmente puoi fare con un ``remote``:
-allinearsi al suo contenuto o chiedere che sia lui ad allinearsi a te.
+    git remote add foobar ../remote-repo
 
-Hai a disposizione due comandi: ``push`` e ``fetch``.
+Very good. You have linked your ``repository`` to another node. You are
+officially in a *peer-to-peer* network of ``repositories``. From this moment,
+when you want to make reference to that remote ``repository``, you will use 
+the name ``foobar``.
 
-Con ``push`` puoi *spedire* un set di ``commit`` al ``repository``
-remoto. Con ``fetch`` puoi *riceverli* dal ``repository`` remoto
+The name is necessary because, differently from SVN that has the concept of
+*central server*, in git you may be linked to whatever number of remote
+``repositories`` at the same time, therefore you will assign a unique identifier to each of them.
 
-Sia ``push`` che ``fetch``, in realtà, permettono al tuo ``repository``
-e al ``remote`` di scambiarsi delle etichette. E, in realtà, hai a
-disposizione anche altri comandi. Ma andiamo per gradi: iniziamo a
-vedere in concreto come funzioni la comunicazione tra un ``repository``
-ed un ``remote``.
+There are two things that you fundamentally may do with a ``remote``:
+to align with its content or ask it for aligning with you.
 
-Spedire un ramo con ``push``
-============================
+Two commands are available: ``push`` and ``fetch``.
 
-Al momento il ``remote`` che hai chiamato ``foobar`` è un ``repository``
-completamente vuoto: lo hai appena creato. Il tuo ``repository`` locale,
-invece, contiene molti ``commit`` e molti ``branch``:
+With ``push`` you can *deliver* a set of ``commits`` to the remote ``repository``.
+With ``fetch`` you can *receive them* from the remote ``repository``.
+
+Both ``push`` and ``fetch``, actually, allow that your ``repository``
+and the ``remote`` exchange labels. And, indeed, you have also other commands 
+available. But let's go step by step: let's start to see in concrete how 
+the communication between a ``repository``and a ``remote`` works.
+
+To deliver a branch with ``push``
+=================================
+
+At the moment the ``remote`` that you named ``foobar`` is a completely empty ``repository``:
+you just created it. Your local ``repository`` , instead, contains many
+``commits`` and many ``branches``:
 
 .. figure:: img/local-1.png
 
-Prova a chiedere al ``repository`` remoto di darti i ``commit`` e i
-``branch`` di cui dispone e che tu non hai. Se non indichi un ``branch``
-specifico il ``repository`` remoto cercherà di darteli tutti. Nel tuo
-caso il ``remote`` è vuoto, quindi non dovrebbe restituirti nulla
+Try to ask the remote ``repository`` for giving you the ``commits`` and the
+``branches`` which has available and which you don't have. If you don't indicate a
+specific ``branch`` , the remote ``repository`` will try to give you all of them.
+In your case the ``remote`` is empty, therefore it shouldn't give back to you anything
 
 .. code-block:: bash
 
     git fetch foobar
 
-Infatti. Non ricevi nulla. 
+In fact. You don't receive anything. 
 
-Prova, invece, a spedire il ramo
+Try instead to deliver the branch
 ``experiment``
 
 .. code-block:: bash
@@ -112,56 +111,53 @@ Prova, invece, a spedire il ramo
     Delta compression using up to 4 threads. 
     Compressing objects: 100% (8/8), done. 
     Writing objects: 100% (14/14), 1.07 KiB \| 0 bytes/s, done.
-    Total 14 (delta 3), reused 0 (delta 0) To ../repo-remoto
+    Total 14 (delta 3), reused 0 (delta 0) To ../remote-repo
     [new branch] experiment -> experiment
 
-Wow! Qualcosa è successo! Di tutti i messaggi di risposta, quello più
-interessante in questo momento è l'ultimo
+Wow! Something happened! Among all the response messages, at this moment the 
+most interesting is the last one 
 
 .. code-block:: bash
 
     [new branch] experiment -> experiment
 
-Ti aiuto a interpretare quello che è successo:
+I help you to interpret what has happened:
 
--  con ``git push foobar experiment`` hai chiesto a git di spedire a
-   ``foobar`` il ramo ``experiment``
--  per eseguire il comando git ha preso in considerazione il tuo ramo
-   ``experiment`` ed ha ricavato l'elenco di tutti i ``commit``
-   raggiungibili da quel ramo (come al solito: sono tutti i ``commit``
-   che puoi trovare partendo da ``experiment`` e seguendo a ritroso nel
-   tempo qualsiasi percorso tu possa percorrere)
--  git ha poi contattato il ``repository`` remoto ``foobar`` per sapere
-   quali di quei ``commit`` non fossero presenti remotamente
--  dopo di che, ha creato un pacchetto con tutti i ``commit`` necessari,
-   li ha inviati ed ha chiesto al ``repository`` remoto di aggiungerli
-   al proprio database
--  il ``remote`` ha poi posizionato il proprio ``branch`` ``experiment``
-   perché puntasse esattamente lo stesso ``commit`` puntato sul tuo
-   ``repository`` locale. Il ``remote`` non aveva quel ``branch``, per
-   cui lo ha creato.
+-  with ``git push foobar experiment`` you asked git for sending
+   ``foobar`` the ``experiment`` branch 
+-  to execute the command git took into consideration your branch 
+   ``experiment`` and drew the list of all ``commits`` reachable from 
+   that branch (as a usual: they are all the ``commits``
+   which you may find starting from ``experiment`` and following backward 
+   in time any path you may go through)
+-  git has then contacted the remote ``repository`` ``foobar`` to know
+   which of those ``commits`` were not present remotely
+-  after that, it created a packet with all the necessary ``commits`` ,
+   delivered them and asked the remote ``repository`` to add them
+   to its own database
+-  the ``remote`` has placed its ``branch`` ``experiment``
+   so that it pointed exactly the same ``commit`` pointed on your local
+   ``repository`` . The ``remote`` didn't have that ``branch``, therefore it created it.
 
-Prova adesso a visualizzare il ``repository`` remoto
+Now try to visualize the remote ``repository``
 
 .. figure:: img/remote-1.png
 
-Vedi? Il ``remote`` non è diventato una copia del tuo ``repository``:
-contiene solo il ``branch`` che gli hai spedito.
+Do you see? The ``remote`` has not become a copy of your ``repository``:
+it contains only the ``branch`` that you sent it.
 
-Puoi verificare che i 4 ``commit`` siano davvero tutti e soli i
-``commit`` che avevi in locale sul ramo ``experiment``.
+You may verify that the 4 ``commits`` really are all and only the 
+``commits`` that you had in local on the ``experiment`` branch.
 
-Anche sul tuo ``repository`` locale è successo qualcosa. Prova a
-visualizzarlo
+Even on your local ``repository`` something happened. try to visualize it
 
 .. figure:: img/push-1.png
 
-Guarda guarda! Sembra sia stato aggiunto un nuovo ``branch``, chiamato
-``foobar/experiment``. E sembra anche si tratti di un ``branch`` un po'
-particolare, perché l'interfaccia grafica si preoccupa di disegnarlo di
-colore differente.
+Look look! It seems a new ``branch``, called
+``foobar/experiment``, has been added. and it also seems that it's a little particular
+``branch``, because the interface is concerned to draw it in a different colour.
 
-Prova a cancellare quel ``branch``
+Try to delete that ``branch``
 
 .. code-block:: bash
 
