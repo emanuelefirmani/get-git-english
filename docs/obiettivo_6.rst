@@ -164,43 +164,41 @@ Try to delete that ``branch``
     git branch -d foobar/experiment
     error: branch 'foobar/experiment' not found.
 
-Non può essere cancellato. git dice che quel ``branch`` non esiste. Uhm.
-Decisamente quell'etichetta ha qualcosa di particolare.
+It cannot br deleted. git says that ``branch`` doesn't exist. Uhm.
+That label has really something particular!
 
-Il fatto è che quel ``branch`` non è sul tuo ``repository``: è su
-``foobar``. git ha aggiunto un ``remote branch`` per permetterti di
-tenere traccia del fatto che, su ``foobar`` il ``branch`` ``experiment``
-punta proprio a quel ``commit``.
+The fact is that ``branch`` is not on your ``repository``: it's on 
+``foobar``. git has added a ``remote branch`` in order to allow you to 
+keep track of the fact that on ``foobar`` the ``branch`` ``experiment``
+is just pointing to that ``commit``.
 
-I ``remote branch`` sono una sorta di reminder che ti permettono di
-capire dove si trovino i ``branch`` sui ``repository`` remoti ai quali
-sei collegato.
+``remote branches`` are a sort of reminder that allow you to understand
+where are the ``branches`` on remote ``repositories`` you are linked with.
 
-Si tratta di uno di quegli argomenti che risultano meno chiari
-ai nuovi utenti di git, ma se ci pensi il concetto non è affatto
-difficile. Con il ``remote branch`` chiamato ``foobar/experiment`` git ti
-sta semplicemente dicendo che sul ``repository`` ``foobar`` il ``branch``
-``experiment`` si trova in corrispondenza di quel ``commit``.
+It's one of those subjects that may result less clear to new git users, 
+but if you think of it, the concept is not difficult at all. With the 
+``remote branch`` called ``foobar/experiment`` git is simply tellin you 
+that the ``branch`` ``experiment`` on the  ``foobar`` ``repository`` is
+in correspondence of that ``commit``.
 
-Così come non puoi cancellare quel ``branch`` non puoi nemmeno spostarlo
-direttamente. L'unico modo per avere un controllo diretto di quel ``branch``
-è accedere direttamente al ``repository`` ``foobar``.
+As well as you can't delete that ``branch`` you can not even move it directly.
+The only manner to gain direct control on that ``branch``is to access directly 
+the ``foobar`` ``repository``.
 
-Hai però modo di controllarne indirettamente la posizione inviando con ``push`` un
-aggiornamento del ramo ``experiment``; avevamo visto prima che, effettivamente, 
-la richiesta di ``push`` è sempre accompagnata dalla richiesta di aggiornamento della
-posizione del proprio ``branch``.
+But you have an indirect way to control delivering with ``push`` an update of the 
+``experiment`` ``branch``; we had seen before that the``push`` request is always 
+accompanied by the request of update of the position of your ``branch``.
 
 
-Prima di provare con un esempio concreto, vorrei richiamare la tua attenzione su un aspetto molto importante 
-a cui dovrai fare l'abitudine: mentre stavi leggendo queste righe
-un tuo collega potrebbe aver aggiunto qualche ``commit`` proprio sul suo
-ramo ``experiment`` sul ``repository`` remoto, e tu non ne sapresti
-niente, perché il tuo ``repository`` non è collegato in tempo reale con
-i suoi ``remote``, ma si sincronizza solo quando ci interagisci con gli
-appositi comandi. Per cui, il ``commit`` puntato da
-``foobar/experiment`` è da intendersi come l'ultima posizione nota del
-ramo ``experiment`` su ``foobar``.
+Before trying with a concrete example, I'd like to recall your attention on 
+a verty important aspect, that you will have to het used to: while you were 
+reading these lines, a colleague of yours could have added some ``commit`` 
+just on his ``branch`` ``experiment`` on his remote ``repository``, and 
+you wouldn't know anything, because your ``repository`` is not linked in 
+real time its ``remotes``, but synchronizes only when you interact with 
+proper commands. Therefore, the ``commit`` pointed by ``foobar/experiment`` 
+has to be meant as the last known position of the ``experiment``  ``branch``
+on ``foobar``.
 
 Ricevere aggiornamenti con ``fetch``
 ====================================
