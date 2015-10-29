@@ -1,7 +1,7 @@
 .. _obiettivo_6:
 
-Target 6: to place the ``repository`` on the network
-####################################################
+Target 6: placing the ``repository`` on the network
+###################################################
 
 So far you have interacted only with your local ``repository`` , but I had
 anticipated that git is a *peer-to-peer* system.
