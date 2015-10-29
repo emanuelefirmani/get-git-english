@@ -1,6 +1,6 @@
 .. _obiettivo_1:
 
-Target 1: to go back in time
+Target 1: going back in time
 ############################
 
 So, if in git everything is stored in a key/value database, there will
