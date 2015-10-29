@@ -1,7 +1,7 @@
 .. _obiettivo_2:
 
-Target 2: to diverge
-####################
+Target 2: diverging
+###################
 
 Using a graphic convention that is very common in git's literature, we 
 could represent the present situation in your repository with 
