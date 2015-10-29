@@ -1,6 +1,6 @@
 .. _obiettivo_5:
 
-Target 5: To unify two branches
+Target 5: unifying two branches
 ###############################
 
 Let's pass to an operation that you probably do very often: ``merge``. 
