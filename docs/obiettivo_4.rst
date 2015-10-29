@@ -1,7 +1,7 @@
 .. _obiettivo_4:
 
-Target 4: to juggle with ``commit``
-###################################
+Target 4: juggling with ``commit``
+##################################
 
 As you have seen, git succeeds in storing the history of all file changes
 without saving the differences. At the beginning of this guide I had
