@@ -1,7 +1,7 @@
 .. _obiettivo_3:
 
-Target 3: to create a branch
-############################
+Target 3: creating a branch
+###########################
 
 With the ``checkout`` command you have learned to move from one ``commit``
 to another.
