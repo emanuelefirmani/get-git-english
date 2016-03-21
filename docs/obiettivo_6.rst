@@ -358,36 +358,32 @@ git, on this viewpoint, is less demanding: developers mayduverge locally,
 even working on the same ``branch``; the decision if and how to integrate their work 
 may be intentionally and indefinitely moved on in time.
 
-In ogni modo: abbraccia la natura fortemente non lineare di git e,
-deliberatamente ignorando che potrebbero esserci stati avanzamenti sul
-``repository`` remoto, procedi senza indugio con i tuoi nuovi ``commit``
-in locale
+Anyway: embrace the strongly non linear git's nature and, purposely ignoring that there
+could have been progresses on the remote ``repository`` , proceed locally without delay 
+with your new ``commits``
 
 .. code-block:: bash
 
     cd ../progetto
-    touch mio-contributo && git add mio-contributo
-    git commit -m "un mio nuovo commit"
+    touch my-contribution && git add my-contribution
+    git commit -m "a new commit of mine"
 
 .. figure:: img/collaborating-2.png
 
-Rifacciamo un punto della situazione su quel che ti ho appena descritto:
+Let's assess again the situation on what I have just described:
 
--  il tuo ``repository`` non sa del nuovo ``commit`` registrato su
-   ``foobar`` e continua a vedere una situazione non aggiornata
--  a partire dal medesimo ``commit`` "*un contributo dal tuo collega*\ "
-   tu e l'altro sviluppatore avete registrato due ``commit``
-   completamente indipendenti.
+-  your ``repository`` doesn't know about the new ``commit`` recorded on
+   ``foobar`` and continues to see a non up to date situation
+-  starting with the same ``commit`` "*a contribution from your colleague*\ "
+   you and the other developer have recorde two completely indipendent ``commits``.
+   
+Having worked concurrently on the same branch, with two potentially incompatible ``commits`` is
+if you think of it, a little like working concurrently on the same file with potentially incompatible changes:
+when the two results will be put together, we can expect that a conflict is reported. 
 
-Aver lavorato concorrentemente sullo stesso ramo, con due ``commit``
-potenzialmente incompatibili, se ci pensi, è un po' come lavorare
-concorrentemente sullo stesso file, con modifiche potenzialmente
-incompatibili: quando si metteranno insieme i due risultati, c'è da
-aspettarsi che venga segnalato un conflitto.
-
-E infatti è proprio così. Il conflitto nasce nel momento in cui si
-cercherà di sincronizzare i due ``repository``. Per esempio: prova a
-spedire il tuo ramo su ``foobar``
+And infact it's just like this. The confict arises at the moment when 
+we try to sync the two ``repositories``. For example: try to send 
+your branch on ``foobar``
 
 .. code-block:: bash
 
@@ -401,34 +397,30 @@ spedire il tuo ramo su ``foobar``
     hint: (e.g., 'git pull ...') before pushing again. 
     hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
-Rejected. Failed. Error. Più che evidente che l'operazione non sia
-andata a buon fine. Ed era prevedibile. Con
-``git push foobar experiment`` avevi chiesto a ``foobar`` di portare a
-termine due operazioni:
+Rejected. Failed. Error. It's more than evident that the operation has not 
+been successful. And we could expect it. With
+``git push foobar experiment`` you had asked ``foobar`` for completing two operations:
 
--  salvare nei proprio database tutti i ``commit`` di cui tu disponi e
-   che remotamente ancora non sono presenti
--  spostare la propria etichetta ``experiment`` in modo che puntasse
-   allo stesso ``commit`` puntato in locale
+-  saving in its database all yours ``commits`` that are not yet remotely present
+-  moving its  ``experiment`` label so that it points the same``commit`` that is pointed locally
 
-Ora: per la prima operazione non ci sarebbe stato alcun problema. Ma per
-la seconda operazione git pone un vincolo aggiuntivo: il ``repository``
-remoto sposterà la propria etichetta solo a patto che l'operazione si
-possa concludere con un ``fast-forward``, cioè, solo a patto che non ci
-siano da effettuare dei ``merge``. Oppure, detta con altre parole: un
-``remote`` accetta ``branch`` solo se l'operazione non creerà linee di
-sviluppo divergenti.
+Now: about first operation there would have been no problem. 
+But about the second one git sets a supplemental costraint:
+the remote ``repository`` will move its label only on condition that the 
+operation can be completed with a ``fast-forward``, that is, only on 
+condition that it's not necessary to execute ``merges``. 
+Or, said in different word: a ``remote`` accepts a ``branch`` 
+only if the operation doesn't create diverging development lines.
 
-Il ``fast-forward`` è citato proprio nell'ultima riga del messaggio di
-errore
+``fast-forward`` is mentioned just on the last line of the error message
+
 
 .. code-block:: bash
 
     hint: **See the 'Note about fast-forwards'** in 'git push --help'
     for details.<br/
 
-Nello stesso messaggio git fornisce un suggerimento: ti dice di provare
-a fare ``fetch``. Proviamo
+In the same message git provides a tip: it suggests to try to ``fetch``. Let's try
 
 .. code-block:: bash
 
@@ -436,10 +428,9 @@ a fare ``fetch``. Proviamo
 
 .. figure:: img/collaborating-3.png
 
-La situazione dovrebbe essere chiara già a colpo d'occhio. Si vede che
-le due linee di sviluppo stanno divergendo. La posizione dei due rami
-aiuta a capire dove ti trovi in locale e dove si trovi il tuo collega
-sul ``remote`` ``foobar``.
+The situation should be clear at a glance. You can see that the two development lines are diverging. 
+The position of the two branches helps in understanding where you are locally and where your colleague is 
+on the ``remote`` ``foobar``.
 
 Resta solo da decidere cosa fare. A differenza di SVN, che di fronte a
 questa situazione avrebbe richiesto necessariamente un merge in locale,
