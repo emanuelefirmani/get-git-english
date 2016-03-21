@@ -258,28 +258,28 @@ others, so that final result can be simplified)
 
 .. figure:: img/push-3.png
 
-Guarda attentamente quello che è successo: il tuo ramo ``experiment``
-non si è spostato di una virgola. Se controlli, anche il tuo
-``file system`` non è cambiato di un solo bit. Solo il tuo
-``repository`` locale è stato aggiornato: git ci ha aggiunto un nuovo
-``commit``, lo stesso aggiunto remotamente; in concomitanza, git ha
-anche aggiornato la posizione di ``foobar/experiment``, per comunicarti
-che "*dalle ultime informazioni di cui si dispone, l'ultima posizione
-registrata su ``foobar`` del ramo ``experiment`` è questa*\ ".
+Carefully look at what has happened: your ``experiment`` branch
+didn't move at all. If you check, your 
+``file system`` hasn't absolutely changed as well. Just your local
+``repository`` has been updated: git added there a new 
+``commit``, the same remotely added; at the same time, git has also 
+updated  the ``foobar/experiment`` position, in order to communicate 
+that "*according with latest available information, last position of 
+the branch ``experiment`` recorded on ``foobar`` is this*\ ".
 
-Questo è il modo in cui, normalmente, git ti permette di sapere che
-qualcuno ha proseguito il proprio lavoro su un ``repository`` remoto.
+This is the way with which normally git allows you to know that 
+someone continued his work an a remote ``repository`` .
 
-Un'altra osservazione importante: ``fetch`` non è l'equivalente di
-``svn update``; solo il tuo ``repository`` locale si è sincronizzato con
-quello remoto; il tuo ``file system`` non è cambiato! Questo significa
-che, in generale, l'operazione di ``fetch`` è molto sicura: anche
-dovessi sincronizzarti con un ``repository`` di dubbia qualità, puoi
-dormire sonni tranquilli, perché l'operazione non eseguirà mai il
-``merge`` sul tuo codice senza il tuo esplicito intervento.
+Another important remark: ``fetch`` is not equivalent to 
+``svn update``; only your local ``repository`` is synced to
+the remote one; your ``file system`` has not changed! This generally means that
+``fetch`` is a very safe operatuon: even though you should sync
+with a dubious quality ``repository``, you can rest easy, 
+because the operation will never do the 
+``merge`` on your code without your explicit intervention.
 
-Se invece tu volessi davvero includere i cambiamenti introdotti
-remotamente nel *tuo* lavoro, potresti usare il comando ``merge``.
+If instead you really want to include the remotely introduced changes in 
+*your* work, you could use the ``merge`` command.
 
 .. code-block:: bash
 
@@ -287,78 +287,76 @@ remotamente nel *tuo* lavoro, potresti usare il comando ``merge``.
 
 .. figure:: img/push-4.png
 
-Riconosci il tipo di ``merge`` che ne è risultato? Sì, un
-``fast-forward``. Interpretalo così: il tuo ``merge`` è stato un
-``fast-forward`` perché mentre il tuo collega lavorava il ramo non è
-stato modificato da nessun altro; il tuo collega è stato il solo ad
-avervi aggiunto contributi e lo sviluppo è stato lineare.
+Do you recognize the kind of ``merge`` that resulted? Yes, a
+``fast-forward``. INterpret it this way: your  ``merge`` has been a
+``fast-forward`` because while your colleague was working the branch 
+has not been modified by anyone else; your colleague has been the only one 
+who added contributions, and development has been linear.
 
-Questo è un caso così comune che spesso vorrai evitare di fare
-``git fetch`` seguito da ``git merge``: git offre il comando
-``git pull`` che esegue le due operazioni insieme.
+This is such a common case that you will want to avoid doing
+``git fetch`` followed by ``git merge``: git offers the 
+``git pull`` command, which executes the two commands together.
 
-Insomma, invece di
+Therefore, instead of
 
 .. code-block:: bash
 
     git fetch foobar
     git merge foobar/experiment
 
-avresti potuto lanciare
+you should have run
 
 .. code-block:: bash
 
     git pull foobar experiment
 
-Possiamo estendere il diagramma delle interazioni tra i comandi di git e
-i suoi ambienti aggiungendo la colonna ``remote`` e l'azione di
+We can extend the diagram of te interactions between git commands and
+its environments adding the ``remote`` column and the action of
 ``push``, ``fetch`` e ``pull``
 
 .. figure:: img/push-fetch.png
 
-Sviluppo non lineare
-===================
+Non linear development
+======================
 
-Proviamo a complicare la situazione. Vorrei mostrarti un caso che ti
-capiterà continuamente: quello in cui due sviluppatori stiano lavorando
-contemporaneamente su un ramo, su due ``repository`` separati. Di solito
-accade che, proprio nel momento in cui vorrai spedire al ``remote`` i
-tuoi nuovi ``commit``, vieni a scoprire che, nel frattempo, qualcuno sul
-``repository`` remoto ha modificato il ``branch``.
+Let's try to complicate the situation. I would like to show a case that
+will contnously happen: two developers are working on a branch at the same time,
+on two separated ``repositories`` . It usuallyhappens that at the moment when you 
+will want to send your new ``commits``to ``remote``  , you discover that, 
+in the meantime, someone on the remote
+``repository`` changed the``branch``.
 
-Inizia a simulare l'avanzamento dei lavori del tuo collega, aggiungendo
-un ``commit`` sul suo ``repository``
+Start to simulate your colleague's work progress, adding
+a ``commit`` on its ``repository``
 
 .. code-block:: bash
 
     cd ../repo-remoto
-    touch avanzamento && git add avanzamento
-    git commit -m "un nuovo commit del tuo collega"
+    touch progress && git add progress
+    git commit -m "a new commit of your colleague"
 
 .. figure:: img/collaborating-1.png
 
-(En passant, nota una cosa: sul ``repository`` remoto non c'è alcuna
-indicazione del tuo ``repository``; git è un sistema peer-to-peer
-asimmetrico)
+(En passant, note this: on the remote ``repository`` there's no indication
+of your ``repository``; git is an asymmetric peer-to-peer system)
 
-Torna al tuo ``repository``
+Go back to your ``repository``
 
 .. figure:: img/push-4.png
 
-Come prima: fintanto che non chiedi esplicitamente un allineamento con
-``fetch`` il tuo ``repository`` non sa nulla del nuovo ``commit``.
+Like before: as soon as yo don't explicitly ask for an alignment with
+``fetch`` your ``repository`` doesn't know anything of your new ``commit``.
 
-Questa, per inciso, è una delle caratteristiche notevoli di git: essere
-compatibile con la natura fortemente non lineare delle attività di
-sviluppo. Pensaci: quando due sviluppatori lavorano su un solo branch,
-SVN richiede che ogni ``commit`` sia preceduto da un ``update``; cioè,
-che per poter registrare una modifica lo sviluppatore debba integrare
-preventivamente il lavoro dell'altro sviluppatore. Non puoi eseguire un
-``commit`` se prima non integri i ``commit`` del tuo collega. git, da
-questo punto di vista, è meno esigente: gli sviluppatori possono
-divergere localmente, perfino lavorando sullo stesso ``branch``; la
-decisione se e come integrare il loro lavoro può essere intenzionalmente
-e indefinitamente spostata avanti nel tempo.
+By the way, this is one of the remarkable git's features: being
+compatible with the strongly non linear nature of development activities.
+Think it over: when two developers works on a single branch,
+SVN requires that every ``commit`` is preceded by an ``update``; that is,
+in order to record a change the developer has to integrate preventively the 
+other developer's work. You cannot run a 
+``commit`` if you beforehand don't integrate your colleague's ``commits`` . 
+git, on this viewpoint, is less demanding: developers mayduverge locally, 
+even working on the same ``branch``; the decision if and how to integrate their work 
+may be intentionally and indefinitely moved on in time.
 
 In ogni modo: abbraccia la natura fortemente non lineare di git e,
 deliberatamente ignorando che potrebbero esserci stati avanzamenti sul
