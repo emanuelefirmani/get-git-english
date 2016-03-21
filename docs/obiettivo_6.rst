@@ -81,7 +81,7 @@ and the ``remote`` exchange labels. And, indeed, you have also other commands
 available. But let's go step by step: let's start to see in concrete how 
 the communication between a ``repository``and a ``remote`` works.
 
-To deliver a branch with ``push``
+Delivering a branch with ``push``
 =================================
 
 At the moment the ``remote`` that you named ``foobar`` is a completely empty ``repository``:
@@ -200,45 +200,45 @@ proper commands. Therefore, the ``commit`` pointed by ``foobar/experiment``
 has to be meant as the last known position of the ``experiment``  ``branch``
 on ``foobar``.
 
-Ricevere aggiornamenti con ``fetch``
-====================================
+Receiving uodates with ``fetch``
+================================
 
-Guarda: proviamo proprio a simulare quest'ultimo caso caso. 
-Modifica `foobar` come se un tuo collega stesse lavorando su ``experiment``. 
+Let's try and simulate this last case. 
+Change `foobar` as if a colleague of yours is working on ``experiment``. 
 
-Cioè: aggiungi un ``commit`` sul ramo ``experiment`` di ``foobar``
+That is: add a ``commit`` on the ``experiment`` branch of ``foobar``
 
 .. code-block:: bash
 
     cd ../repo-remoto
     touch x
     git add x
-    git commit -m "un contributo dal tuo collega" 
+    git commit -m "a contribution from your colleague" 
 
-Ecco il risultato finale su ``foobar``
+Here you have the final result on ``foobar``
 
 .. figure:: img/push-2.png
 
-Torna pure al tuo ``repository`` locale e vediamo cos'è cambiato
+Go back to your local``repository`` and let's see what has chenged
 
 .. code-block:: bash
 
-    cd ../progetto
+    cd ../project
 
 .. figure:: img/push-1.png
 
-Infatti. Non è cambiato niente di niente. Il tuo ``repository`` locale
-continua a dirti che il ramo ``experiment`` su ``foobar`` si trova a
-"*un commit con un esperimento*\ ". E tu sai benissimo che non è vero!
-``foobar`` è andato avanti, e il tuo ``repository`` non lo sa.
+In fact. It has not changed anything at all. Your local``repository`` 
+continues saying that the ``experiment`` branch on ``foobar`` stays at
+"*a commit with an experiment*\ ". And you know very well that it's not true!
+``foobar`` has gone forward, and your ``repository`` doesn't know it.
 
-Tutto questo è coerente con quel che ti ho detto prima: il tuo
-``repository`` non è collegato in tempo reale con i suo ``remote``; ci
-si allinea solo a comando.
+All this is coherentwith what I said before: your
+``repository`` is not linked in real time with its ``remote``; matching 
+is just on command.
 
-Chiedi allora al tuo ``repository`` di allinearsi con ``foobar``. Puoi
-chiedere un aggiornamento su un singolo ramo o un aggiornamento su tutti
-i rami. Di solito, si sceglie la seconda strada
+Then ask your ``repository`` for matching with ``foobar``. You
+may ask for an update on a single branch or on all of them.
+Usually it's chosen the second way.
 
 .. code-block:: bash
 
@@ -249,13 +249,12 @@ i rami. Di solito, si sceglie la seconda strada
     From ../repo-remoto
     e5bb7c4..c8528bb experiment -> foobar/experiment
 
-Qualcosa è arrivato.
+Something has arrived.
 
-Guarda di nuovo il ``repository`` locale. (Per renderci la vita più
-semplice, iniziamo a sfruttare un'opzione ci cui la quasi totalità delle
-interfacce grafiche di git è provvista: la possibilità di visualizzare
-un singolo ramo e nascondere tutti gli altri, così da semplificare il
-risultato finale)
+Look again at the new local ``repository``. (In order to simplify our life,
+let's start to take advantage from an option present in every git's graphic 
+interface: the capability of visualizing a single branch andhiding al the 
+others, so that final result can be simplified) 
 
 .. figure:: img/push-3.png
 
