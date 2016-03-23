@@ -432,67 +432,59 @@ The situation should be clear at a glance. You can see that the two development 
 The position of the two branches helps in understanding where you are locally and where your colleague is 
 on the ``remote`` ``foobar``.
 
-Resta solo da decidere cosa fare. A differenza di SVN, che di fronte a
-questa situazione avrebbe richiesto necessariamente un merge in locale,
-git ti lascia 3 possibilità
+We have just to decide what to do. Unlike SVN, that in front of this situatuon
+would have necessarily required a local merge,
+git leaves to you three possibilities
 
--  **andare avanti ignorando il collega**: puoi ignorare il lavoro del
-   tuo collega e proseguire lungo la tua linea di sviluppo; certo, non
-   potrai spedire il tuo ramo su ``foobar``, perché è incompatibile col
-   lavoro del tuo collega (anche se puoi spedire il tuo lavoro
-   assegnando alla tua linea di sviluppo un altro nome creando un nuovo
-   ``branch`` e facendo il ``push`` di quello); comunque, il concetto è
-   che non sei costretto ad integrare il lavoro del tuo collega;
--  **``merge``**: puoi fondere il tuo lavoro con quello del tuo collega
-   con un ``merge``
--  **``rebase``**\ puoi riallinearti al lavoro del tuo collega con un
-   ``rebase``
+-  **going on ignoring the colleague**: you may ignore your colleague's
+    work and continue on your development line;of course, you will not 
+    be able tp deliver you branch on ``foobar``, because it's incompatible
+    with your colleague's work (even though you may deliver your work assigning 
+    to your development line another name, creating a new ``branch`` and ``pushing`` it); 
+    however, the concept is that you're not obliged to integrate your colleague's work;
+-  **``merge``**: you may melt your work with your colleague's one with a ``merge``
+-  **``rebase``**\ you mat realign to youer colleague's work with a ``rebase``
 
-Prova la terza di queste possibilità. Anzi, per insistere sulla natura
-non lineare di git, prova a far precedere alla terza strada la prima. In
-altre parole, prova a vedere cosa succede se, temporaneamente, ignori il
-disallineamento col lavoro del tuo collega e continui a sviluppare sulla
-tua linea. È un caso molto comune: sai di dover riallinearti, prima o
-poi, col lavoro degli altri, ma vuoi prima completare il tuo lavoro. git
-non ti detta i tempi e non ti obbliga ad anticipare le cose che non vuoi
-fare subito
+Try the third of these possibilities. Nay, in order to insist on the non linear nature
+of git, try to make the first way precede the third. In other words,
+try to see what happens if, temporarily, you ignore the misalignment with your colleague's 
+work and you keep on developing on your line. It's a very common case: You know you have to 
+align, sooner or later, with the others' work, but you want complete your work, beforehand. 
+git doesn't dictate timing and doesn't oblige you to anticipate things you don't want to do
+anon. 
 
 .. code-block:: bash
 
-    echo modifica >> mio-contributo
-    git commit -am "avanzo lo stesso"
+    echo change >> my-contribution
+    git commit -am "I progress the same"
 
 .. figure:: img/collaborating-4.png
 
-Benissimo. Sei andato avanti col tuo lavoro, disallineandoti ancora di
-più col lavoro del tuo collega. Supponiamo tu decida sia arrivato il
-momento di allinearsi, per poi spedire il tuo lavoro a ``foobar``.
+Very well. You went on with your work, misaligning even more with your colleague's 
+work. Let's suppose that you decide the moment ha arrived for realigning, and then
+delivering your work to ``foobar``.
 
-Potresti fare un ``git merge foobar/experiment`` ed ottenere questa
-situazione
+You might run ``git merge foobar/experiment`` and obtain this situation 
 
 .. figure:: img/collaborating-5.png
 
-Vedi? Adesso ``foobar/experiment`` potrebbe essere spinto in avanti (con
-un ``fast-forward``) fino a ``experiment``. Per cui, a seguire, potresti
-fare ``git push foobar``.
+Do you see? Now ``foobar/experiment`` could be pushed forward (with
+a ``fast-forward``) till ``experiment``. Then, you could run ``git push foobar``.
 
-Ma invece di fare un ``merge``, fai qualcosa di più raffinato: usa
-``rebase``. Guarda nuovamente la situazione attuale
-
+But instead of doing a ``merge``, do something more sophisticated: use
+``rebase``. Look again at the current situation 
 .. figure:: img/collaborating-3.png
 
-Rispetto ai lavori su ``foobar`` è come se tu avessi staccato un ramo di
-sviluppo ma, disgraziatamente, mentre tu facevi le tue modifiche,
-``foobar`` non ti ha aspettato ed è stato modificato.
+With respect to the works on ``foobar`` it's like you had detached a development branch
+but, unfortunately, while you were making changes, 
+``foobar`` has not waited for you and has been modified.
 
-Bene: se ricordi, ``rebase`` ti permette di applicare tutte le tue
-modifiche ad un altro ``commit``; potresti applicare il tuo ramo a
-``foobar/experiment``. È un po' come se potessi staccare di netto il
-tuo ramo ``experiment`` per riattaccarlo su un'altra base
+Well: if you remember, ``rebase`` allows you to apply all your changes to another
+``commit``; you could apply your branch to ``foobar/experiment``. It's like you could sharply
+detach your branch ``experiment`` and reattach on another base
 (``foobar/experiment``)
 
-Prova
+Try
 
 .. code-block:: bash
 
@@ -500,15 +492,15 @@ Prova
 
 .. figure:: img/collaborating-6.png
 
-Visto? A tutti gli effetti appare come se tu avessi iniziato il tuo
-lavoro *dopo* la fine dei lavori su ``foobar``. In altre parole:
-``rebase`` ha apparentemente reso lineare il processo di sviluppo, che
-era intrinsecamente non lineare, senza costringerti ad allinearti con il
-lavoro del tuo collega esattamente nei momenti in cui aggiungeva
-``commit`` al proprio ``repository``.
+Have you seen? To all effects it appears as if you had started your work
+*after* the end of works on ``foobar``. In other words:
+``rebase`` has apparently made linear the development process, that was
+inherently non linear, without forcing you to align with your colleague's work
+exactly in the moments when it was adding s
+``commits`` to its ``repository``.
 
-Puoi spedire il tuo lavoro a ``foobar``: apparirà come tu abbia
-apportato le tue modifiche a partire dall'ultimo ``commit`` eseguito su
+You may deliver your work to ``foobar``: it will appear like you have made your changes 
+starting with the last ``commit`` done on 
 ``foobar``.
 
 .. code-block:: bash
@@ -535,117 +527,109 @@ apportato le tue modifiche a partire dall'ultimo ``commit`` eseguito su
     To ../repo-remoto ! [remote rejected] experiment -> experiment (branch is currently checked out)
     error: failed to push some refs to '../repo-remoto'
 
-Mamma mia! Sembra proprio che a git questo ``push`` non sia piaciuto.
-Nel lunghissimo messaggio di errore git ti sta dicendo di non poter fare
-``push`` di un ``branch`` attualmente "*checked out*\ ": il problema non
-sembra essere nel ``push`` in sé, ma nel fatto che sull'altro
-``repository`` il tuo collega abbia fatto ``checkout experiment``.
+My God! It really looks like git didn't like this ``push`` .
+In the very long error message git is saying that it may not 
+``push`` a ``branch`` currently "*checked out*\ ": 
+the problem doesn't like to be in``push`` itself, but in the fact 
+that on the other ``repository`` your colleague did ``checkout experiment``.
 
-Questo problema potrebbe capitarti di continuo, se non sai come
-affrontarlo, per cui a breve gli dedicheremo un po' di tempo. Per
-adesso, rimedia chiedendo gentilmente al tuo collega di spostarsi su un
-altro ramo e ripeti il ``push``.
+THis issue could continously happen, if you don't know how to face it,
+therefore we will soon dedicate a little time to it. For now,
+repair gently asking your colleague for moving on another branch and repeat ``push``.
 
-Quindi: su ``foobar`` vedi di spostarti su un altro ``branch``
-
-.. code-block:: bash
-
-    cd ../repo-remoto
-    git checkout -b parcheggio
-
-Dopo di che, torna al tuo ``repository`` locale e ripeti ``push``
+Then: on ``foobar`` move on another ``branch``
 
 .. code-block:: bash
 
-    cd ../progetto
+    cd ../remote-repo
+    git checkout -b parking
+
+And afterwards, go back to your local ``repository`` and repeat ``push``
+
+.. code-block:: bash
+
+    cd ../project
     git push foobar experiment
-
-Ecco il risultato
+Here you have the result
 
 .. figure:: img/collaborating-7.png
 
-Ripercorriamo graficamente quello che è successo. Partivi da
+Let's run graphically through what has happened. You were leaving from
 
 .. figure:: img/collaborating-4.png
 
-Poi hai fatto ``rebase`` ed hai ottenuto
+Then you did ``rebase`` and you obtained
 
 .. figure:: img/collaborating-6.png
 
-Poi hai fatt ``push`` su ``foobar``: la nuova posizione del
-``remote branch`` ``foobar/experiment`` testimonia l'avanzamento del
-ramo anche sul ``repository`` remoto.
+Then you did ``push`` on ``foobar``: the new position of the
+``remote branch`` ``foobar/experiment`` is witnessing the progress of the branch 
+also on the remote ``repository`` .
 
 .. figure:: img/collaborating-7.png
 
-Contestualmente, il tuo collega su ``foobar`` ha visto passare il
-proprio ``repository`` da
+Simultaneously, your colleague on ``foobar`` saw its  ``repository`` 
+passing from
 
 .. figure:: img/collaborating-1.png
 
-a
+to
 
 .. figure:: img/collaborating-8.png
 
-Ti torna tutto? Ecco, guarda attentamente le ultime due immagini, perché
-è proprio per evitare quello che vedi che git si è lamentato tanto,
-quando hai fatto ``git push foobar experiment``.
+Do you get everything? Look carefully at the last two images, because
+it's just in order to avoid what you are seeing that git complained that much,
+when you run ``git push foobar experiment``.
 
-Per capirlo, mettiti nei panni del tuo collega virtuale, che abbiamo
-immaginato sul ``repository`` remoto ``foobar``. Il tuo collega se ne
-sta tranquillo sul suo ramo ``experiment``
+In order to understand it, put yourself in the shoes of your virtual colleague,
+that we imagined on the remote ``repository`` ``foobar``. Your colleagues is 
+staying quiet on the ``experiment`` branch
 
 .. figure:: img/collaborating-1.png
 
-quando ad un tratto, senza che abbia dato alcun comando a git, il suo
-``repository`` accetta la tua richiesta di ``push``, salva nel database
-locale un paio di nuovi ``commit`` e sposta il ramo ``experiment`` (sì,
-proprio il ramo di cui aveva fatto il ``checkout``!) due ``commit`` in
-avanti
+when suddenly , without he gave any command to git, his
+``repository`` accepts the request of ``push``, stores in the local database
+a couple of new``commits`` and moves the ``experiment`` (yes,
+just the branch of which he run the ``checkout``!) branch two ``commit`` forward
 
 .. figure:: img/collaborating-8.png
 
-Ammetterai che se questo fosse il comportamento standard di git non
-vorresti mai trovarti nella posizione del tuo collega virtuale: la
-perdita di controllo del proprio ``repository`` e del proprio
-``file system`` sarebbe davvero un prezzo troppo alto da pagare.
+You will admit that if this was the standard behaviour of git,
+you would never find yourself in your virtual colleague's position:
+loss of control of your ``repository`` and of your 
+``file system`` would be a too high price to be paid.
 
-Capisci bene che cambiare il ramo del quale si è fatto ``checkout``
-significa, sostanzialmente, vedersi cambiare sotto i piedi il
-``file system``. Ovviamente questo è del tutto inaccettabile, ed è per
-questo che git si è rifiutato di procedere ed ha replicato con un
-chilometrico messaggio di errore.
+You well undestand that changing the branch where you did ``checkout``
+sunstantially means seeing your 
+``file system`` change under your feet. Of course this is totally unacceptable,
+and for this reason git refused proceding and replied with a lengthy error message
 
-Prima hai rimediato alla situazione spostando il tuo collega virtuale su
-un ramo ``parcheggio``, unicamente per poter spedirgli il tuo ramo.
+You before remedied the situation moving your virtual colleague on a ``parking`` branch, 
+just for being able to send it your branch.
 
 .. figure:: img/collaborating-9.png
 
-Questo sporco trucco ti ha permesso di fare ``push`` di ``experiment``.
+This dirty trick allowed you to ``push``  ``experiment``.
 
-Ma a pensarci bene anche questa è una soluzione che, probabilmente, tu
-personalmente non accetteresti mai: a parte la scomodità di doversi
-interrompere solo perché un collega vuole spedirti del suo codice,
-comunque non vorresti che l'avanzamento dei tuoi rami fosse
-completamente fuori dal tuo controllo, alla mercé di chiunque. Perché,
-alla fine, il ramo ``experiment`` si sposterebbe in avanti contro la tua
-volontà, e lo stesso potrebbe accadere a tutti gli altri rami di cui non
-hai fatto ``checkout``.
+But thinking about it this is as well a solution you probably will never accept: 
+aside from the convenience of having to suspend just because a colleague wants to deliver his code,
+however you wouldn't like that the progress of your branches is 
+completely out of your control, at the mercy of anyone. Because, in the end
+the ``experiment`` branch would move forward against your will, and it could happen the same
+to all the branches that you did not ``checkout``.
 
-È evidente che debba esistere una soluzione radicale a questo problema.
+It's evident that a radical solution to this problem must exist.
 
-La soluzione è sorprendentemente semplice: **non permettere ad altri di
-accedere al tuo ``repository``**.
+The solution is amazingly simple: **you don't allow others to access your ``repository``**.
 
-Potresti trovarla una soluzione un po' sommaria, ma devi riconoscere che
-non esista sistema più drastico ed efficace. E, fortunatamente, è molto
-meno limitante di quanto tu possa credere ad una prima analisi.
+You might find it a somewhat cursory solution, but you should recognize 
+that a more drastic and effective system doesn't exist. And, fortunately, 
+it's much less limiting than you could expect at a first analysis.
 
-Naturalmente, ti ho raccontato solo metà della storia e forse vale la
-pena di approfondire un po' l'argomento. Apri bene la mente, perché
-adesso entrerai nel vivo di un argomento molto affascinante: la natura
-distribuita di git. Si tratta, verosimilmente, dell'aspetto più
-comunemente incompreso di git e, quasi certamente di una delle sue
-caratteristiche più potenti.
+Of course I told you only half of the story and maybe it's worth
+to deepen a little the matter. Open very well your mind, 
+because now you are getting to the heart of a very fascinating subject:
+git's distributed nature. It's likely to be the most commonly unappreciated aspect of git
+and, nearly dertainly one of its most powerful features. 
 
 :ref:`Indice <indice>` :: :ref:`Obiettivo 7: disegnare il workflow ideale <obiettivo_7>`
