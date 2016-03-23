@@ -1,29 +1,28 @@
 .. _obiettivo_7:
 
-Obiettivo 7: disegnare il workflow ideale
-###########################################
+Target 7: designing the ideal workflow
+######################################
 
-Se hai usato CVS e SVN sarai senz'altro abituato al concetto di
-``repository`` centrale: tutti gli sviluppatori attingono e fanno
-riferimento ad un'unica struttura centrale, dove è conservato il codice
-sorgente.
+If you have used CVS and SVN you will surely be used to the concept of central
+``repository``: every developer make reference to a single central structure, 
+where the source code is stored.
 
 .. figure:: img/workflow-1.png
 
-Nell'esempio che abbiamo utilizzato fino ad ora il team era composto da
-2 sviluppatori: tu ed il tuo collega. Ti sarai accorto che già con un
-team di dimensione così ridotta l'organizzazione dei repository, con
-git, ha qualcosa di particolare: prima di tutto perché ci sono due
-``repository``; e poi perché, dei due ``repository``, non si capisce
-bene quale sia quello *ufficiale*.
+In the example we have used so far the team was made of 2 developers:
+your colleague and you. You will have realized that organization
+of ``repositories`` with git has something particular even with so 
+small a team: first af all bedause there are two
+``repositories``; and then because, among the two ``repositories``, one doesn't
+understand which is the *official* one.
 
 .. figure:: img/workflow-2.png
 
-A complicare le cose c'è il fatto che, a quanto pare, non si dovrebbe
-permettere ad altri di accedere al proprio ``repository``. Decisamente
-la faccenda si fa confusa e nebulosa.
+To make things more complicated there's the fact that, apparently, 
+one should not allow other to access his own ``repository``. The matter 
+is definetely confused and hazy.
 
-Cerchiamo di mettere chiarezza. Partiamo da un assunto: git è abbastanza
+Let's try to make it clear. Let's start with an assumption: git è abbastanza
 versatile da replicare totalmente l'organizzazione a ``repository``
 centrale di SVN. Per cui, se proprio per te fosse uno shock culturale
 insostenibile anche solo pensare di organizzare il tuo workflow in altro
