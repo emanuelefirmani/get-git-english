@@ -22,75 +22,69 @@ To make things more complicated there's the fact that, apparently,
 one should not allow other to access his own ``repository``. The matter 
 is definetely confused and hazy.
 
-Let's try to make it clear. Let's start with an assumption: git è abbastanza
-versatile da replicare totalmente l'organizzazione a ``repository``
-centrale di SVN. Per cui, se proprio per te fosse uno shock culturale
-insostenibile anche solo pensare di organizzare il tuo workflow in altro
-modo, riproduci la struttura di SVN e vivi felice. Ti
-uniresti ad un lungo elenco di aziende e di team che, di fronte alle
-possibilità offerte da git, rimediano rifugiandosi nell'arcinota
-architettura a ``repository`` centrale. 
+Let's try to make it clear. Let's start with an assumption: git is versatile 
+enough to totally replicate SVN's central organization of ``repositories``
+Therefore, in case for you it's an unsustainable cultural schock just thinking og organizing 
+your workflow in a different way, copy SVN's structure and you can live happy. You would join
+the lengthy list of companies and teams that, in front of the possibilities offered by git, decide 
+to shelter in the well known architecture based upon the central ``repository`` . 
 
-È una opzione. Non è delle più felici, perché impedisce di godere di alcuni dei grandi
-vantaggi dell'usare un sistema di versionamento distribuito, ma è sempre
-un'opzione percorribile Un mio collega la descrive come "*avere
-finalmente il fucile ed usarlo come una clava*\ ". Diciamo pure che non
-è l'opzione che verrà promossa da questa guida.
+That's one option. Not one of the best, because it prevents enjoying some of the great
+advantages that come by using a distributed versioning system, but it's however a viable option.
+A colleague of mine describes it like "*finally having the gun and using it like a club*\ ". Let's say that
+it's not the option that this guide is going to promote.
 
-In questo capitoletto proveremo piuttosto ad esplorare altre
-implementazioni meno banali.
+In this chapter we'll rather try to explore other less trivial implementations.
 
-Partiamo da un'euristica che io ho sempre trovo molto efficace:
+Let's start with a heuristic that I always founf very effective:
+    use a ``repository``  topology reflecting the real workflow and the real functional roles that exist in the team
 
-    utilizza una topologia di ``repository`` che rispecchi il reale
-    flusso di lavoro e i reali ruoli funzionali esistenti nel team
+Translated in a nutshell and applied to our concrete case: you and your colleague are using git
+mainly for 3 functions 
 
-Tradotto in soldoni e applicato al nostro caso concreto: tu e il tuo
-collega state usando git principalmente per 3 funzioni
+-  you, for code development
+-  your colleague, for code development
+-  both, to exchange the code and to integrate the work of the two of you 
 
--  tu, per sviluppare il codice
--  il tuo collega, per sviluppare il codice
--  entrambi, per scambiarvi il codice ed integrare il lavoro di entrambi
-
-L'idea è: per ogni funzione, usa un ``repository`` dedicato. In altre
-parole, potreste prendere in considerazione l'ipotesi di aggiungere un
-``repository``, raggiungibile sia da te che dal tuo collega, da
-utilizzare come area di integrazione
+The idea is: for every function use a dedicated ``repository`` . In other
+words, you might consider the hypothesis of adding one 
+``repository``, reachable both from you and your colleague, to be used
+as integration area
 
 .. figure:: img/workflow-3.png
 
-Ora: verrebbe già più spontaneo eleggere il ``repository``
-``integrazione`` come il ``repository`` ufficiale, non trovi?
+Now it would appear more spontaneous electing the ``integration`` 
+``repository`` as the official one. Don't you agree? 
 
-A rigore, non c'è fisicamente niente che caratterizzi il repository
-``integrazione`` come \ ``repository`` centrale: tecnicamente è del tutto
-equivalente agli altri due. L'idea di fondo che è che il ruolo e
-l'importanza di un ``repository`` rispetto ad un altro sia una questione
-sociale e organizzativa, non imposta da vincoli o limiti tecnologici:
-git si limita a permettere di modellarla, ma non impone la minima
-opinione in materia.
+Strictly speaking, There's phisically nothing characterizing the  repository
+``integrazione`` ``repository`` like \central ``repository`` : technically it's totally 
+equivalent to the other two. The basic idea is that role and importance 
+of one  ``repository`` compared with another is a social and organizative 
+question, not forced by technological costraintsor limits:
 
-Quindi, supponiamo che, per convenzione o per accordo tra le parti si
-decida che il repository ``integrazione`` venga usato per permettere
-l'integrazione tra il lavoro tuo e quello del tuo collega e come
-archivio *ufficiale*; gli altri due ``repository`` saranno da intendersi
-come archivi ad uso esclusivo di ogni sviluppatore.
+git merely permits to model it , but it doesn't impose anything on this aspect.
 
-Puoi rinforzare questa struttura utilizzando un paio di strumenti che
-git ti mette a disposizione.
+Then, let's suppose that, by convention o by agreement between the parts, 
+we decide that the repository ``integration`` is used to allow 
+the integration between your work and your colleague's one and as 
+*official* archive; the other two ``repositories`` will be meant as
+archives at the exclusive usage of each developer.
 
-Per prima cosa, potresti creare il repository ``integrazione`` con il
-comando ``git init --bare``; l'opzione ``--bare`` fa in modo che il
-``repository`` non possa essere utilizzato come base di lavoro: verrà
-creato solo il database, senza il ``file system``, per cui non sarà
-possibile fare ``add`` e ``checkout``
+You can strengthen this structure using a couple of tools offered by 
+git.
 
-Invece, sui due ``repository`` personali, potresti configurare ad arte i
-permessi di accesso, restringendoliai soli proprietari; tu sarai il solo
-a poter leggere e scrivere sul tuo ``repository`` personale, e non avrai
-modo di accedere a quello del tuo collega; e vice versa. Vi perdete la
-possibilità di spedirvi ``branch`` senza passare dal ``repository``
-centrale, ma a breve vedremo delle configurazioni più articolate.
+First of all, you might create the ``integration`` repository with the command 
+``git init --bare``; the ``--bare`` option makes sure that the 
+``repository`` cannot be used as work base: only the database will be created,
+without ``file system``, therefore it'll be not possible doing ``add`` and ``checkout``
+
+Instead, on the two personal ``repositories`` , you could carefully configure 
+the access rights, limiting them only to owners; you will be the only one who
+may read and write on your personal ``repository``, and for you it'll be 
+impossible to access your colleague's one; and vice versa. You lose the 
+possibility to deliver ``branches`` each other without passing by 
+the central ``repository`` , but very soon we will see more articulated 
+configurations.
 
 .. figure:: img/workflow-4.png
 
