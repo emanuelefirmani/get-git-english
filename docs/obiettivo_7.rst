@@ -37,7 +37,8 @@ it's not the option that this guide is going to promote.
 In this chapter we'll rather try to explore other less trivial implementations.
 
 Let's start with a heuristic that I always founf very effective:
-    use a ``repository``  topology reflecting the real workflow and the real functional roles that exist in the team
+
+    use a ``repositories`` topology reflecting the real workflow and the real functional roles that exist in the team
 
 Translated in a nutshell and applied to our concrete case: you and your colleague are using git
 mainly for 3 functions 
@@ -88,64 +89,59 @@ configurations.
 
 .. figure:: img/workflow-4.png
 
-Ecco qui: hai una topologia molto simile alla soluzione centralizzata di
-SVN, con la sola differenza che ogni sviluppatore dispone di un
-``repository`` privato locale.
+Here it is: you have a topology very similar to SVN's centralized solution,
+with the only difference that each developer has a local private 
+``repository`` .
 
-Possiamo fare di più? Certo che sì. Se ne vale la pena. Nello specifico:
-se l'intero team di sviluppo è costituito da te e dal tuo collega,
-questa soluzione potrebbe già essere perfetta.
+Can we do more? Course yes. If it's worth it. In particular:
+if the entire development team is made of you and your colleague,
+this solution could already be perfect.
 
-Ma le cose potrebbero essere molto differenti: considera per esempio il
-caso in cui il tuo collega sia un consulente esterno, al quale non vuoi
-dare direttamente la possibilità di modificare direttamente il codice
-nel ``repository`` ufficiale se non dopo una tua revisione ed
-accettazione del codice.
+But things might be very different: for instance consider the case
+where your colleague is an external consultant, to whom you
+don't want to give the possibility to change directly code on the official
+``repository`` if not after your revision and acceptance of code.
 
-Una possibilità potrebbe essere quella di decidere che sia il *tuo*
-``repository`` quello ufficiale, così da organizzare i tool di Continuous
-Integration e di Deployment perché prelevino il codice da lì. Oppure,
-potresti ripensare all'euristica
+One possibility could be deciding that *your*
+``repository`` is the official one, so that Continuous
+Integration and Deployment tools can be set up to take the code from there.
+Or, you could think back to the heuristic 
 
-    utilizza una topologia di ``repository`` che rispecchi il reale
-    flusso di lavoro e i reali ruoli funzionali esistenti nel team
+   use a ``repositories`` topology reflecting the real workflow and the real functional roles that exist in the team
 
-e decidere di aggiungere un nuovo ``repository`` con il ruolo di
-*archivio ufficiale* del codice pronto ad andare in produzione e
-restringere l'accesso in scrittura solo a te
+and decide to add a new ``repository`` with role of 
+*official archive* of code ready to go on production, and limit the write right
+only to you 
 
 .. figure:: img/workflow-5.png
 
-Inizi ad intuire che questa storia dei ``repository`` offra una gamma
-pressocché illimitata di possibilità?
+Can you start to guess that this ``repositories`` story offers a nearly
+unlimited range of possibilities?
 
-Guarda: voglio mostrarti una configurazione topologica che è molto
-diffusa e che sicuramente incontrerai, specialmente dovessi partecipare
-a qualche progetto *open source* su GitHub.
+Look: I want to show you a topological configuration that is very spread and
+that for sure you will encounter, especially if you take part in 
+some *open source* project on GitHub.
 
-Considera di nuovo l'ultima illustrazione. Il tuo ``repository`` e
-quello del tuo collega sono sicuramente ``repository`` locali, ospitati
-sulle rispettive macchine di sviluppo. Generalmente, quindi, non sono
-``repository`` facilmente accessibili dall'esterno. Quindi, quando avevo
-disegnato lo schema
+Consider again the last image. Your ``repository`` and  your colleague's 
+one are very likely local ``repository``, hosted on their respective 
+development systems. Generally, hence, they are not ``repositories`` 
+easily reachable from outside. Therefore, when I drawed the scheme
 
 .. figure:: img/workflow-2.png
 
-ero stato molto superficiale e frettoloso, perché avevo del tutto
-sorvolato sul problema, tutt'altro che banale, di come far comunicare i
-due ``repository``, ospitati probabilmente su due *laptop*, senza IP
-fisso o dominio: una condivisione di cartelle con Samba? Un server ssh
-installato su entrambi i *laptop*? Dropbox?
+I had been very superficial and hasty, because I had completely overflown
+on the far from trivial problem, of how to make the two ``repositories``, 
+maybe hosted on two *laptop*, without fixed IP or domain, communicate:
+a folders sharing with Samba? A ssh server installed on both *laptops*? Dropbox?
 
-Una delle soluzioni più di successo sembra suggerita da un aforisma di
-David Wheeler che recita
+One of most successful solutions seems suggested by a David Wheeler's aphorism,
+that says 
 
     *All problems in computer science can be solved by another level of
     indirection*
 
-In git potrebbe valere una legge simile: quando hai un problema di
-workflow, prova a modellare la tua opologia di ``repository``
-aggiungendo un nuovo livello di indirezione.
+In git might be valid such a law: when you have a workflow problem, try to model
+your ``repositories`` topology, adding a new level of indirection.
 
 Applicato al nostro caso, potremmo pensare di fornire a te e al tuo
 collega non un singolo ``repository`` ciascuno, ma una coppia di
