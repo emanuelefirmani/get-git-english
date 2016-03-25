@@ -178,47 +178,43 @@ users enabled to *beta testing*)
 
 .. figure:: img/workflow-8.png
 
-Nota come l'organizzazione, in git, sia ottenuta non limitando le
-letture (sostanzialmente, in tutti questi schemi tutti hanno diritti di
-lettura su qualsiasi ``repository`` pubblico), ma garantendo i permessi
-di scrittura su ``repository`` solo ai proprietari designati; sarà poi
-la convenzione sociale a stabilire a quale uso destinare ogni
-``repository`` (collegando, per esempio, gli script di deployment ad un
-``repository`` piuttosto che ad un altro).
+Note how the organization, in git, is obtained not limiting reads 
+(substantially, in all these diagrams everyone has read rights in every public
+``repository`` ), but granting write rights on ``repositories`` only to designed owners;
+it'll be then the social convention to state to which usa every
+``repository`` has to be devoted (for instance, linking deployment scripts to one
+``repository`` rather than another).
 
-Si potrebbe immaginare la topologia dei ``repository`` come un sistema
-di vasche comunicanti; in ogni vasca si può far fluire selettivamente il
-codice da una o più altre vasche comunicante; ad ogni persona che
-ricopra un determinato ruolo nel flusso di lavoro viene dato il
-controllo esclusivo della chiusa che apre o chiude il flusso di codice
-nella propri vasca.
+The ``repositories`` topology could be imagined as a system of
+communicating tubs; in every tub code from onree or more other connected tubs
+code may be selectively made flow; to each person covering a certain 
+role in the workflow is given the exclusive control of the sluice-gate that
+opens or closes the code flow in his tub. 
 
-In linea generale: tutti i tipi di workflow che prima con SVN si era
-costretti ad implementare usando convenzioni sui nomi e sugli usi dei
-branch, in git sono molto facilmente modellabili con topologie di
-``repository``. È un vero peccato quando un team che abbia adottato git
-cerchi di riprodurre un controllo del workflow con gli stessi sistemi di
-SVN, perché farà un grande sforzo per ottenere molto meno di quel che git
-potrebbe fornire.
+Generally: all workflow kinds that before, with SVN, it was necessary 
+to implement usingg naming and branches use convention, in git may be 
+very easily medeled with ``repositories`` topologies. It's a real pity
+when one team that adopted git tries to reproduce a workflow control with the 
+same systems of SVN, because it's going to do a great effort and obtain much
+less than git could offer. 
 
-Ti accorgerai, invece, di come convenga quasi sempre modellare la rete
-di ``repository`` in modo che rifletta il workflow e l'organizazione
-gerarchica del tuo team. Per esempio, non è raro che in grandi
-organizzazioni il flusso di lavoro sia abbastanza articolato da
-richiedere più team, con una distribuzione gerarchica dei ruoli e delle
-responsabilità: potrebbe esserci un responsabile del progetto a cui
-riportano un paio di responsabili di team che, a loro volta, gestiscono
-più persone. Ecco: è comune che in queste occasioni si tenda a modellare
-la rete di ``repository`` ad immagine della gerarchia dei ruoli,
-adottando quello che viene chiamato "*Dictator and Lieutenants
+Instead you will realize that almost always 
+modelling the  ``repositories`` net in such a way that it reflects the 
+workflow and the hierarchic organization of your team is convenient. 
+For instance, it's not rare that in big organizations the workflow 
+is articulated enough to require more teams, with a hierarchic distribution 
+ofroles and responsibilities: there might be a project leader to whom 
+a couple of team leaders are reporting and that, in turn, manage more persons.
+It's common that in these occasions one tends to model the ``repositories`` 
+net in the image of the roles hierarchy, adopting the so called 
+"*Dictator and Lieutenants
 Workflow*\ "
 
 .. figure:: img/dictator.png
 
-Nota che quando i diagrammi delle topologie sono particolarmente
-articolati, si rappresentano solo i ``repository`` pubblici, dando per
-scontato che ogni persona adibita al controllo di quel ``repository``
-pubblico (cioè, fornita dei diritti di ``push``) avrà un ``repository``
-privato sulal propria macchina locale.
+Note that when topologies diagrams are particularly articulated, only public
+``repositories`` are shown, taking for granted that each person having control 
+on that public ``repository``(that is, having ``push`` rights) will have
+a pribvate``repository`` on its own local machine. 
 
 :ref:`Indice <indice>` :: :ref:`Daily git <dailygit>`
