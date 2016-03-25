@@ -143,38 +143,38 @@ that says
 In git might be valid such a law: when you have a workflow problem, try to model
 your ``repositories`` topology, adding a new level of indirection.
 
-Applicato al nostro caso, potremmo pensare di fornire a te e al tuo
-collega non un singolo ``repository`` ciascuno, ma una coppia di
-``repository``: uno ad uso privato, per sostenere le attività di
-sviluppo, ed uno pubblico, per consentire la reciproca comunicazione
+Applied to our case, we might think of delivering to you and
+your colleague not one single ``repository`` each, but a couple of
+``repositories``: one for private use, to support the development activities,
+and a public one, to allow mutual communication 
 
 .. figure:: img/workflow-6.png
 
-Quindi: ogni sviluppatore dispone del proprio ``repository`` privato di
-lavoro, e di un ``repository`` pubblico. Tutti possono accedere al
-``repository`` pubblico di chiunque, ma solo il legittimo proprietario
-può scriverci (nel grafico, per semplicità, è inteso che chiunque possa
-accedere in lettura a qualunque ``repository`` pubblico).
+Then: each developer has its own private ``repository`` of work, and one 
+public ``repository`` . Everyone may access everyone else's public
+``repository``, but only the legitimate owner has right for writing
+(in the diagram, for simplicityt, it's meant that everyone may access
+for reading to any public ``repository`` ).
 
-Ecco: questa è la tipica organizzazione di un'azienda che abbia adottato
-il workflow di GitHub.
+Here it is: this is the typical organization of a company that has adopted 
+GitHub's workflow.
 
-Sono possibili innumerevoli variazioni di questa organizzazione base.
-Per esempio: il team potrebbe prevedere che il codice vada in produzione
-in pacchetti di funzionalità decise da un ``release manager``
+Uncountable variations of this basic organization are possible.
+For instance: the team could reckon on code going to production 
+in functionality packages decided by a ``release manager``
 
 .. figure:: img/workflow-7.png
 
-In questa topologia si è deciso che il ``repository`` dal quale si
-preleva il codice per il deployment in produzione sia il ``repository``
-pubblico del *release manager*: il *release manager* preleva il codice
-da ``integrazione``. Il flusso di lavoro è garantito dal fatto che il
-*release manager* sia l'unico a disporre dei diritti di ``push`` sul
-proprio ``repository`` pubblico.
+In this topology has been decided that the``repository`` from which 
+code is taken for deployment to production is the public ``repository``
+of the *release manager*: the *release manager* takes code from 
+``integration``. The workflow is granted by the fact that
+*release manager* is the only one to have ``push`` rights on its
+own public ``repository`` .
 
-Facciamo un altro esempio: si potrebbe decidere che il prodotto debba
-sempre passare da un ambiente di stage (per esempio, un ambiente di
-produzione solo per utenti abilitati al *beta testing*)
+Let's make another example: it might be decided that the product has always
+to pass by a stage environment (for instance, a production area only for
+users enabled to *beta testing*)
 
 .. figure:: img/workflow-8.png
 
