@@ -68,7 +68,7 @@ To access the ``merge`` *man page* you have simply to run
     git help merge
 
 
-and you my do the same for the other commands.
+and you may do the same for the other commands.
 
 But don't get scared, you will not need to read the documantation of all commands: 
 use the *man pages* as *reference guide* to be consulted when necessary, when you will need details on the specific command. 
@@ -80,7 +80,7 @@ Learn git branching
 Rather than jumping again in lengthy readings , I suggest to start practising.
 
 A very amusing system to take familiarity with git is the wonderful `Learn git branching <http://pcottle.github.io/learnGitBranching/?demo>`_,
-a very practical and very challanging, made of a set of exercises with increasing difficulty.
+a very practical and very challenging, made of a set of exercises with increasing difficulty.
 
 I consider it a must. 
 
@@ -90,10 +90,10 @@ ProGit
 ######
 
 
-A much more practical and discursive reading *man pages* is the lovely Scott Chacon's ProGit.
+A much more practical and discursive reading than *man pages* is the lovely Scott Chacon's ProGit.
 
 You may buy the book `su Amazon <http://www.amazon.com/Pro-Git-Scott-Chacon/dp/1430218339>`_ or 
-you canread it `for free online <http://www.git-scm.com/book>`_.
+you can read it `for free online <http://www.git-scm.com/book>`_.
 
 I warmly suggest to you to dedicate time to it: it's considered one of the best books on git in circulation.
 
