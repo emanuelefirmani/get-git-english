@@ -1,15 +1,14 @@
 .. _proseguire:
 
-########################
-Risorse per approfondire
-########################
+#######################
+Resources for deepening
+#######################
 
-Questa guida ha toccato solo una minima parte degli strumenti messi a disposizione da git.
+This guide has touched only a minimal part of the tools offered by git. 
 
-git è un sistema composto da più di 150  comandi, ognuno dei quali richiederebbe
-un capitolo a sé.
+git is a system made of more than 150 commands. each of which would require a specific chapter. 
 
-Per avere un elenco completo dei comandi disponibili esegui ``git help -a``
+In order to have a complete list of available commands, run ``git help -a``
 
 
 .. code-block:: bash
@@ -60,48 +59,43 @@ Per avere un elenco completo dei comandi disponibili esegui ``git help -a``
     to read about a specific subcommand or concept.
 
 
-Probabilmente, il miglior modo per conoscere i dettagli di ognuno dei comandi 
-è leggere la rispettiva *man page*. 
+Probably the best way to know the details of each command is reading the respective *man page*. 
 
-Per accedere alla *man page* di ``merge`` ti basta invocare
+To access the ``merge`` *man page* you have simply to run
 
 .. code-block:: bash
 
     git help merge
 
 
-e altrettanto puoi fare per gli altri comandi.
+and you my do the same for the other commands.
 
-Ma non spaventarti: non avrai bisogno di leggere la documentazione di tutti i comandi:
-usa le *man page* come *reference guide* da consultare all'occorrenza, quando avrai
-bisogno di dettagli su un comando specifico.
+But don't get scared, you will not need to read the documantation of all commands: 
+use the *man pages* as *reference guide* to be consulted when necessary, when you will need details on the specific command. 
 
 
 Learn git branching
 ###################
 
-Piuttosto che buttarti di nuovo in letture chilometriche, io ti suggerisco di passare alla pratica.
+Rather than jumping again in lengthy readings , I suggest to start practising.
 
-Un sistema molto divertente per prendere dimestichezza con git è il meraviglioso `Learn git branching <http://pcottle.github.io/learnGitBranching/?demo>`_,
-una guida interattiva molto pratica e molto sfidante, composta da una serie di esercizi
-di difficoltà crescente.
+A very amusing system to take familiarity with git is the wonderful `Learn git branching <http://pcottle.github.io/learnGitBranching/?demo>`_,
+a very practical and very challanging, made of a set of exercises with increasing difficulty.
 
-Io lo considero un must. 
+I consider it a must. 
 
-Affrontala, e sforzati di arrivare fino alla fine: merita tantissimo.
+Face it, and make the effort of reaching the end : it deserves very much. 
 
 ProGit
 ######
 
 
-Una lettura molto più pratica e discorsiva delle *man page* è costituita dal bellissimo ProGit 
-di Scott Chacon.
+A much more practical and discursive reading *man pages* is the lovely Scott Chacon's ProGit.
 
-Puoi aquistare il libro `su Amazon <http://www.amazon.com/Pro-Git-Scott-Chacon/dp/1430218339>`_ oppure
-puoi leggerlo `gratuitamente online <http://www.git-scm.com/book>`_.
+You may buy the book `su Amazon <http://www.amazon.com/Pro-Git-Scott-Chacon/dp/1430218339>`_ or 
+you canread it `for free online <http://www.git-scm.com/book>`_.
 
-Ti suggerisco caldamente di dedicargli del tempo: è considerato uno tra i migliori testi su git
-in circolazione.
+I warmly suggest to you to dedicate time to it: it's considered one of the best books on git in circulation.
 
 
 
