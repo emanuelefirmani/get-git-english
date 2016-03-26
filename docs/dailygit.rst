@@ -86,9 +86,9 @@ So: ``HEAD`` points to ``bob``. In turn ``bob`` points to the ``A``
     cat .git/refs/heads/bob
     dd15c2bee7059de07c4d74cf5f264b906d332e30
 
-Prova a *staccarti* dal ``branch`` ``bob``, restando sempre sul medesimo
-``commit``; cioè, fai un ``checkout`` usando direttaente la chiave del
-``commit`` ``A``
+Try to *detach* from ``branch`` ``bob``, staying always on the same
+``commit``; that is, type ``checkout`` using directly the key of  ``A``
+``commit``
 
 .. code-block:: bash
 
@@ -107,79 +107,78 @@ Prova a *staccarti* dal ``branch`` ``bob``, restando sempre sul medesimo
     
     HEAD is now at dbf9b91... ** inside a code block doesn't work: removed
 
-git si lamenta un po'. O meglio: ti avvisa che non sei *attaccato* ad un
-``branch`` per cui qualsiasi modifica farai non avrà impatto sulla
-posizione di alcun ``branch``. Ti suggerisce anche di crearne uno col
-comando ``git checkout -b``.
+git complains a little. Better, it warns you that you're not *attached* to a
+``branch``, so whatever change you could make will not impact the position of 
+any ``branch`` . It also suggests to create one using command ``git checkout -b``.
 
-Se ripeti
+If you repeat
 
 .. code-block:: bash
 
     cat .git/HEAD
     dd15c2bee7059de07c4d74cf5f264b906d332e30
 
-scopri che, effetticamente, ``HEAD`` sta puntando direttamente al
-``commit`` e non ad un ``branch``
+you find that ``HEAD`` is indeed pointing directly to
+``commit`` and not to a ``branch``
 
-Lo stato in cui ``HEAD`` non punta ad un ``branch`` viene chiamato
+The state where ``HEAD`` is not pointing to a ``branch`` is called
 ``detached head``.
 
-Ora, non c'è niente di particolarmente sbagliato nello staccarsi da un
-``branch`` e mettersi in ``detached head state``: capita di averne
-bisogno. Ma spesso procura qualche grattacapo, soprattutto se non ci si
-accorge di esservi entrati. Per questo git mette in guardia.
+Now, there is nothing particularly wrong in detaching from a 
+``branch`` and entering the ``detached head state``: it happens to need it. 
+But often it gives some headache, mainly if it's not realized having entered it.  
+This is why git warns against it.
 
-Dovesse capitarti di leggere quell'avviso chilometrico, non spaventarti:
-tutto quel che probabilmente dovrai fare è domandarti se forse non
-volessi piuttosto entrare in un ``branch``.
+Should it happen to read that lengthy notice, don't be frightened: 
+everything you will probably have to do is wondering if maybe you wanted to 
+enter a ``branch`` instead.
 
-Sovrascrivere l'ultimo ``commit``
-#################################
+Overwrite last ``commit``
+#########################
 
-Prendi il ``repository``
+Take the ``repository``
 
 .. figure:: img/bug-5.png
 
-e aggiungici un ``commit``
+and add a  ``commit`` to it
 
 .. code-block:: bash
 
-    echo qualcosa >> feature
-    git commit -am "o aggiunto qualcosa"
+    echo something >> feature
+    git commit -am "I ave added something"
 
 .. figure:: img/amend-1.png
 
-Ma no, che figura! Hai scritto "ho" senza l'acca!
+But no, what an impression! You have written "have" without h!
 
-Puoi rimediare *sovrascrivendo* il tuo ultimo ``commit`` con l'ozione
-``--amend`` di ``commit``
+You may remedy *overwriting* your last ``commit`` with the 
+``--amend`` option of ``commit``
 
 .. code-block:: bash
 
-    git commit -am "ho aggiunto qualcosa" --amend
+    git commit -am "I have added something" --amend
 
 .. figure:: img/amend-2.png
 
-Ora: non c'è niente di magico in quel che hai appena visto: git, come al
-solito, non ha *riscritto* la storia. Prova a visualizzare tutti i
-``commit`` del ``repository``, compresi quelli dei ``branch`` orfani
-(SmartGit li chiama "*lost heads*\ ")
+Now: there is nothing magical in what you have just seen: git, as a 
+usual, did not *rewrite* the story. Try to visualize all 
+``commits`` of the ``repository``, including those of orphan ``branches``
+(SmartGit call them "*lost heads*\ ")
 
 .. figure:: img/amend-3.png
 
-Vedi? Il ``commit`` con il commento sbagliato c'è ancora.
+Do you see? ``commit`` with the wrong comment is still there.
 
-Proviamo ad immaginare cosa potrebbe aver fatto dietro le quinte git
-quando hai usato l'opzione ``--amend``: è tornato al ``commit``, ha
-recuperato le stesse modifiche che avevi apportato e poi ha ripetuto il
-``commit`` cambiando il commento.
+Let's try to imagine what git could have done behind the scenes 
+when you have used the ``--amend``option: it went back to ``commit``, it recovered 
+the same changes you had made and then he repeated 
+``commit`` modifying the comment.
 
-Prova a simularlo passo passo: partivi da
+TRy to simulate it step: you were leaving from
 
 .. figure:: img/amend-1.png
 
-Torna indietro di un ``commit``
+Go back by one ``commit``
 
 .. code-block:: bash
 
@@ -187,21 +186,22 @@ Torna indietro di un ``commit``
 
 .. figure:: img/amend-4.png
 
-Recupera le modifiche apportate in ``feature``, senza committarle
+Recover the changes made in ``feature``, without committing them
 
 .. code-block:: bash
 
     git cherry-pick feature --no-commit
 
-e poi committale con il messaggio corretto
+and then commit them with the correct message
 
 .. code-block:: bash
 
-    git commit -am "ho aggiunto qualcosa"
+    git commit -am "I have added something"
 
 .. figure:: img/amend-5.png
 
-Non ti resta che spostare sul ``commit`` corrente il branch ``feature``
+It  just remains for you to move on current ``commit`` 
+the ``feature`` branch
 
 .. code-block:: bash
 
@@ -209,7 +209,7 @@ Non ti resta che spostare sul ``commit`` corrente il branch ``feature``
 
 .. figure:: img/amend-6.png
 
-E infine, fai il ``checkout`` del ``branch``
+and finally, run ``checkout`` of the ``branch``
 
 .. code-block:: bash
 
@@ -217,53 +217,53 @@ E infine, fai il ``checkout`` del ``branch``
 
 .. figure:: img/amend-7.png
 
-Come vedi, l'opzione ``--amend`` è un altro di quegli esempi di *macro*
-comandi che si poggiano su operazioni più granulari che potresti anche
-eseguire passo passo manualmente ma che sono così comuni che è molto più
-comodo associare ad un comando dedicato.
+As you can see, the ``--amend`` option in another example of *macro*
+commands built on smaller operations that you could also run
+manually step by step, but that are so common that it's much more cozy
+to link them to a dedicated command. 
 
-Puoi usare ``--amend`` non solo per modificare il commento: puoi
-sovrascrivere il tuo ultimo commit aggiungendo file che ti eri
-dimenticato, correggendo delle modifiche e così via. Di fatto, stai
-facendo un nuovo ``commit``, per cui non ci sono vincoli al tipo di
-correzioni che puoi apportare.
+You may use ``--amend`` not just tomodify the comment: you may
+overwrite your last commit adding files that yiu had forgotten, 
+correcting changes, and so on. As a matter of fact, it's a new 
+``commit``, so there are no costraints for the kind of
+corrections allowed.
 
-Eliminare l'ultimo ``commit``
-#############################
+Eliminating the last ``commit``
+###############################
 
-Parti dalla fotografia del ``repository`` che hai ottenuto dal
-precedente paragrafo
+Start with the photo of the ``repository`` obtained by previous
+paragraph 
 
 .. figure:: img/amend-7.png
 
-Immagina che tu abbia valutato che, dopo tutto, il tuo ultimo ``commit``
-non vada bene: vorresti eliminarlo.
+Imagine that you have considered that, after all, your last ``commit``
+is wrong: you would like to remove it.
 
-Una cosa che potresti fare è spostare il ``branch`` ``feature`` al
-``commit`` precedente per ottenere
+One thing you might do is moving the ``feature``  ``branch``to previous
+``commit`` , to obtain
 
 .. figure:: img/reset-4.png
 
-Vediamo passo passo come fare
+Let's see step by step how to do
 
-Parti da
+Start from
 
 .. figure:: img/amend-7.png
 
-Ti sposti sul precedente ``commit``
+You move on previous ``commit``
 
 .. code-block:: bash
 
     git checkout HEAD^1
 
-che significa "*vai sul ``commit`` padre di ``HEAD``*\ ", cioè sul
-``commit`` precedente a quello dove ti trovi adesso
+which means "*go to ``commit`` father of ``HEAD``*\ ", that is to
+``commit`` preceding the one where you are now
 
 .. figure:: img/reset-1.png
 
-Adesso puoi spostare ``feature`` nel punto ti trovi: per farlo, puoi
-creare un branch ``feature`` nel punto dove ti trovi, sovrascrivendo la
-posizione attuale di ``feature`` con l'opzione ``-f`` di ``branch``
+Now you can move ``feature`` to the point where you are: for doing that, you
+may create a ``feature`` branch in the point where you are, overwriten the 
+current position of ``feature`` with the ``-f`` option of ``branch``
 
 .. code-block:: bash
 
@@ -271,28 +271,28 @@ posizione attuale di ``feature`` con l'opzione ``-f`` di ``branch``
 
 .. figure:: img/reset-2.png
 
-Nascondendo i ``commit`` orfani il risultato diventa evidente
+Hiding orphan ``commits`` the result becomes apparent
 
 .. figure:: img/reset-4.png
 
-Sarai senz'altro d'accordo come me che sia una procedura troppo
-macchinosa per un'esigenza così comune.
+For sure you will agree wit me that it's a too complex
+procedure for such a common need.
 
-Come al solito, git ha un comando che, dietro le quinte, esegue tutti
-questi passi: ``git reset``. A dire la verità, ``reset`` è ben più
-versatile e potente.
+As a usual, git has a command that, behind the scenes, 
+runs all these steps: ``git reset``. To telle the truth, ``reset`` 
+is much more versatile and powerful.
 
-``git reset`` sposta ``HEAD`` nel punto specificato come argomento.
-Ricordi che ``HEAD`` è sempre il tuo ``branch`` corrente, vero? Quindi,
-in altre parole, ``reset`` permette di *spostare* il tuo ``branch``
-corrente in un qualsiasi altro punto del ``repository``.
+``git reset`` moves ``HEAD`` to the point specified as argument.
+You remember that ``HEAD`` is always your current``branch`` , don't you? 
+Therefore, in other words,  ``reset`` allows to *move* your current ``branch``
+to whatever other point of the ``repository``.
 
-Per esempio partendo da
+For instance, starting from
 
 .. figure:: img/amend-7.png
 
-puoi *resettare* il tuo ``branch`` corrente al ``commit`` precedente
-puoi fare
+you can *reset* your current ``branch`` to previous ``commit``
+type
 
 .. code-block:: bash
 
@@ -300,9 +300,9 @@ puoi fare
 
 .. figure:: img/reset-4.png
 
-Non sei limitato a spostare il ``branch`` corrente sul ``commit``
-precedente: puoi *resettarlo* in qualunque posizione. Per esempio, per
-portare ``feature`` su master puoi fare
+You are not limited to move the current ``branch`` on previous``commit``:
+You can *reset it* wherever you want. For instance,
+to move ``feature`` on master you can type
 
 .. code-block:: bash
 
@@ -310,28 +310,28 @@ portare ``feature`` su master puoi fare
 
 .. figure:: img/reset-5.png
 
-Puoi anche spostare il ramo corrente da una linea di sviluppo all'altra
+You may also move the current branch from one development line to another
 
-Partendo da
+Starting from
 
 .. figure:: img/reset-6.png
 
-con
+with
 
 .. code-block:: bash
 
     git reset prod
 
-ottieni
+you get
 
 .. figure:: img/reset-7.png
 
-Tieni conto di una cosa molto importante: ``reset`` non coinvolge solo
-uno spostamento di ``branch`` sul ``repository`` ma anche delle
-modifiche sul ``file system``. Il ``branch`` che stai spostando,
-infatti, è quello corrente, cioè quello di cui hai fatto il
-``checkout``; in altre parole, quando esegui un ``reset`` stai
-contestualmente facendo il ``checkout`` di un altro ``commit``.
+Keep in mind a very important thing: ``reset`` does not involve only
+moving ``branches`` on ``repositories`` butalso changes on the 
+``file system``. The ``branch`` you are moving is in fact the current
+one, that is, the one on which you run
+``checkout``; in other words, when you run ``reset`` at the 
+same time you are running the ``checkout`` of another``commit``.
 
 .. figure:: img/index-add-commit.png
 
