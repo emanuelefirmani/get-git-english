@@ -4,23 +4,23 @@
 Daily git
 #########
 
-Questa guida si chiude con una breve serie di piccoli suggerimenti
-pratici che ti risulteranno molto utili nel tuo uso quotidiano di git
+This guide ends with a short set of small practical suggestions that you will find very useful using git  
+day by day
 
-Ottenere una copia di un ``repository``
-#######################################
+Getting a copy of one ``repository``
+####################################
 
-Fin'ora hai visto come creare un ``repository`` da zero e come fare a
-popolarne uno vuoto a colpi di ``push``. Spesso (anzi, spessissimo) ti
-capiterà di dover partire da una copia di un ``repository`` esistente.
+So far you have seen how to create a ``repository`` from scratch and how to
+do for populating an empty one using ``push``. Often (in fact, very often) you will find yourself 
+having to start with a single copy of an existing ``repository`` .
 
-Allo scopo, puoi usare il comando ``git clone`` col quale otterrai in
-locale una copia completa della storia dei ``commit`` di un
-``repository``. Dopo aver clonato un ``repository`` remoto, questo verrà
-aggiunto in automatico come ``remote`` sotto il nome di default
+To the aim you may use the command ``git clone`` with which you will get 
+a complete local copy of the ``commits`` story of one
+``repository``. After having cloned a remote ``repository`` , this will be 
+authomatically added as ``remote`` under the default name
 ``origin``.
 
-Per esempio, per ottenere un ``clone`` di questa guida esegui
+For instance, in order to get a ``clone`` of this guide, run 
 
 .. code-block:: bash
 
@@ -29,57 +29,57 @@ Per esempio, per ottenere un ``clone`` di questa guida esegui
     git remote
     origin
 
-Eliminare un file
-#################
+Remove a file
+#############
 
-Rammenti che per aggiungere un file nell'\ ``index`` hai usato il
-comando ``git add``? Ecco: quando cancelli dal ``file system`` un file
-già tracciato da git, per includere la cancellazione nel ``commit``
-devi cancellare il file anche dall'\ ``index`` con
+Do you remind that for adding a file in ``index`` you have used
+the ``git add`` command? See: when you remove from  ``file system`` a file 
+already tracked by git, to include the removal in ``commit``
+you have to delete the file also from ``index`` with
 
 
 .. code-block:: bash
 
     git rm file\_name
 
-Potresti trovare molto comoda l'opzione ``-a`` di ``commit``
+You might find very cozy the ``-a`` option of ``commit``
 
 .. code-block:: bash
 
     git -am "include add e rm"
 
-che implicitamente fa ``add`` dei file modificati e ``rm`` di quelli
-rimossi prima di eseguire il ``commit``.
+which implicitly does ``add`` of changed files and ``rm`` of removed ones
+before running ``commit``.
 
-Il ``detached head state``
+The ``detached head state``
 ##########################
 
-Considera questo ``repository``
+Consider this ``repository``
 
 .. figure:: img/bob.png
 
-È evidente che l'ultimo comando di ``checkout`` sia stato
-``git checkout bob``: si è *aggrappati* all'etichetta ``bob``.
+It's apparent that the last ``checkout`` command was
+``git checkout bob``: we are  *hanging on* the label ``bob``.
 
-Usando una terminologia un po' più corretta, potresti dire "*``HEAD`` in
-questo momento punta a ``bob``*\ ".
+Using a little more correct terminology, you might say "*``HEAD`` in
+this moment points to ``bob``*\ ".
 
-Questa di ``HEAD`` non è una metafora: c'è davvero una variabile
-``HEAD`` il cui contenuto è un puntatore al ``branch`` ``bob``. Questa
-variabile (come, del resto, tutti i i ``branch`` locali e remoti) è
-conservata nella directory nascosta ``.git``
+This ``HEAD`` is not a metaphor: there really is a ``HEAD`` variable 
+whose content is a pointer to the  ``bob`` ``branch``. This
+variable (as indeed all local and remote ``branches`` ) is
+stored in the hidden directory ``.git``
 
 .. code-block:: bash
 
     cat .git/HEAD
     ref: refs/heads/bob
 
-La variabile ``HEAD``, tra le varie cose, permette a git di aggiornare
-il ``branch`` nel quale ti trovi, in modo che *ti segua*
-``, quando esegui un commit``.
+The ``HEAD`` variable, among other things, allows git to update 
+the ``branch`` it where you are, so that *it follows you*
+``, when you run a commit``.
 
-Quindi: ``HEAD`` punta a ``bob``. A sua volta ``bob`` punta al
-``commit`` ``A``. Per verificarlo, esegui
+So: ``HEAD`` points to ``bob``. In turn ``bob`` points to the ``A``
+``commit``. Toverify it, run
 
 .. code-block:: bash
 
