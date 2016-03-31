@@ -6,7 +6,7 @@ Target 1: going back in time
 So, if in git everything is stored in a key/value database, there will
 probably be a way to reference any object in the database using its key.
 
-In fact it is so.
+And in fact there is.
 
 Now let's try to go back in time, to ``commit A``, using the ``git 
 checkout`` command.
@@ -18,7 +18,7 @@ to ``file system`` and to ``staging area``.
 
 Ok: but what is ``commit A``'s key? You can discover it with a graphical
 client or with the ``git log`` command, that shows a list of all ``commits`` 
-stored in the ``repository``
+stored in ``repository``
 
 .. code-block:: bash
 
@@ -44,10 +44,10 @@ Ok: let's go back to the past, to the moment of ``commit`` ``A``
 
 In effect, except for a mysterious and long-winded message where git complains for being
 in ``'detached HEAD' state`` (afterwards we'll make this point clearer), file system has 
-returned to the state of first commit, and in fact, file ``doh.html`` has disappeared.
+returned to the state of first commit, and in fact, file ``doh.html`` disappeared.
 
-If you try to launch again `gitk`, you'll receive another surprise: apparently `commit B` 
-has disappeared. But don't worry: git is just hiding it. In order to visualize all
+If you try to run `gitk` again , you'll receive another surprise: apparently `commit B` 
+disappeared. But don't worry: git is just hiding it. In order to visualize all
 commits, use the `--all` option of `gitk`
 
 .. code-block:: bash
@@ -56,15 +56,15 @@ commits, use the `--all` option of `gitk`
 
 This happens because, usually, git's graphic interfaces try to show only meaningful 
 commits, hiding every unnecessary element. 
-Gitk, for instance, shows only commits belonging to the line of development that gets 
-to the current position, omitting what follows in the development line (that is its
+Gitk, for instance, shows only commits belonging to the development line that gets 
+to current position, omitting what follows in the development line (that is its
 future) and any other branches. 
 In the case of our history, from the viewpoint of `commit A`, `commit B` belongs to
 the future, and unless we ask explicitly to show it, it'll be omitted in the 
 visualization 
 
 Below, whenever you should be amazed because you've the impression that git made some 
-commit disappear, rest assured launching 
+``commit`` disappear, rest assured typing 
 
 .. code-block:: bash
                 
