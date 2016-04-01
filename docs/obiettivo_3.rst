@@ -3,7 +3,7 @@
 Target 3: creating a branch
 ###########################
 
-With the ``checkout`` command you have learned to move from one ``commit``
+With ``checkout`` command you learned to move from one ``commit``
 to another.
 
 All you need is the key of the ``commit`` where you want to land
@@ -16,17 +16,17 @@ All you need is the key of the ``commit`` where you want to land
 
 .. figure:: img/repo1.png
 
-If you wanted to go on `commit B` you should launch ``git checkout 2a17c43``,
+If you wanted to go on `commit B` you should type ``git checkout 2a17c43``,
 in order to go back to `commit C` you should use instead ``git checkout deaddd3`` 
 and so on.
 
-But, we have to admit: to manage ``commit`` ``A``, ``B`` e ``C``
-having to call them ``56674fb``, ``2a17c43`` and ``deaddd3`` is a unique
-unconvinience. 
+But, we have to admit: managing ``commit`` ``A``, ``B`` e ``C``
+having to call them ``56674fb``, ``2a17c43`` and ``deaddd3`` is really 
+unconvinient. 
 
 git solves the problem doing what every judicious programmer would do: 
 since those numbers are pointers to objects, git allows to use variables 
-to store their values. To assign a value to a variable is simple. If you
+to store their values. Assigning a value to a variable is simple. If you
 correctly executed last checkout, you should be on `commit C`.
 Ok, now type:
 
@@ -36,9 +36,9 @@ Ok, now type:
 
 .. figure:: img/bob.png
 
-Can you see the ``bob`` label just just in correspondence of ``commit A``? 
+Can you see the ``bob`` label in correspondence of ``commit A``? 
 It stays to indicate that ``bob`` points precisely that ``commit``. 
-Look at it as it was a variable you have assigned the value of the ``commit A``'s
+Look at it as it was a variable to which you have assigned the value of the ``commit A``'s
 key.
 
 When you create a label, if you don't specify a value, git will use the
@@ -59,7 +59,7 @@ Removal of a variable is equally trivial:
     git branch -d piccio
 
 You may have noticed that git creates some of these variables by default. For
-instance, in the above figures you see also the ``master`` variable,
+instance, in the above images you see also the ``master`` variable,
 pointed to ``B``
 
 .. figure:: img/repo2.png
@@ -110,7 +110,7 @@ to the element of the ``repository`` where you are. ``HEAD`` follows
 you, any movement you do. Other graphical editors use different 
 representations to communicate where ``HEAD`` is.
 ``gitk``, for instance, shows in bold the ``branch`` where you are. Instead,
-from the command line, to know on which ``branch`` you are, you just run
+from the command line, to know on which ``branch`` you are, you just type
 
 .. code-block:: bash
 
@@ -171,7 +171,7 @@ project.
 
 For instance: no doubt is ``commit`` with comment "*angular.js
 rocks*\ " contained in ``branch master``, isn't it? But what about
-``A`` and ``B``? Which ``branch`` do they belong?
+``A`` and ``B``? Which ``branch`` do they belong to?
 
 Pay attention, because this is another of those concepts that cause headache
 to SVN's users, even to Mercurial's ones.
