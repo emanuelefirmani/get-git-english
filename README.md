@@ -1,4 +1,4 @@
 get-git
 =======
 
-A handbook to learn git quick and without headaches
+A handbook to learn git quickly and without headaches
