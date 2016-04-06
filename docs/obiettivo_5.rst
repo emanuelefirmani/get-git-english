@@ -1,7 +1,7 @@
 .. _obiettivo_5:
 
-Target 5: unifying two branches
-###############################
+Target 5: unifying two ``branches``
+###################################
 
 Let's pass to an operation that you probably do very often: ``merge``. 
 Compare the two images that we have seen, that is your ``repository``
