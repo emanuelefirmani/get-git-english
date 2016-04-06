@@ -52,8 +52,8 @@ Go back to your project
 
     cd ../project
 
-Well. Add to the ``remote`` list the just created ``repository`` , 
-indicating to git whatever name and the address of the ``remote``
+Well. Add to the ``remote`` list the ``repository`` just created, 
+indicating to git whatever name and the address of ``remote``
 
 .. code-block:: bash
 
@@ -64,12 +64,12 @@ officially in a *peer-to-peer* network of ``repositories``. From this moment,
 when you want to make reference to that remote ``repository``, you will use 
 the name ``foobar``.
 
-The name is necessary because, differently from SVN that has the concept of
+Name is necessary, because, differently from SVN that has the concept of
 *central server*, in git you may be linked to whatever number of remote
 ``repositories`` at the same time, therefore you will assign a unique identifier to each of them.
 
 There are two things that you fundamentally may do with a ``remote``:
-to align with its content or ask it for aligning with you.
+to align with its content or to ask it for aligning with you.
 
 Two commands are available: ``push`` and ``fetch``.
 
@@ -91,9 +91,9 @@ you just created it. Your local ``repository`` , instead, contains many
 .. figure:: img/local-1.png
 
 Try to ask the remote ``repository`` for giving you the ``commits`` and the
-``branches`` which has available and which you don't have. If you don't indicate a
+``branches`` which it has available and which you don't have. If you don't indicate a
 specific ``branch`` , the remote ``repository`` will try to give you all of them.
-In your case the ``remote`` is empty, therefore it shouldn't give back to you anything
+In your case the ``remote`` is empty, therefore it shouldn't give anything back to you 
 
 .. code-block:: bash
 
@@ -147,14 +147,14 @@ Do you see? The ``remote`` has not become a copy of your ``repository``:
 it contains only the ``branch`` that you sent it.
 
 You may verify that the 4 ``commits`` really are all and only the 
-``commits`` that you had in local on the ``experiment`` branch.
+``commits`` that you had in local on the ``experiment`` ``branch``.
 
-Even on your local ``repository`` something happened. try to visualize it
+Even on your local ``repository`` something happened. Try to visualize it
 
 .. figure:: img/push-1.png
 
-Look look! It seems a new ``branch``, called
-``foobar/experiment``, has been added. and it also seems that it's a little particular
+Look, look! It seems that a new ``branch``, called
+``foobar/experiment``, has been added. And it also seems that it's a little particular
 ``branch``, because the interface is concerned to draw it in a different colour.
 
 Try to delete that ``branch``
@@ -164,7 +164,7 @@ Try to delete that ``branch``
     git branch -d foobar/experiment
     error: branch 'foobar/experiment' not found.
 
-It cannot br deleted. git says that ``branch`` doesn't exist. Uhm.
+It cannot be deleted. git says that ``branch`` doesn't exist. Uhm.
 That label has really something particular!
 
 The fact is that ``branch`` is not on your ``repository``: it's on 
@@ -173,40 +173,40 @@ keep track of the fact that on ``foobar`` the ``branch`` ``experiment``
 is just pointing to that ``commit``.
 
 ``remote branches`` are a sort of reminder that allow you to understand
-where are the ``branches`` on remote ``repositories`` you are linked with.
+where ``branches`` are on remote ``repositories`` you are linked with.
 
 It's one of those subjects that may result less clear to new git users, 
 but if you think of it, the concept is not difficult at all. With the 
-``remote branch`` called ``foobar/experiment`` git is simply tellin you 
-that the ``branch`` ``experiment`` on the  ``foobar`` ``repository`` is
+``remote branch`` called ``foobar/experiment`` git is simply telling you 
+that the ``branch`` ``experiment`` on the ``foobar`` ``repository`` is
 in correspondence of that ``commit``.
 
 As well as you can't delete that ``branch`` you can not even move it directly.
 The only manner to gain direct control on that ``branch``is to access directly 
 the ``foobar`` ``repository``.
 
-But you have an indirect way to control delivering with ``push`` an update of the 
+But you have an indirect way to control, delivering with ``push`` an update of 
 ``experiment`` ``branch``; we had seen before that the``push`` request is always 
 accompanied by the request of update of the position of your ``branch``.
 
 
-Before trying with a concrete example, I'd like to recall your attention on 
-a verty important aspect, that you will have to het used to: while you were 
+Before trying with a concrete example, I'd like to draw your attention on 
+a very important aspect, that you will have to get used to: while you were 
 reading these lines, a colleague of yours could have added some ``commit`` 
 just on his ``branch`` ``experiment`` on his remote ``repository``, and 
 you wouldn't know anything, because your ``repository`` is not linked in 
-real time its ``remotes``, but synchronizes only when you interact with 
+real time with its ``remotes``, but synchronizes only when you interact with 
 proper commands. Therefore, the ``commit`` pointed by ``foobar/experiment`` 
 has to be meant as the last known position of the ``experiment``  ``branch``
 on ``foobar``.
 
-Receiving uodates with ``fetch``
+Receiving updates with ``fetch``
 ================================
 
 Let's try and simulate this last case. 
 Change `foobar` as if a colleague of yours is working on ``experiment``. 
 
-That is: add a ``commit`` on the ``experiment`` branch of ``foobar``
+That is: add a ``commit`` on the ``experiment`` ``branch`` of ``foobar``
 
 .. code-block:: bash
 
@@ -219,7 +219,7 @@ Here you have the final result on ``foobar``
 
 .. figure:: img/push-2.png
 
-Go back to your local``repository`` and let's see what has chenged
+Go back to your local``repository`` and let's see what has changed
 
 .. code-block:: bash
 
@@ -228,13 +228,13 @@ Go back to your local``repository`` and let's see what has chenged
 .. figure:: img/push-1.png
 
 In fact. It has not changed anything at all. Your local``repository`` 
-continues saying that the ``experiment`` branch on ``foobar`` stays at
+continues to say that the ``experiment`` branch on ``foobar`` stays at
 "*a commit with an experiment*\ ". And you know very well that it's not true!
 ``foobar`` has gone forward, and your ``repository`` doesn't know it.
 
-All this is coherentwith what I said before: your
+All this is coherent with what I said before: your
 ``repository`` is not linked in real time with its ``remote``; matching 
-is just on command.
+is only on command.
 
 Then ask your ``repository`` for matching with ``foobar``. You
 may ask for an update on a single branch or on all of them.
@@ -246,36 +246,36 @@ Usually it's chosen the second way.
     remote: Counting objects: 3, done. remote:
     Compressing objects: 100% (2/2), done. remote: Total 2 (delta 1),
     reused 0 (delta 0) Unpacking objects: 100% (2/2), done. 
-    From ../repo-remoto
+    From ../remote-repo
     e5bb7c4..c8528bb experiment -> foobar/experiment
 
 Something has arrived.
 
 Look again at the new local ``repository``. (In order to simplify our life,
 let's start to take advantage from an option present in every git's graphic 
-interface: the capability of visualizing a single branch andhiding al the 
+interface: the capability of visualizing a single ``branch`` and of hiding all 
 others, so that final result can be simplified) 
 
 .. figure:: img/push-3.png
 
-Carefully look at what has happened: your ``experiment`` branch
+Carefully look at what has happened: your ``experiment`` ``branch``
 didn't move at all. If you check, your 
-``file system`` hasn't absolutely changed as well. Just your local
+``file system`` hasn't absolutely changed either. Just your local
 ``repository`` has been updated: git added there a new 
-``commit``, the same remotely added; at the same time, git has also 
+``commit``, the same added remotely; at the same time, git has also 
 updated  the ``foobar/experiment`` position, in order to communicate 
 that "*according with latest available information, last position of 
 the branch ``experiment`` recorded on ``foobar`` is this*\ ".
 
-This is the way with which normally git allows you to know that 
-someone continued his work an a remote ``repository`` .
+This is the way with which git normally allows you to know that 
+someone continued his work on a remote ``repository`` .
 
 Another important remark: ``fetch`` is not equivalent to 
 ``svn update``; only your local ``repository`` is synced to
 the remote one; your ``file system`` has not changed! This generally means that
 ``fetch`` is a very safe operatuon: even though you should sync
 with a dubious quality ``repository``, you can rest easy, 
-because the operation will never do the 
+because the operation will never apply the 
 ``merge`` on your code without your explicit intervention.
 
 If instead you really want to include the remotely introduced changes in 
@@ -288,8 +288,8 @@ If instead you really want to include the remotely introduced changes in
 .. figure:: img/push-4.png
 
 Do you recognize the kind of ``merge`` that resulted? Yes, a
-``fast-forward``. INterpret it this way: your  ``merge`` has been a
-``fast-forward`` because while your colleague was working the branch 
+``fast-forward``. Interpret it this way: your  ``merge`` has been a
+``fast-forward`` because while your colleague was working, the branch 
 has not been modified by anyone else; your colleague has been the only one 
 who added contributions, and development has been linear.
 
@@ -321,8 +321,8 @@ Non linear development
 
 Let's try to complicate the situation. I would like to show a case that
 will contnously happen: two developers are working on a branch at the same time,
-on two separated ``repositories`` . It usuallyhappens that at the moment when you 
-will want to send your new ``commits``to ``remote``  , you discover that, 
+on two separated ``repositories`` . It usually happens that at the moment when you 
+will want to send your new ``commits`` to ``remote``  , you discover that, 
 in the meantime, someone on the remote
 ``repository`` changed the``branch``.
 
@@ -331,7 +331,7 @@ a ``commit`` on its ``repository``
 
 .. code-block:: bash
 
-    cd ../repo-remoto
+    cd ../remote-repo
     touch progress && git add progress
     git commit -m "a new commit of your colleague"
 
@@ -345,16 +345,16 @@ Go back to your ``repository``
 .. figure:: img/push-4.png
 
 Like before: as soon as yo don't explicitly ask for an alignment with
-``fetch`` your ``repository`` doesn't know anything of your new ``commit``.
+``fetch``, your ``repository`` doesn't know anything of your new ``commit``.
 
-By the way, this is one of the remarkable git's features: being
+By the way, this is one of remarkable git's features: being
 compatible with the strongly non linear nature of development activities.
 Think it over: when two developers works on a single branch,
 SVN requires that every ``commit`` is preceded by an ``update``; that is,
 in order to record a change the developer has to integrate preventively the 
 other developer's work. You cannot run a 
 ``commit`` if you beforehand don't integrate your colleague's ``commits`` . 
-git, on this viewpoint, is less demanding: developers mayduverge locally, 
+git, on this viewpoint, is less demanding: developers may diverge locally, 
 even working on the same ``branch``; the decision if and how to integrate their work 
 may be intentionally and indefinitely moved on in time.
 
