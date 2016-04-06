@@ -7,15 +7,15 @@ So far you have interacted only with your local ``repository`` , but I had
 anticipated that git is a *peer-to-peer* system.
 
 In general, this means that your ``repository`` is a node that can
-become part of a network and exchange informations with other nodes, 
-that is with other ``repositories``.
+become part of a network and exchange information with other nodes, 
+that is, with other ``repositories``.
 
 A part from your local ``repository``, any other ``repository``
 --no matter if it's on GitHub, on a company's server or simply in a different 
 directory of your computer-- for git it's a 
 ``remote``.
 
-To link your local ``repository`` to a ``remote`` it needs just to
+To link your local ``repository`` to a ``remote`` you just need to
 give git the address of the remote ``repository`` with the command
 ``git remote`` (of course, you need also read and write permissions on ``remote``)
 
@@ -42,7 +42,7 @@ For instance, the ``repository`` of this guide has the address
  
 -  ``git@github.com:arialdomartini/get-git-english.git``.
 
-Very often it also happens that access to a ``remote`` requires an
+It also happens very often that accessing to a ``remote`` requires an
 authentication. In this case, usually, it's used a user/password pair
 or a ssh key.
 
