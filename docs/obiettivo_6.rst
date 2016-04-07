@@ -125,7 +125,7 @@ I help you to interpret what has happened:
 
 -  with ``git push foobar experiment`` you asked git for sending
    ``foobar`` the ``experiment`` branch 
--  to execute the command git took into consideration your branch 
+-  to execute the command git took into consideration your ``branch`` 
    ``experiment`` and drew the list of all ``commits`` reachable from 
    that branch (as a usual: they are all the ``commits``
    which you may find starting from ``experiment`` and following backward 
@@ -133,7 +133,7 @@ I help you to interpret what has happened:
 -  git has then contacted the remote ``repository`` ``foobar`` to know
    which of those ``commits`` were not present remotely
 -  after that, it created a packet with all the necessary ``commits`` ,
-   delivered them and asked the remote ``repository`` to add them
+   delivered them and asked the remote ``repository`` for adding them
    to its own database
 -  the ``remote`` has placed its ``branch`` ``experiment``
    so that it pointed exactly the same ``commit`` pointed on your local
@@ -155,7 +155,7 @@ Even on your local ``repository`` something happened. Try to visualize it
 
 Look, look! It seems that a new ``branch``, called
 ``foobar/experiment``, has been added. And it also seems that it's a little particular
-``branch``, because the interface is concerned to draw it in a different colour.
+``branch``, because the interface draws it in a different colour.
 
 Try to delete that ``branch``
 
@@ -210,7 +210,7 @@ That is: add a ``commit`` on the ``experiment`` ``branch`` of ``foobar``
 
 .. code-block:: bash
 
-    cd ../repo-remoto
+    cd ../remote-repo
     touch x
     git add x
     git commit -m "a contribution from your colleague" 
@@ -273,7 +273,7 @@ someone continued his work on a remote ``repository`` .
 Another important remark: ``fetch`` is not equivalent to 
 ``svn update``; only your local ``repository`` is synced to
 the remote one; your ``file system`` has not changed! This generally means that
-``fetch`` is a very safe operatuon: even though you should sync
+``fetch`` is a very safe operation: even though you should sync
 with a dubious quality ``repository``, you can rest easy, 
 because the operation will never apply the 
 ``merge`` on your code without your explicit intervention.
@@ -320,7 +320,7 @@ Non linear development
 ======================
 
 Let's try to complicate the situation. I would like to show a case that
-will contnously happen: two developers are working on a branch at the same time,
+will continously happen: two developers are working on a branch at the same time,
 on two separated ``repositories`` . It usually happens that at the moment when you 
 will want to send your new ``commits`` to ``remote``  , you discover that, 
 in the meantime, someone on the remote
@@ -344,12 +344,12 @@ Go back to your ``repository``
 
 .. figure:: img/push-4.png
 
-Like before: as soon as yo don't explicitly ask for an alignment with
+Like before: as soon as you don't explicitly ask for an alignment with
 ``fetch``, your ``repository`` doesn't know anything of your new ``commit``.
 
 By the way, this is one of remarkable git's features: being
 compatible with the strongly non linear nature of development activities.
-Think it over: when two developers works on a single branch,
+Think it over: when two developers work on a single branch,
 SVN requires that every ``commit`` is preceded by an ``update``; that is,
 in order to record a change the developer has to integrate preventively the 
 other developer's work. You cannot run a 
@@ -364,21 +364,21 @@ with your new ``commits``
 
 .. code-block:: bash
 
-    cd ../progetto
+    cd ../project
     touch my-contribution && git add my-contribution
     git commit -m "a new commit of mine"
 
 .. figure:: img/collaborating-2.png
 
-Let's assess again the situation on what I have just described:
+Let's assess again the situation concerning what I have just described:
 
 -  your ``repository`` doesn't know about the new ``commit`` recorded on
-   ``foobar`` and continues to see a non up to date situation
+   ``foobar`` and continues to see a not up to date situation
 -  starting with the same ``commit`` "*a contribution from your colleague*\ "
-   you and the other developer have recorde two completely indipendent ``commits``.
+   you and the other developer have recorded two completely indipendent ``commits``.
    
-Having worked concurrently on the same branch, with two potentially incompatible ``commits`` is
-if you think of it, a little like working concurrently on the same file with potentially incompatible changes:
+Having worked concurrently on the same ``branch``, with two potentially incompatible ``commits``,
+if you think of it, is a little like working concurrently on the same file with potentially incompatible changes:
 when the two results will be put together, we can expect that a conflict is reported. 
 
 And infact it's just like this. The confict arises at the moment when 
@@ -405,7 +405,7 @@ been successful. And we could expect it. With
 -  moving its  ``experiment`` label so that it points the same``commit`` that is pointed locally
 
 Now: about first operation there would have been no problem. 
-But about the second one git sets a supplemental costraint:
+But, about the second one, git sets a supplemental costraint:
 the remote ``repository`` will move its label only on condition that the 
 operation can be completed with a ``fast-forward``, that is, only on 
 condition that it's not necessary to execute ``merges``. 
@@ -437,19 +437,19 @@ would have necessarily required a local merge,
 git leaves to you three possibilities
 
 -  **going on ignoring the colleague**: you may ignore your colleague's
-    work and continue on your development line;of course, you will not 
-    be able tp deliver you branch on ``foobar``, because it's incompatible
+    work and continue on your development line; of course, you will not 
+    be able to deliver you branch on ``foobar``, because it's incompatible
     with your colleague's work (even though you may deliver your work assigning 
     to your development line another name, creating a new ``branch`` and ``pushing`` it); 
     however, the concept is that you're not obliged to integrate your colleague's work;
 -  **``merge``**: you may melt your work with your colleague's one with a ``merge``
--  **``rebase``**\ you mat realign to youer colleague's work with a ``rebase``
+-  **``rebase``**\ you may realign to your colleague's work with a ``rebase``
 
 Try the third of these possibilities. Nay, in order to insist on the non linear nature
 of git, try to make the first way precede the third. In other words,
 try to see what happens if, temporarily, you ignore the misalignment with your colleague's 
 work and you keep on developing on your line. It's a very common case: You know you have to 
-align, sooner or later, with the others' work, but you want complete your work, beforehand. 
+align, sooner or later, with the others' work, but you want to complete your work, beforehand. 
 git doesn't dictate timing and doesn't oblige you to anticipate things you don't want to do
 anon. 
 
@@ -461,7 +461,7 @@ anon.
 .. figure:: img/collaborating-4.png
 
 Very well. You went on with your work, misaligning even more with your colleague's 
-work. Let's suppose that you decide the moment ha arrived for realigning, and then
+work. Let's suppose that you decide the moment has arrived for realigning, and then
 delivering your work to ``foobar``.
 
 You might run ``git merge foobar/experiment`` and obtain this situation 
@@ -472,15 +472,15 @@ Do you see? Now ``foobar/experiment`` could be pushed forward (with
 a ``fast-forward``) till ``experiment``. Then, you could run ``git push foobar``.
 
 But instead of doing a ``merge``, do something more sophisticated: use
-``rebase``. Look again at the current situation 
+``rebase``. Look again at current situation 
 .. figure:: img/collaborating-3.png
 
-With respect to the works on ``foobar`` it's like you had detached a development branch
+With respect to the works on ``foobar`` it's as if you had detached a development ``branch``
 but, unfortunately, while you were making changes, 
 ``foobar`` has not waited for you and has been modified.
 
 Well: if you remember, ``rebase`` allows you to apply all your changes to another
-``commit``; you could apply your branch to ``foobar/experiment``. It's like you could sharply
+``commit``; you could apply your branch to ``foobar/experiment``. It's like if you could sharply
 detach your branch ``experiment`` and reattach on another base
 (``foobar/experiment``)
 
@@ -496,10 +496,10 @@ Have you seen? To all effects it appears as if you had started your work
 *after* the end of works on ``foobar``. In other words:
 ``rebase`` has apparently made linear the development process, that was
 inherently non linear, without forcing you to align with your colleague's work
-exactly in the moments when it was adding s
+exactly in the moments when it was adding
 ``commits`` to its ``repository``.
 
-You may deliver your work to ``foobar``: it will appear like you have made your changes 
+You may deliver your work to ``foobar``: it will appear how you have made your changes 
 starting with the last ``commit`` done on 
 ``foobar``.
 
@@ -530,10 +530,10 @@ starting with the last ``commit`` done on
 My God! It really looks like git didn't like this ``push`` .
 In the very long error message git is saying that it may not 
 ``push`` a ``branch`` currently "*checked out*\ ": 
-the problem doesn't like to be in``push`` itself, but in the fact 
+the problem doesn't seem to be in``push`` itself, but in the fact 
 that on the other ``repository`` your colleague did ``checkout experiment``.
 
-THis issue could continously happen, if you don't know how to face it,
+This issue could continously happen, if you don't know how to face it,
 therefore we will soon dedicate a little time to it. For now,
 repair gently asking your colleague for moving on another branch and repeat ``push``.
 
@@ -558,12 +558,12 @@ Let's run graphically through what has happened. You were leaving from
 
 .. figure:: img/collaborating-4.png
 
-Then you did ``rebase`` and you obtained
+Then you run ``rebase`` and you obtained
 
 .. figure:: img/collaborating-6.png
 
-Then you did ``push`` on ``foobar``: the new position of the
-``remote branch`` ``foobar/experiment`` is witnessing the progress of the branch 
+Then you run ``push`` on ``foobar``: the new position of the
+``remote branch`` ``foobar/experiment`` is witnessing the progress of the ``branch`` 
 also on the remote ``repository`` .
 
 .. figure:: img/collaborating-7.png
@@ -577,46 +577,46 @@ to
 
 .. figure:: img/collaborating-8.png
 
-Do you get everything? Look carefully at the last two images, because
+Can you get everything? Look carefully at the last two images, because
 it's just in order to avoid what you are seeing that git complained that much,
 when you run ``git push foobar experiment``.
 
 In order to understand it, put yourself in the shoes of your virtual colleague,
 that we imagined on the remote ``repository`` ``foobar``. Your colleagues is 
-staying quiet on the ``experiment`` branch
+staying quiet on the ``experiment`` ``branch``
 
 .. figure:: img/collaborating-1.png
 
 when suddenly , without he gave any command to git, his
 ``repository`` accepts the request of ``push``, stores in the local database
-a couple of new``commits`` and moves the ``experiment`` (yes,
-just the branch of which he run the ``checkout``!) branch two ``commit`` forward
+a couple of new``commits`` and moves the ``experiment`` ``branch`` (yes,
+just the branch of which he run the ``checkout``!)  two ``commits`` forward
 
 .. figure:: img/collaborating-8.png
 
 You will admit that if this was the standard behaviour of git,
 you would never find yourself in your virtual colleague's position:
 loss of control of your ``repository`` and of your 
-``file system`` would be a too high price to be paid.
+``file system`` would be too high a price to be paid.
 
-You well undestand that changing the branch where you did ``checkout``
-sunstantially means seeing your 
+You well understand that changing the ``branch`` where you run ``checkout``
+substantially means seeing your 
 ``file system`` change under your feet. Of course this is totally unacceptable,
-and for this reason git refused proceding and replied with a lengthy error message
+and for this reason git refused proceeding and replied with a lengthy error message.
 
-You before remedied the situation moving your virtual colleague on a ``parking`` branch, 
+Before you remedied the situation moving your virtual colleague on a ``parking`` ``branch``, 
 just for being able to send it your branch.
 
 .. figure:: img/collaborating-9.png
 
-This dirty trick allowed you to ``push``  ``experiment``.
+This dirty trick allowed you to ``push`` ``experiment``.
 
-But thinking about it this is as well a solution you probably will never accept: 
+But, thinking about it, this is as well a solution you probably will never accept: 
 aside from the convenience of having to suspend just because a colleague wants to deliver his code,
-however you wouldn't like that the progress of your branches is 
+however you wouldn't like that the progress of your ``branches`` is 
 completely out of your control, at the mercy of anyone. Because, in the end
-the ``experiment`` branch would move forward against your will, and it could happen the same
-to all the branches that you did not ``checkout``.
+the ``experiment`` ``branch`` would move forward against your will, and it could happen the same
+to all the ``branches`` that you did not ``checkout``.
 
 It's evident that a radical solution to this problem must exist.
 
@@ -630,6 +630,6 @@ Of course I told you only half of the story and maybe it's worth
 to deepen a little the matter. Open very well your mind, 
 because now you are getting to the heart of a very fascinating subject:
 git's distributed nature. It's likely to be the most commonly unappreciated aspect of git
-and, nearly dertainly one of its most powerful features. 
+and, nearly certainly, one of its most powerful features. 
 
 :ref:`Indice <indice>` :: :ref:`Obiettivo 7: disegnare il workflow ideale <obiettivo_7>`
