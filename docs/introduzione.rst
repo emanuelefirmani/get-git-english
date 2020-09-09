@@ -7,9 +7,9 @@ Introduction
 
 This handbook is a bit different from the others.
 
-Many texts I have read re git are concerned about introducing you to 
+Many texts I have read about git are concerned about introducing you to 
 basic commands and leave the description of 
-the internals model to more advanced chapters, or they skip it at all.
+the internal model to more advanced chapters, or they skip it at all.
 
 But I noticed that if you learn git starting with basic commands, you are 
 risking to end up using it like a tool that is vaguely similar to SVN, but 
@@ -21,7 +21,7 @@ git well enough to use it daily, say that it was very difficult
 for them to understand what a ``rebase`` is, or that they still don't get 
 exactly how to use \ ``index``.
 
-My impression is that once you understand the internals model (that is 
+My impression is that once you understand the internal model (that is 
 surprisingly simple!), the whole git suddenly looks straightforward and
 coherent: there's really no reason why ``rebase`` should be a mysterious
 matter. 
@@ -32,10 +32,10 @@ you will find yourself learning at the same time both basic commands and
 advanced ones, in little time and without headaches.
 
 But you will not learn all commands. Instead of showing you all possible
-options, this guide will aim to make you comprehend the concepts and the 
-underlying model and to give you tools in order to be autonomous when you
-will want to deepen a subject on *man page* or you will want to do something
-extarordinary with your ``repository``. 
+options, this guide aims to have you to understand the concepts and the 
+underlying model, to give you tools in order to be autonomous when you
+will want to deepen a subject on *man page* or when you will want to do something
+extraordinary with your ``repository``. 
 
 One last note: this guide is organised as a long tutorial. If you arm 
 yourself with a terminal and you run each command, that you find
@@ -56,7 +56,7 @@ If you arrive from SVN, git presents one difficulty: it has many
 identical commands. But it's a superficial and deceitful similarity:
 under the hood git is totally different. 
 
-For this reason I suggest to shuin the temptation of drawng parallels
+For this reason I suggest to refrain from the temptation of drawing parallels
 with SVN, because they would be only misleading. You will find commands
 like ``add``, ``checkout``, ``commit`` and ``branch`` that you will 
 think to know. So: make a clean sweep of what you know, because in 
@@ -76,7 +76,7 @@ Or: would you believe that git, more than a code versioning system, could
 be better described as a  "*peer-to-peer system
 of key/value database on file system*\ "?
 
-After having read the guide come back and read these two statements: I'm 
+After reading the guide come back and read these two statements: I'm 
 ready to bet that you will find them obvious. 
 
 This is my suggestion: forget what you know about branch and changeset of SVN
